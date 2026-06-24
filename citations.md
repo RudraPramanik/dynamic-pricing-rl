@@ -38,28 +38,28 @@ Sorted by year (newest first), then tier.
 | `in_paper` | `groeneveld2025` | A | J. Groeneveld et al. | RL vs data-driven DP in finite-horizon pricing | *J. Revenue Pricing Manag.* | [10.1057/s41272-025-00519-8](https://doi.org/10.1057/s41272-025-00519-8) | DP vs RL; data-efficiency trade-off |
 | `in_paper` | `razumovskiy2025` | B | L. Razumovskiy, N. Karenin | DP vs RL in finite-horizon dynamic pricing | arXiv | [2604.14059](https://arxiv.org/abs/2604.14059) | Systematic DP/RL comparison; simulation framing |
 | PDF | `references/Lev Razumovskiy_2026.pdf` | | | | | | |
-| `add_next` | `chenavaz2025` | A | R. Y. Chenavaz, S. Dimitrov | AI and dynamic pricing: systematic literature review | *J. Appl. Econ.* | [10.1080/15140326.2025.2466140](https://doi.org/10.1080/15140326.2025.2466140) | **Open Related Work** — AI + pricing landscape |
+| `in_paper` | `chenavaz2025` | A | R. Y. Chenavaz, S. Dimitrov | AI and dynamic pricing: systematic literature review | *J. Appl. Econ.* | [10.1080/15140326.2025.2466140](https://doi.org/10.1080/15140326.2025.2466140) | **Open Related Work** — AI + pricing landscape |
 | PDF | `references/regis_Y_Chenavaz_25.pdf` | | | | | | |
 | `in_paper` | `hadi2025` | B | M. Hadi et al. | MARL for dynamic pricing in supply chains | arXiv | [2507.02698](https://arxiv.org/abs/2507.02698) | MARL supply chain; future work |
 | `in_paper` | `zhang2025` | A | W. Zhang, Y. Meng | Time-varying price elasticity forecasting | *SAGE Open Econ.* | [10.1177/14727978251338001](https://doi.org/10.1177/14727978251338001) | Non-stationary elasticity; GLM limitation |
 | `in_paper` | `nomura2025` | A | Y. Nomura, Z. Liu, T. Nishi | DRL for pricing + ordering in perishable inventory | *Appl. Sci.* | [10.3390/app15052421](https://doi.org/10.3390/app15052421) | Perishable inventory + PPO; future work |
 | PDF | `references/youseke_Nomura_25.pdf` | | | | | | |
-| `in_paper` | `ammar2025` | C | M. Ammar et al. | SLR: demand forecasting in retail e-commerce | *Int. J. Sci. Interdiscip. Res.* | — | Demand forecasting survey (orphan in bib) |
-| `add_next` | `nataraj2025` | A | S. Nataraj et al. | Transfer learning to scale DQNs for airline pricing | *J. Revenue Pricing Manag.* | [10.1057/s41272-024-00493-7](https://doi.org/10.1057/s41272-024-00493-7) | DQN scaling / transfer learning (optional) |
+| `removed` | ~~`ammar2025`~~ | — | — | Low-credibility venue; deleted from `main.tex` | — | — | — |
+| `optional` | `nataraj2025` | A | S. Nataraj et al. | Transfer learning to scale DQNs for airline pricing | *J. Revenue Pricing Manag.* | [10.1057/s41272-024-00493-7](https://doi.org/10.1057/s41272-024-00493-7) | DQN scaling (optional) |
 
 ### 2024
 
 | Status | Key | Tier | Authors | Title (short) | Venue | ID | Cite for |
 |--------|-----|------|---------|---------------|-------|-----|----------|
-| `add_next` | `liu2024` | A | S. Liu et al. | Omni-channel retail DRL: pricing + inventory | *Expert Syst. Appl.* | [10.1016/j.eswa.2023.122948](https://doi.org/10.1016/j.eswa.2023.122948) | **Retail DRL + inventory** — RL for Pricing § |
+| `in_paper` | `liu2024` | A | S. Liu et al. | Omni-channel retail DRL: pricing + inventory | *Expert Syst. Appl.* | [10.1016/j.eswa.2023.122948](https://doi.org/10.1016/j.eswa.2023.122948) | **Retail DRL + inventory** — RL for Pricing § |
 | PDF | `references/Liu_24.pdf` | | | | | | |
 | `in_paper` | `apte2024` | B | M. Apte et al. | Retail dynamic pricing via Q-Learning | arXiv | [2411.18261](https://arxiv.org/abs/2411.18261) | **Direct baseline** for EG-DQN |
 | PDF | `references/mohit_apte.pdf` | | | | | | |
 | `in_paper` | `alamdar2024` | A | P. F. Alamdar, A. Seifi | Deep Q-learning: ordering + dynamic pricing | *Int. J. Prod. Econ.* | [10.1016/j.ijpe.2024.109154](https://doi.org/10.1016/j.ijpe.2024.109154) | Joint DQN pricing-inventory |
 | `in_paper` | `xia2024` | B | Y. Xia et al. | Simulation benchmarking RL for retail promotions | arXiv | [2405.10469](https://arxiv.org/abs/2405.10469) | Simulation evaluation protocol |
 | `in_paper` | `yavuz2024` | A | T. Yavuz, O. Kaya | DRL pricing + inventory of perishables | *Appl. Soft Comput.* | [10.1016/j.asoc.2024.111864](https://doi.org/10.1016/j.asoc.2024.111864) | Perishable DQL/SAC; future work |
-| `add_next` | `zheng2024` | B | Y. Zheng et al. | Dual-agent DRL for pricing + replenishment | arXiv | [2410.21109](https://arxiv.org/abs/2410.21109) | **Hybrid ML demand + DRL** — closest to EG-DQN spirit |
-| `add_next` | `safonov2024` | B | K. Safonov | Neural demand estimation + dynamic pricing in retail | arXiv | [2412.00920](https://arxiv.org/abs/2412.00920) | ML vs econometric demand; motivates hybrid |
+| `in_paper` | `zheng2024` | B | Y. Zheng et al. | Dual-agent DRL for pricing + replenishment | arXiv | [2410.21109](https://arxiv.org/abs/2410.21109) | **Hybrid ML demand + DRL** — closest to EG-DQN spirit |
+| `in_paper` | `safonov2024` | B | K. Safonov | Neural demand estimation + dynamic pricing in retail | arXiv | [2412.00920](https://arxiv.org/abs/2412.00920) | ML vs econometric demand; motivates hybrid |
 | `add_next` | `mohamadi2024` | A | N. Mohamadi et al. | DRL + VMI in perishable supply chain | *Eng. Appl. Artif. Intell.* | [10.1016/j.engappai.2023.107403](https://doi.org/10.1016/j.engappai.2023.107403) | Perishable supply chain RL (optional) |
 
 ### 2023
@@ -69,13 +69,13 @@ Sorted by year (newest first), then tier.
 | `in_paper` | `kopalle2023` | A | P. K. Kopalle et al. | Dynamic pricing: definition and future directions | *J. Retailing* | [10.1016/j.jretai.2023.11.003](https://doi.org/10.1016/j.jretai.2023.11.003) | Survey / problem framing |
 | `in_paper` | `xiaocheng2023` | A | X. Li, Z. Zheng | Dynamic pricing with external info + inventory | *Manag. Sci.* | [10.1287/mnsc.2023.4963](https://doi.org/10.1287/mnsc.2023.4963) | Online learning + inventory |
 | `in_paper` | `cheung2023` | A | W. C. Cheung, D. Simchi-Levi | Nonstationary RL: blessing of optimism | *Manag. Sci.* | [10.1287/mnsc.2023.4704](https://doi.org/10.1287/mnsc.2023.4704) | Nonstationary RL; guided exploration |
-| `in_paper` | `bu2023` | A | J. Bu, D. Simchi-Levi, L. Wang | Offline pricing + demand learning (censored) | *Manag. Sci.* | [10.1287/mnsc.2022.4498](https://doi.org/10.1287/mnsc.2022.4498) | Offline demand learning (orphan) |
+| `in_paper` | `bu2023` | A | J. Bu, D. Simchi-Levi, L. Wang | Offline pricing + demand learning (censored) | *Manag. Sci.* | [10.1287/mnsc.2022.4498](https://doi.org/10.1287/mnsc.2022.4498) | Offline demand learning |
 | `in_paper` | `chen2023` | A | J. Chen, Y. Xu, P. Yu | RL hotel revenue management (field experiments) | *J. Oper. Manag.* | [10.1002/joom.1276](https://doi.org/10.1002/joom.1276) | Deployment / field evidence |
 | `in_paper` | `xia2023` | B | Y. Xia et al. | RetailSynth synthetic retail data | arXiv | [2312.14095](https://arxiv.org/abs/2312.14095) | Simulation calibration |
 | `in_paper` | `liang2023` | C | X. Liang et al. | Dueling DQN presale pricing | *Sustainability* | [10.3390/su151310480](https://doi.org/10.3390/su151310480) | DQN variant |
 | `in_paper` | `kaur2023` | C | A. Kaur et al. | Actor–critic pricing + demand (energy) | *Energies* | [10.3390/en16145469](https://doi.org/10.3390/en16145469) | Demand model inside RL reward |
-| `in_paper` | `rios2023` | A | J. H. Rios, J. R. Vera | Multi-product pricing + inventory (retail chain) | *Comput. Ind. Eng.* | [10.1016/j.cie.2023.109065](https://doi.org/10.1016/j.cie.2023.109065) | Multi-product retail (orphan) |
-| `in_paper` | `ramos2023` | B | P. Ramos et al. | Retail demand forecasting (multivariate TS) | arXiv | [2308.11939](https://arxiv.org/abs/2308.11939) | Forecasting benchmark (orphan) |
+| `in_paper` | `rios2023` | A | J. H. Rios, J. R. Vera | Multi-product pricing + inventory (retail chain) | *Comput. Ind. Eng.* | [10.1016/j.cie.2023.109065](https://doi.org/10.1016/j.cie.2023.109065) | Multi-product retail |
+| `in_paper` | `ramos2023` | B | P. Ramos et al. | Retail demand forecasting (multivariate TS) | arXiv | [2308.11939](https://arxiv.org/abs/2308.11939) | Forecasting benchmark |
 | `in_paper` | `husna2023` | C | A. ul Husna et al. | ML/DL demand forecasting in retail | Springer book ch. | [10.1007/978-3-031-25847-3_24](https://doi.org/10.1007/978-3-031-25847-3_24) | ML forecasting |
 
 ### 2022
@@ -86,16 +86,16 @@ Sorted by year (newest first), then tier.
 
 ---
 
-## 3. Legacy citations (pre-2022) — replace when editing
+## 3. Legacy citations (pre-2022) — removed from `main.tex`
 
-These are **outside the 2022–2026 window** but still appear in `main.tex`. Prefer swapping to rows above.
+These were removed during citation cleanup (2025-06-24). Do not re-add.
 
-| Old key | Year | Replace with |
-|---------|------|--------------|
+| Old key | Year | Replaced by |
+|---------|------|-------------|
 | `kastius2021` | 2021 | `groeneveld2025`, `razumovskiy2025`, `chenavaz2025` |
-| `fokianos2012` | 2012 | `xiaocheng2023`, `zhang2025`, `safonov2024` |
-| `antipov2021` | 2021 | `safonov2024`, `chenavaz2025` (hybrid / interpretable demand) |
-| `padakandla2021` | 2021 | `cheung2023` (nonstationary RL) |
+| `fokianos2012` | 2012 | `zhang2025` |
+| `antipov2021` | 2021 | `safonov2024` |
+| `padakandla2021` | 2021 | `cheung2023` |
 
 ---
 
@@ -236,4 +236,4 @@ grep -E 'charafeddine|elkhatib|Kumar~et' main.tex   # should be empty
 
 ---
 
-*Updated: 2025-06-24 · Phase A fixes applied in `main.tex` · Phase B = add `chenavaz2025`, `liu2024`, `zheng2024`, `safonov2024`.*
+*Updated: 2025-06-24 · Citation cleanup applied in `main.tex` (27 cited references, 0 orphans).*

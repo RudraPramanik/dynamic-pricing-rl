@@ -172,11 +172,11 @@ auditable and statistically grounded. However, they typically assume
 demand stationarity and their optimisation is open-loop. \textit{Reinforcement
 learning}~(RL) approaches formulate pricing as a sequential decision
 problem, where an agent learns a pricing policy by interacting with a
-market environment~\cite{kastius2021, groeneveld2025}. RL agents are
+market environment~\cite{groeneveld2025, razumovskiy2025}. RL agents are
 inherently adaptive and can discover strategies no parametric model
 would anticipate, but face practical deployment challenges in retail: noisy
 rewards, large action spaces, and costly exploration without prior
-knowledge~\cite{apte2024, padakandla2021}.
+knowledge~\cite{apte2024, cheung2023}.
 
 Apte~et~al.~\cite{apte2024} demonstrate that Q-Learning outperforms
 static pricing in simulated retail environments --- the direct baseline
@@ -220,13 +220,14 @@ exploration to prevent catastrophic pricing choices.
 \subsection{Dynamic Pricing and RL}
 
 Dynamic pricing has been studied extensively in the operations research
-literature~\cite{kopalle2023}. Kastius and Schlosser~\cite{kastius2021}
-establish RL as a practical framework for competitive pricing.
+and AI literatures~\cite{kopalle2023, chenavaz2025}.
 Groeneveld~et~al.~\cite{groeneveld2025} compare RL against dynamic
 programming in finite-horizon pricing markets. Li and Zheng~\cite{xiaocheng2023}
 study dynamic pricing under inventory constraints and external information
 in a formal online learning framework, highlighting the importance of
 integrating demand learning with sequential pricing decisions.
+Liu~et~al.~\cite{liu2024} extend deep reinforcement learning to joint
+omni-channel pricing and inventory control under demand uncertainty.
 Razumovskiy and Karenin~\cite{razumovskiy2025} provide a complementary
 systematic comparison of fitted dynamic programming and RL in
 finite-horizon pricing, situating our simulation study within a growing
@@ -239,6 +240,10 @@ in our five-strategy comparison.
 
 Demand forecasting is a prerequisite for any pricing strategy. ul~Husna
 et~al.~\cite{husna2023} benchmark ML approaches on retail demand data.
+Ramos~et~al.~\cite{ramos2023} compare multivariate time-series forecasters
+on retail sales.
+Bu~et~al.~\cite{bu2023} study offline pricing and demand learning when
+sales are censored by stockouts.
 Zhang and Meng~\cite{zhang2025} model time-varying price elasticity,
 directly addressing the non-stationarity limitation of static econometric
 models. Xia~et~al.~\cite{xia2023} use synthetic data generation with
@@ -247,11 +252,12 @@ parameters --- a methodology we adopt directly.
 
 \subsection{Econometric Demand Models}
 
-The Generalised Linear Model with a log-link and Poisson family is the
-standard workhorse for count demand modelling~\cite{fokianos2012}.
-Antipov and Pokryshevskaya~\cite{antipov2021} argue for hybrid use of
-GLMs as interpretable priors rather than stand-alone optimisers --- a
-perspective that directly motivates our architecture.
+The Generalised Linear Model with a log-link and Poisson family remains
+a standard approach for count demand with interpretable elasticities~\cite{zhang2025}.
+Safonov~\cite{safonov2024} shows that machine-learning demand estimators
+can complement econometric structure when within-product price variation
+is limited --- supporting hybrid architectures that use GLMs as
+interpretable priors rather than stand-alone optimisers.
 
 \subsection{RL for Pricing}
 
@@ -259,7 +265,11 @@ Apte~et~al.~\cite{apte2024} present a Q-Learning framework for retail
 pricing, establishing the baseline our work extends with forecasting
 signals. Liang~et~al.~\cite{liang2023} implement a Dueling DQN for
 multi-period pricing. Alamdar and Seifi~\cite{alamdar2024} extend DQN to
-joint pricing and inventory control. Kaur~et~al.~\cite{kaur2023}
+joint pricing and inventory control.
+Zheng~et~al.~\cite{zheng2024} combine learned demand signals with a
+dual-agent deep RL framework for joint pricing and replenishment --- the
+closest architectural neighbour to our econometric-guided DQN.
+Kaur~et~al.~\cite{kaur2023}
 demonstrate actor--critic RL combining demand modelling with pricing in
 energy markets, establishing the principle of integrating demand models
 into RL reward structures. Nambiar~et~al.~\cite{nambiar2022} justify
@@ -275,8 +285,9 @@ framing our work as a necessary single-agent stepping stone.
 
 \subsection{Market Structure}
 
-We consider a single retailer managing multiple substitute products managing $n=3$ products over a
-discrete time horizon of $T$~days. At each period $t \in \{1,\ldots,T\}$,
+We consider a single retailer managing $n=3$ substitute products over a
+discrete time horizon of $T$~days, following multi-product retail pricing
+formulations~\cite{rios2023}. At each period $t \in \{1,\ldots,T\}$,
 the retailer observes state $s_t$ and selects a price from a finite
 action space. The objective is to learn a pricing policy
 $\pi : \mathcal{S} \to \mathcal{A}$ that maximises cumulative expected
@@ -291,7 +302,7 @@ revenue:
 \subsection{Demand Data-Generating Process}
 
 The true DGP follows a log-linear multiplicative structure consistent
-with demand theory~\cite{kopalle2023, fokianos2012}:
+with demand theory~\cite{kopalle2023, zhang2025}:
 \begin{equation}
   D_{it} = B_i(t)\cdot S_i(t)\cdot
   \prod_{j=1}^{n}\!\left(\frac{p_{jt}}{\bar{p}_j}\right)^{\!\varepsilon_{ij}}
@@ -746,7 +757,7 @@ approximately $1.9\times$. The variance of episode rewards in the final
 20~episodes is 0.31 for EG-DQN versus 0.79 for pure DQN, a
 \textbf{61\%} reduction in reward volatility. This is consistent with
 the theoretical prediction that prior-informed exploration reduces the
-variance of the Q-value estimator~\cite{padakandla2021}.
+variance of the Q-value estimator~\cite{cheung2023}.
 
 % ────────────────────────────────────────────────────────────
 %  FIGURE 5 — Training Convergence (Cell 15 of notebook)
@@ -806,9 +817,9 @@ the largest incremental revenue ($+\$3{,}130$ vs.\ pure DQN), confirming
 that the primary value of the econometric prior is \emph{informational}
 --- it tells the agent where to look. All three components are necessary:
 removing any single mechanism leaves the agent below the below the GLM benchmark (\$146,380), while their combination enables the hybrid to exceed
-it. This directly instantiates the argument of Antipov and
-Pokryshevskaya~\cite{antipov2021} that econometric models serve best as
-structured priors rather than stand-alone optimisers.
+it. This directly instantiates the argument of Safonov~\cite{safonov2024}
+that econometric structure is most valuable as an interpretable prior
+rather than a stand-alone optimiser.
 
 % ────────────────────────────────────────────────────────────
 %  FIGURE 6 — Ablation Study (Cell 20 of notebook)
@@ -994,11 +1005,12 @@ research directions,''
 \textit{Journal of Retailing}, vol.~99, no.~4, pp.~580--593, 2023.
 \url{https://doi.org/10.1016/j.jretai.2023.11.003}
 
-\bibitem{kastius2021}
-A.~Kastius and R.~Schlosser,
-``Dynamic pricing under competition using reinforcement learning,''
-\textit{Journal of Revenue and Pricing Management}, vol.~21,
-pp.~50--63, 2021.
+\bibitem{chenavaz2025}
+R.~Y.~Chenavaz and S.~Dimitrov,
+``Artificial intelligence and dynamic pricing: A systematic literature
+review,''
+\textit{J. Appl. Econ.}, vol.~28, no.~1, p.~2466140, 2025.
+\url{https://doi.org/10.1080/15140326.2025.2466140}
 
 \bibitem{groeneveld2025}
 J.~Groeneveld \textit{et~al.},
@@ -1058,29 +1070,17 @@ P.~Ramos \textit{et~al.},
 series,''
 \textit{arXiv:2308.11939}, 2023.
 
-\bibitem{ammar2025}
-M.~Ammar \textit{et~al.},
-``A systematic review of demand forecasting models for retail
-e-commerce,''
-\textit{International Journal of Scientific Interdisciplinary Research},
-2025.
-
 \bibitem{xia2023}
 Y.~Xia, A.~Arian, S.~Narayanamoorthy, and J.~Mabry,
 ``RetailSynth: Synthetic data generation for retail AI systems
 evaluation,''
 \textit{arXiv:2312.14095}, 2023.
 
-\bibitem{fokianos2012}
-K.~Fokianos and R.~Fried,
-``Interventions in log-linear Poisson autoregression,''
-\textit{Journal of Time Series Analysis}, 2012.
-
-\bibitem{antipov2021}
-E.~A.~Antipov and E.~B.~Pokryshevskaya,
-``Interpretable machine learning for demand modeling with high-dimensional
-data,''
-\textit{Journal of Revenue and Pricing Management}, 2021.
+\bibitem{safonov2024}
+K.~Safonov,
+``Neural network approach to demand estimation and dynamic pricing in
+retail,''
+\textit{arXiv:2412.00920}, 2024.
 
 \bibitem{bu2023}
 J.~Bu, D.~Simchi-Levi, and L.~Wang,
@@ -1107,6 +1107,13 @@ decisions,''
 \textit{International Journal of Production Economics}, vol.~269,
 p.~109154, 2024.
 
+\bibitem{liu2024}
+S.~Liu \textit{et~al.},
+``Data-driven dynamic pricing and inventory management of an omni-channel
+retailer in an uncertain demand environment,''
+\textit{Expert Syst. Appl.}, vol.~244, p.~122948, 2024.
+\url{https://doi.org/10.1016/j.eswa.2023.122948}
+
 \bibitem{chen2023}
 J.~Chen, Y.~Xu, and P.~Yu,
 ``A reinforcement learning approach for hotel revenue management with
@@ -1120,11 +1127,11 @@ Y.~Xia \textit{et~al.},
 personalized retail promotions,''
 \textit{arXiv:2405.10469}, 2024.
 
-\bibitem{padakandla2021}
-S.~Padakandla,
-``A survey of reinforcement learning algorithms for dynamically varying
-environments,''
-\textit{ACM Computing Surveys}, vol.~54, no.~6, pp.~1--25, 2021.
+\bibitem{zheng2024}
+Y.~Zheng \textit{et~al.},
+``Dual-agent deep reinforcement learning for dynamic pricing and
+replenishment,''
+\textit{arXiv:2410.21109}, 2024.
 
 \bibitem{yavuz2024}
 T.~Yavuz and O.~Kaya,
