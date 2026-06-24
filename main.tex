@@ -223,13 +223,17 @@ Dynamic pricing has been studied extensively in the operations research
 literature~\cite{kopalle2023}. Kastius and Schlosser~\cite{kastius2021}
 establish RL as a practical framework for competitive pricing.
 Groeneveld~et~al.~\cite{groeneveld2025} compare RL against dynamic
-programming in finite-horizon pricing markets. Charafeddine~et~al.
-~\cite{xiaocheng2023} study dynamic pricing under inventory constraints and external information in a formal online learning framework, highlighting the importance of integrating demand learning with sequential pricing decisions ~et~al.
-\cite{charafeddine2025} extend this comparison, situating our simulation
-study within a growing literature evaluating RL against classical
-baselines. Kumar~et~al.~\cite{kumar2026} study multi-agent RL for
-pricing across profitability, stability, and fairness --- three
-dimensions we evaluate in our five-strategy comparison.
+programming in finite-horizon pricing markets. Li and Zheng~\cite{xiaocheng2023}
+study dynamic pricing under inventory constraints and external information
+in a formal online learning framework, highlighting the importance of
+integrating demand learning with sequential pricing decisions.
+Razumovskiy and Karenin~\cite{razumovskiy2025} provide a complementary
+systematic comparison of fitted dynamic programming and RL in
+finite-horizon pricing, situating our simulation study within a growing
+literature evaluating RL against classical baselines.
+Pillai and Amma~\cite{kumar2026} study multi-agent RL for pricing across
+profitability, stability, and fairness --- three dimensions we evaluate
+in our five-strategy comparison.
 
 \subsection{Demand Forecasting}
 
@@ -697,7 +701,7 @@ handicapping pure DQN.
 The CV-price column reveals an important stability dimension: pure DQN
 exhibits the highest price volatility, while EG-DQN achieves its higher
 revenue with considerably more stable pricing, a practically valuable
-property emphasised by Kumar~et~al.~\cite{kumar2026}.
+property emphasised by Pillai and Amma~\cite{kumar2026}.
 
 % ────────────────────────────────────────────────────────────
 %  FIGURE 4 — Revenue Comparison Panel (Cell 17 of notebook)
@@ -974,7 +978,7 @@ Future work will pursue: (i)~real-data validation on the Corporaci\'{o}n
 Favorita dataset; (ii)~multi-product joint optimisation via multi-agent
 EG-DQN~\cite{hadi2025, kumar2026}; and (iii)~inventory constraint
 integration following perishable-goods frameworks~\cite{yavuz2024,
-elkhatib2025}.
+nomura2025}.
 
 % ============================================================
 %  REFERENCES
@@ -1003,16 +1007,16 @@ finite horizon dynamic pricing markets,''
 \textit{Journal of Revenue and Pricing Management}, 2025.
 \url{https://doi.org/10.1057/s41272-025-00519-8}
 
-\bibitem{charafeddine2025}
-A.~Charafeddine \textit{et~al.},
+\bibitem{razumovskiy2025}
+L.~Razumovskiy and N.~Karenin,
 ``A comparative study of dynamic programming and reinforcement learning
-in finite horizon dynamic pricing,''
+in finite-horizon dynamic pricing,''
 \textit{arXiv:2604.14059}, 2025.
 
 \bibitem{kumar2026}
-A.~Kumar \textit{et~al.},
-``Multi-agent reinforcement learning for dynamic pricing: Profitability,
-stability and fairness,''
+K.~K.~N.~Pillai and S.~K.~Amma,
+``Multi-agent reinforcement learning for dynamic pricing: Balancing
+profitability, stability and fairness,''
 \textit{arXiv:2603.16888}, 2026.
 
 \bibitem{husna2023}
@@ -1084,7 +1088,7 @@ J.~Bu, D.~Simchi-Levi, and L.~Wang,
 \textit{Management Science}, vol.~69, no.~2, pp.~885--903, 2023.
 
 \bibitem{apte2024}
-M.~Apte \textit{et~al.},
+M.~Apte, K.~Kale, P.~Datar, and P.~R.~Deshmukh,
 ``Dynamic retail pricing via Q-Learning --- A reinforcement learning
 framework for enhanced revenue management,''
 \textit{arXiv:2411.18261}, 2024.
@@ -1128,11 +1132,11 @@ T.~Yavuz and O.~Kaya,
 management of perishable products,''
 \textit{Applied Soft Computing}, vol.~163, p.~111864, 2024.
 
-\bibitem{elkhatib2025}
-M.~El~Khatib \textit{et~al.},
+\bibitem{nomura2025}
+Y.~Nomura, Z.~Liu, and T.~Nishi,
 ``Deep reinforcement learning for dynamic pricing and ordering policies
 in perishable inventory management,''
-\textit{Applied Sciences}, vol.~15, no.~5, p.~2421, 2025.
+\textit{Appl. Sci.}, vol.~15, no.~5, p.~2421, 2025.
 \url{https://doi.org/10.3390/app15052421}
 
 \bibitem{rios2023}
@@ -1143,15 +1147,15 @@ retail chain,''
 
 
 \bibitem{xiaocheng2023}
-M.~El~Xiaocheng Li and Zeyu ~Zheng  \textit{et~al.},
-``Dynamic Pricing with External Information and Inventory Constraint,''
-\textit{Management Sciences},
+X.~Li and Z.~Zheng,
+``Dynamic pricing with external information and inventory constraint,''
+\textit{Manag. Sci.}, 2023.
 \url{https://doi.org/10.1287/mnsc.2023.4963}
 
 \bibitem{cheung2023}
-W.~C.~Cheung and  D. ~Simchi-Levi,
-``Nonstationary Reinforcement Learning: The Blessing of (More) Optimism,''
-\textit{Management Sciences}
+W.~C.~Cheung and D.~Simchi-Levi,
+``Nonstationary reinforcement learning: The blessing of (more) optimism,''
+\textit{Manag. Sci.}, 2023.
 \url{https://doi.org/10.1287/mnsc.2023.4704}
 
 
