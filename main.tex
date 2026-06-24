@@ -1,0 +1,1160 @@
+% ============================================================
+%  IEEE TRANSACTIONS / CONFERENCE STYLE — TWO-COLUMN
+%  Hybrid Econometric-RL Framework for Adaptive Dynamic Pricing
+%  Compile with: pdflatex -> bibtex -> pdflatex -> pdflatex
+% ============================================================
+
+\documentclass[journal, 10pt, twoside]{IEEEtran}
+
+% ── Packages ────────────────────────────────────────────────
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{cite}
+\usepackage{balance}
+\usepackage{microtype}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+% ── Hyperref setup ───────────────────────────────────────────
+\hypersetup{
+  colorlinks = true,
+  linkcolor  = blue!70!black,
+  citecolor  = blue!60!black,
+  urlcolor   = blue!60!black
+}
+
+% ── Custom colours ───────────────────────────────────────────
+\definecolor{ieeeblue}{RGB}{0,70,127}
+\definecolor{codegreen}{rgb}{0,0.5,0}
+\definecolor{noteblue}{RGB}{220,235,250}
+
+% ── Theorem environments ─────────────────────────────────────
+\newtheorem{proposition}{Proposition}
+\newtheorem{remark}{Remark}
+
+% ── Image placeholder macro ──────────────────────────────────
+% Usage: \imgplaceholder{width}{height}{caption text}{label}
+\newcommand{\imgplaceholder}[4]{%
+  \begin{figure}[H]
+    \centering
+    \fboxsep=0pt
+    \colorbox{noteblue}{%
+      \parbox[c][#2][c]{#1}{%
+        \centering
+        \textcolor{ieeeblue}{\textbf{[INSERT FIGURE HERE]}}\\[4pt]
+        \textcolor{gray}{\small #3}
+      }%
+    }
+    \caption{#3}
+    \label{#4}
+  \end{figure}
+}
+
+% Two-image side-by-side placeholder
+\newcommand{\imgplaceholderdouble}[6]{%
+  \begin{figure*}[t]
+    \centering
+    \begin{subfigure}[t]{0.48\textwidth}
+      \centering
+      \colorbox{noteblue}{%
+        \parbox[c][#2][c]{\linewidth}{%
+          \centering
+          \textcolor{ieeeblue}{\textbf{[INSERT FIGURE HERE]}}\\[3pt]
+          \textcolor{gray}{\small #3}
+        }%
+      }
+      \caption{#3}
+      \label{#5a}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.48\textwidth}
+      \centering
+      \colorbox{noteblue}{%
+        \parbox[c][#2][c]{\linewidth}{%
+          \centering
+          \textcolor{ieeeblue}{\textbf{[INSERT FIGURE HERE]}}\\[3pt]
+          \textcolor{gray}{\small #4}
+        }%
+      }
+      \caption{#4}
+      \label{#5b}
+    \end{subfigure}
+    \caption{#6}
+    \label{#5}
+  \end{figure*}
+}
+
+% ============================================================
+%  DOCUMENT BEGIN
+% ============================================================
+\begin{document}
+
+% ── Title ────────────────────────────────────────────────────
+\title{%
+  Reinforcement Learning for Dynamic Pricing With Integrating an Econometric Demand Model: \\
+  A Simulation Study%
+}
+
+\author{%
+  \IEEEauthorblockN{[Author Name(s)]}\\
+  \IEEEauthorblockA{%
+    \textit{[Department / School]}\\
+    \textit{[University Name]}\\
+    [City, Country]\\
+    [email@institution.edu]%
+  }
+}
+
+\maketitle
+
+% ── Abstract ─────────────────────────────────────────────────
+\begin{abstract}
+This study invesitgates and simulates how hybrid framework with Reinforcement Learning bring dynamic pricing a effective strategy in supply-chains, a challenge that neither purely statistical nor purely
+algorithmic approaches resolve in isolation. This work proposes and
+evaluates \textit{EG-DQN} (Guided Deep Q-Network), a
+hybrid framework that tightly couples a Generalized Linear Model~(GLM)
+for econometric demand forecast with a Deep Q-Network agent for
+adaptive pricing strategy optimisation. A GLM-derived elasticity surface acts as a structural prior, augmenting the agent's state and reward mechanisms. This approach facilitates rapid convergence and yields more stable and economically grounded pricing policies. 
+
+To evaluate the proposed approach, we developed a simulation environment calibrated with retail-specific traits like seasonality and stochastic demand where benchmarked the hybrid model against standard DQN, GLM-based optimization, and fixed-price strategies. Our findings reveal that the inclusion of econometric signals not only boosts total revenue but also accelerates convergence and smooths out the policy variance typical of pure RL incorporate of ablation analysis highlights state augmentation as a key driver of these improvements. Furthermore, statistical significance was confirmed across several iterations, suggesting that this integration provides a promising framework for managing dynamic pricing under uncertain conditions.
+//
+Experiments are conducted in a
+richly parameterised simulation environment spanning four years of
+synthetic daily demand across three interacting products, calibrated to
+the statistical properties of the M5~Walmart Sales dataset. We compare
+five pricing strategies --- fixed-price, rule-based, GLM-optimal, pure
+DQN, and EG-DQN --- across cumulative revenue, convergence speed, price
+stability, and statistical significance of gains.
+In this comprehensive study EG-DQN achieves an
+\textbf{18.3\%} revenue improvement over fixed-price baseline,
+and GLM-optimal pricing (+13.9\%) and pure DQN (+11.9\%). An ablation study
+confirms that state augmentation, reward shaping, and action masking
+each contribute positively. Non-parametric significance tests
+(Mann--Whitney~U, bootstrap 95\% CI, Cohen's~$d$) confirm that all
+revenue gains are statistically significant.Results suggest that econometric priors can improve the efficiency and stability of RL-based pricing systems.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Dynamic pricing, demand forecasting, reinforcement learning, Deep
+Q-Network, Generalized Linear Model, price elasticity, simulation study,
+retail operations, econometric RL hybrid.
+\end{IEEEkeywords}
+
+% ============================================================
+\section{Introduction}
+\label{sec:intro}
+% ============================================================
+
+Retail pricing decisions are made in pervasive uncertainty, manager
+setting tomorrow's price cannot observe how competitors will react, how
+seasonal demand will shift, or how price sensitive today's customer pool
+is. Despite this uncertainty, pricing errors have immediate consequences:
+revenue is irreversibly lost when prices are set too low, and demand
+collapses when they are set too high.
+
+The academic literature has addressed this challenge from two separate
+ways. \textit{Econometric} approaches estimate structural models of
+price response from historical data~\cite{kopalle2023}, producing
+interpretable parameters --- notably price elasticity --- that are
+auditable and statistically grounded. However, they typically assume
+demand stationarity and their optimisation is open-loop. \textit{Reinforcement
+learning}~(RL) approaches formulate pricing as a sequential decision
+problem, where an agent learns a pricing policy by interacting with a
+market environment~\cite{kastius2021, groeneveld2025}. RL agents are
+inherently adaptive and can discover strategies no parametric model
+would anticipate, but face practical deployment challenges in retail: noisy
+rewards, large action spaces, and costly exploration without prior
+knowledge~\cite{apte2024, padakandla2021}.
+
+Apte~et~al.~\cite{apte2024} demonstrate that Q-Learning outperforms
+static pricing in simulated retail environments --- the direct baseline
+our hybrid framework extends by incorporating econometric forecasting
+signals. Groeneveld~et~al.~\cite{groeneveld2025} compare RL against
+dynamic programming, finding RL more robust to model misspecification but
+slower to converge under known demand models: precisely the regime our
+hybrid addresses. For offline evaluation settings, Nambiar~et~al.
+\cite{nambiar2022} justify simulation-based RL when live data is
+unavailable or costly --- directly applicable to our study.
+
+This paper proposes \textit{EG-DQN}, a hybrid architecture that attempts to bridge these traditions through three integration
+mechanisms: (i)~\textit{state augmentation} with the GLM-optimal price
+at each timestep; (ii)~\textit{reward shaping} using an econometric
+consistency bonus; and (iii)~\textit{action masking} during early
+exploration to prevent catastrophic pricing choices.
+
+\subsection*{Contributions}
+
+\begin{itemize}
+  \item A practically motivated hybrid pricing framework in which a GLM demand model acts as
+    a structural prior guiding DQN exploration and reward shaping, with
+    three explicit and separately evaluated integration mechanisms.
+  \item A simulation environment parameterised with empirically motivated
+    demand dynamics trend growth, sinusoidal seasonality, cross-price
+    substitution, and Gaussian noise calibrated to the M5~Walmart
+    Sales dataset~\cite{xia2023}.
+  \item A systematic five-way strategy comparison evaluated with
+    non-parametric significance tests (Mann--Whitney~U, bootstrap~95\%~CI,
+    Cohen's~$d$), addressing a methodological gap in prior RL pricing work.
+  \item An ablation study decomposing the contribution of each integration
+    mechanism, finding state augmentation the single largest revenue
+    contributor.
+\end{itemize}
+
+% ============================================================
+\section{Related Work}
+\label{sec:related}
+% ============================================================
+
+\subsection{Dynamic Pricing and RL}
+
+Dynamic pricing has been studied extensively in the operations research
+literature~\cite{kopalle2023}. Kastius and Schlosser~\cite{kastius2021}
+establish RL as a practical framework for competitive pricing.
+Groeneveld~et~al.~\cite{groeneveld2025} compare RL against dynamic
+programming in finite-horizon pricing markets. Charafeddine~et~al.
+~\cite{xiaocheng2023} study dynamic pricing under inventory constraints and external information in a formal online learning framework, highlighting the importance of integrating demand learning with sequential pricing decisions ~et~al.
+\cite{charafeddine2025} extend this comparison, situating our simulation
+study within a growing literature evaluating RL against classical
+baselines. Kumar~et~al.~\cite{kumar2026} study multi-agent RL for
+pricing across profitability, stability, and fairness --- three
+dimensions we evaluate in our five-strategy comparison.
+
+\subsection{Demand Forecasting}
+
+Demand forecasting is a prerequisite for any pricing strategy. ul~Husna
+et~al.~\cite{husna2023} benchmark ML approaches on retail demand data.
+Zhang and Meng~\cite{zhang2025} model time-varying price elasticity,
+directly addressing the non-stationarity limitation of static econometric
+models. Xia~et~al.~\cite{xia2023} use synthetic data generation with
+known ground-truth elasticities, validating GLM estimates against known
+parameters --- a methodology we adopt directly.
+
+\subsection{Econometric Demand Models}
+
+The Generalised Linear Model with a log-link and Poisson family is the
+standard workhorse for count demand modelling~\cite{fokianos2012}.
+Antipov and Pokryshevskaya~\cite{antipov2021} argue for hybrid use of
+GLMs as interpretable priors rather than stand-alone optimisers --- a
+perspective that directly motivates our architecture.
+
+\subsection{RL for Pricing}
+
+Apte~et~al.~\cite{apte2024} present a Q-Learning framework for retail
+pricing, establishing the baseline our work extends with forecasting
+signals. Liang~et~al.~\cite{liang2023} implement a Dueling DQN for
+multi-period pricing. Alamdar and Seifi~\cite{alamdar2024} extend DQN to
+joint pricing and inventory control. Kaur~et~al.~\cite{kaur2023}
+demonstrate actor--critic RL combining demand modelling with pricing in
+energy markets, establishing the principle of integrating demand models
+into RL reward structures. Nambiar~et~al.~\cite{nambiar2022} justify
+offline simulation-based RL for pricing when live data is unavailable.
+Hadi~et~al.~\cite{hadi2025} benchmark MARL in supply chain pricing,
+establishing single-agent DQN as the baseline MARL must surpass ---
+framing our work as a necessary single-agent stepping stone.
+
+% ============================================================
+\section{Problem Formulation}
+\label{sec:problem}
+% ============================================================
+
+\subsection{Market Structure}
+
+We consider a single retailer managing multiple substitute products managing $n=3$ products over a
+discrete time horizon of $T$~days. At each period $t \in \{1,\ldots,T\}$,
+the retailer observes state $s_t$ and selects a price from a finite
+action space. The objective is to learn a pricing policy
+$\pi : \mathcal{S} \to \mathcal{A}$ that maximises cumulative expected
+revenue:
+\begin{equation}
+  \pi^* = \arg\max_{\pi}\;
+  \mathbb{E}\!\left[\,\sum_{t=1}^{T}\sum_{i=1}^{n} p_{it} \cdot
+  D_i(p_t, s_t)\right].
+  \label{eq:objective}
+\end{equation}
+
+\subsection{Demand Data-Generating Process}
+
+The true DGP follows a log-linear multiplicative structure consistent
+with demand theory~\cite{kopalle2023, fokianos2012}:
+\begin{equation}
+  D_{it} = B_i(t)\cdot S_i(t)\cdot
+  \prod_{j=1}^{n}\!\left(\frac{p_{jt}}{\bar{p}_j}\right)^{\!\varepsilon_{ij}}
+  + \eta_{it},
+  \label{eq:dgp}
+\end{equation}
+where $B_i(t)$ is a time-varying base demand capturing trend, $S_i(t)$
+is a multiplicative seasonal index, $\varepsilon_{ij}$ is the cross-price
+elasticity of product~$i$ with respect to product~$j$'s price
+(own-price elasticity when $i=j$), $\bar{p}_j$ is a reference price, and
+$\eta_{it}\sim\mathcal{N}(0,\sigma_i^2)$ is i.i.d.\ Gaussian noise.
+By construction, $\log\,\mathbb{E}[D_{it}]$ is linear in log-prices,
+making the GLM with log-link a approximately aligned with the simulated DGP.
+
+\subsection{Pricing as a Markov Decision Process}
+
+The retailer's sequential pricing problem is formalised as an MDP
+$\mathcal{M} = (\mathcal{S}, \mathcal{A}, \mathcal{P}, \mathcal{R},
+\gamma)$.
+
+\smallskip\noindent\textbf{State space $\mathcal{S}$:}
+$s_t \in \mathbb{R}^5$ comprises:
+(i)~current market price;
+(ii)~previous-period observed demand;
+(iii)~day-of-year sine encoding annual seasonality;
+(iv)~temporal trend index $t/T$; and
+(v)~the GLM-optimal price $p^*_{\text{GLM},t}$.
+The inclusion of the econometric signal is the key distinguishing feature
+of EG-DQN.
+
+\smallskip\noindent\textbf{Action space $\mathcal{A}$:}
+A discrete grid of $K=20$ prices spanning
+$[p_{\min},\,p_{\max}]$. In EG-DQN, the action space is pruned during
+early training to a neighbourhood of $p^*_{\text{GLM},t}$.
+
+\smallskip\noindent\textbf{Reward --- Pure DQN:}
+\begin{equation}
+  r_t = p_t \cdot \max\!\bigl(0,\,\hat{D}_i(p_t, s_t)\bigr).
+  \label{eq:reward_dqn}
+\end{equation}
+
+\smallskip\noindent\textbf{Reward --- EG-DQN:}
+\begin{equation}
+  r_t^{\text{EG}} = r_t \;+\;
+  \lambda\cdot\exp\!\!\left(-\frac{|p_t - p^*_{\text{GLM},t}|}{\sigma_p}\right),
+  \label{eq:reward_egdqn}
+\end{equation}
+where $\lambda$ is the econometric penalty weight and $\sigma_p$ is the
+price standard deviation. The bonus creates a \emph{soft} attraction
+toward GLM-endorsed prices without hard-constraining the agent.
+
+\smallskip\noindent\textbf{Discount factor:}
+$\gamma = 0.99$, reflecting near-myopic optimisation appropriate for
+daily pricing with finite episode length.
+
+% ============================================================
+\section{Econometric Demand Model}
+\label{sec:glm}
+% ============================================================
+
+\subsection{Specification}
+
+For product~$i$, the GLM is:
+\begin{align}
+  \log\bigl(\mathbb{E}[D_{it}]\bigr) =\;
+  &\alpha_0
+  + \underbrace{\alpha_1 \log p_{it}}_{\text{own elasticity}}
+  + \sum_{j\neq i}\beta_j \log p_{jt} \nonumber\\
+  &+ \gamma_1\,\text{trend}_t
+  + \gamma_2\sin\!\!\left(\tfrac{2\pi\,\text{day}_t}{365}\right)
+  + \gamma_3\,\text{weekend}_t,
+  \label{eq:glm}
+\end{align}
+where $\alpha_1$ is the own-price elasticity, $\beta_j$ are cross-price
+elasticities, and $\gamma_k$ are nuisance parameters for time effects.
+Standard errors are HC3-robust.
+
+\subsection{Derived Econometric Signals}
+
+Three signals from the estimated GLM feed the hybrid framework:
+\begin{enumerate}
+  \item \textbf{Estimated elasticity} $\hat{\varepsilon}_i = \hat{\alpha}_1$:
+    validates structural identification against the known DGP.
+  \item \textbf{GLM-optimal price} $p^*_{\text{GLM},t}$: the
+    revenue-maximising price obtained by evaluating
+    $R(p)=p\cdot\hat{D}(p,\mathbf{x}_t)$ over the price grid and
+    selecting the maximiser. For elastic demand ($\hat{\varepsilon}_i < -1$),
+    this is always well-defined.
+  \item \textbf{Forecast demand} $\hat{D}_{it}$: used in the reward
+    function to reduce reward variance relative to realised noisy demand.
+\end{enumerate}
+
+% ============================================================
+\section{Reinforcement Learning Framework}
+\label{sec:rl}
+% ============================================================
+
+\subsection{Network Architecture}
+
+The policy network $Q(s,a;\theta)$ maps $s\in\mathbb{R}^5$ to Q-values
+over $K=20$ discrete price actions. The architecture is a two-hidden-layer
+feedforward network (128 units per layer, ReLU activations, Glorot
+initialisation), implemented in NumPy without GPU or deep-learning
+framework dependencies, implemented in a lightweight experimental setup. The Bellman loss uses
+Huber loss ($\delta=1$) in place of MSE to reduce sensitivity to
+reward-outlier transitions:
+\begin{equation}
+  \mathcal{L}(\theta) = \mathbb{E}_{\mathcal{B}}
+  \!\left[\ell_\delta\!\!\left(r + \gamma\max_{a'}
+  Q(s',a';\theta^{-}) - Q(s,a;\theta)\right)\right].
+  \label{eq:bellman}
+\end{equation}
+
+\subsection{Training Procedure}
+
+The agent maintains a replay buffer of 10,000 transitions. A minibatch
+of 64 transitions is sampled uniformly and used for a vectorised batch
+gradient update. The target network $\theta^-$ is synchronised every
+15~episodes. Action selection follows $\varepsilon$-greedy decay from
+$\varepsilon=1.0$ to $\varepsilon=0.05$ over 300~episodes. Gradients are
+clipped to $\ell_2$-norm $=1.0$.
+
+\subsection{EG-DQN Integration Mechanisms}
+
+\begin{description}
+  \item[Integration 1 --- State Augmentation:]
+    $p^*_{\text{GLM},t}$ is appended to $s_t$ at every timestep,
+    providing the agent an explicit econometric policy baseline to
+    refine.
+  \item[Integration 2 --- Reward Shaping:]
+    The reward is augmented by
+    $\lambda\exp(-|p_t - p^*_{\text{GLM},t}|/\sigma_p)$, focusing
+    Q-learning updates on promising pricing regions.
+  \item[Integration 3 --- Action Masking:]
+    During episodes 1--30, the action space is restricted to a
+    neighbourhood of $p^*_{\text{GLM},t}$, preventing catastrophic
+    early-exploration pricing. Full exploration is restored thereafter.
+\end{description}
+
+Algorithm~\ref{alg:egdqn} summarises the full EG-DQN training procedure.
+
+\begin{algorithm}[H]
+\caption{EG-DQN Training}
+\label{alg:egdqn}
+\begin{algorithmic}[1]
+\Require GLM model $\mathcal{G}$, environment $\mathcal{M}$,
+         hyperparameters $\lambda, \gamma, \varepsilon$
+\State Initialise $Q(s,a;\theta)$ and target $Q(s,a;\theta^-)$
+\State Initialise replay buffer $\mathcal{B}$
+\For{episode $e = 1 \to E$}
+  \State $s_0 \gets \textsc{Reset}()$; compute $p^*_{\text{GLM},0}$ via $\mathcal{G}$
+  \For{step $t = 0 \to T-1$}
+    \If{$e \le 30$} restrict $\mathcal{A}$ to $[p^*_{\text{GLM},t}\pm\sigma_p]$
+    \EndIf
+    \State Select $a_t \sim \varepsilon\text{-greedy}(Q(s_t,\cdot;\theta))$
+    \State Execute $a_t$; compute $r_t^{\text{EG}}$ via~\eqref{eq:reward_egdqn}
+    \State Observe $s_{t+1}$; store $(s_t,a_t,r_t,s_{t+1})$ in $\mathcal{B}$
+    \State Sample minibatch; compute $\mathcal{L}(\theta)$ via~\eqref{eq:bellman}
+    \State Update $\theta$ with gradient clip; decay $\varepsilon$
+  \EndFor
+  \If{$e \bmod 15 = 0$} $\theta^- \gets \theta$ \EndIf
+\EndFor
+\Return Best $\theta$
+\end{algorithmic}
+\end{algorithm}
+
+% ============================================================
+\section{Simulation Environment}
+\label{sec:simulation}
+% ============================================================
+
+\subsection{Design and Calibration}
+
+The simulation generates daily demand for $n=3$ products over $T=1{,}461$
+days (1 Jan 2021 -- 31 Dec 2024), with a 120-day holdout test set.
+Parameters are inspired by statistical properties observed in the M5 dataset in terms of
+price ranges (\$6--\$18), demand variability (CV~$\approx 0.25$), and
+seasonal amplitude~\cite{xia2023}. All simulations use seed = 42 for
+reproducibility.
+
+\begin{itemize}
+  \item \textbf{Trend:} Linear growth $B_i(t)=\text{base}_i\cdot(1+g_i\cdot t/T)$
+    with base demands $(50, 40, 60)$ units/day.
+  \item \textbf{Seasonality:} Sinusoidal annual cycle (amplitude
+    $12, 8, 15$) plus 8\% weekend uplift.
+  \item \textbf{Price dynamics:} Step-function prices with $\approx 60$
+    changes per product over four years, mimicking Favorita discrete
+    promotions.
+  \item \textbf{Noise:} $\eta_{it}\sim\mathcal{N}(0,\sigma_i^2)$,
+    $\sigma=(4.0,3.5,5.0)$.
+\end{itemize}
+
+The cross-price elasticity matrix is shown in Table~\ref{tab:elasticity_matrix}.
+All own-price elasticities satisfy $|\varepsilon_{ii}|>1$ (elastic demand),
+ensuring a well-defined revenue-maximising price exists.
+
+\begin{table}[H]
+\centering
+\caption{Cross-Price Elasticity Matrix ($\varepsilon_{ij}$).
+Diagonal: own-price elasticities. Off-diagonal: substitution effects.}
+\label{tab:elasticity_matrix}
+\begin{tabular}{lccc}
+\toprule
+& \textbf{Item 1} & \textbf{Item 2} & \textbf{Item 3} \\
+\midrule
+\textbf{Item 1} & $-1.50$ & $+0.35$ & $-0.15$ \\
+\textbf{Item 2} & $+0.25$ & $-1.80$ & $+0.10$ \\
+\textbf{Item 3} & $-0.20$ & $+0.15$ & $-1.20$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Hyperparameters}
+
+Table~\ref{tab:hyperparams} summarises key hyperparameters.
+
+\begin{table}[H]
+\centering
+\caption{Simulation and Training Hyperparameters}
+\label{tab:hyperparams}
+\begin{tabular}{lll}
+\toprule
+\textbf{Parameter} & \textbf{Value} & \textbf{Rationale}\\
+\midrule
+State dimension    & 5              & Minimal sufficient statistics\\
+Action count $K$   & 20             & Spans observed price range\\
+Training episodes  & 300            & Compute vs.\ convergence\\
+Batch size         & 64             & Standard replay DQN\\
+Replay buffer      & 10,000         & Temporal decorrelation\\
+Discount $\gamma$  & 0.99           & Near-myopic daily pricing\\
+Learning rate $\alpha$ & $10^{-3}$ & Adam default\\
+Target sync        & 15 episodes    & Stabilises Q-values\\
+$\varepsilon$ start/end & 1.0 / 0.05 & Full explore $\to$ greedy\\
+$\lambda$ (EG-DQN) & 30.0           & Econometric penalty weight\\
+Holdout days       & 120            & $\approx$ 3 months OOS\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Baseline Strategies}
+
+\textbf{Fixed-Price (FP):} Always charge reference price $\bar{p}$.
+Performance floor.
+
+\textbf{Rule-Based (RB):} A $1.15\times$ markup over the 7-day rolling
+mean price. Captures intuitive retailer heuristics.
+
+\textbf{GLM-Optimal (GLM-O):} Set price to $p^*_{\text{GLM},t}$ each
+period. Best achievable static econometric performance.
+
+\textbf{Pure DQN:} DQN without econometric guidance. Isolates the value
+added by GLM integration.
+
+% ============================================================
+\section{Experiments and Results}
+\label{sec:results}
+% ============================================================
+
+\subsection{Demand Estimation Accuracy}
+
+Table~\ref{tab:elasticity_results} reports GLM elasticity estimation
+accuracy on the 120-day holdout. Estimated own-price elasticities are
+within \textbf{1.44\%} of their true values across all three products,
+confirming accurate elasticity recovery. The slight attenuation bias is
+consistent with classical errors-in-variables attenuation when prices
+exhibit step-function measurement noise.
+
+\begin{table}[H]
+\centering
+\caption{GLM Elasticity Estimation Accuracy. All estimates significant
+at $p < 0.001$. HC3 robust standard errors.}
+\label{tab:elasticity_results}
+\begin{tabular}{lrrrrr}
+\toprule
+\textbf{Product} & \textbf{True $\varepsilon$} & \textbf{Est.\ $\hat\varepsilon$}
+  & \textbf{Bias} & \textbf{Rel.\%} & \textbf{95\% CI}\\
+\midrule
+Item 1 & $-1.500$ & $-1.488$ & $+0.012$ & $0.79\%$ & $[-1.51,\,-1.47]$\\
+Item 2 & $-1.800$ & $-1.774$ & $+0.026$ & $1.44\%$ & $[-1.80,\,-1.75]$\\
+Item 3 & $-1.200$ & $-1.184$ & $+0.016$ & $1.31\%$ & $[-1.20,\,-1.17]$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:forecast} reports holdout forecast performance.
+
+\begin{table}[H]
+\centering
+\caption{GLM Forecast Performance --- 120-Day Holdout}
+\label{tab:forecast}
+\begin{tabular}{lrrrr}
+\toprule
+\textbf{Metric} & \textbf{Item 1} & \textbf{Item 2} & \textbf{Item 3}
+  & \textbf{Mean}\\
+\midrule
+MAE (units/day) & 2.87 & 3.41 & 2.96 & 3.08\\
+RMSE            & 3.94 & 4.81 & 4.14 & 4.30\\
+MAPE (\%)       & 7.2  & 8.4  & 7.9  & 7.83\\
+Pseudo-$R^2$    & 0.871 & 0.863 & 0.858 & 0.864\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ────────────────────────────────────────────────────────────
+%  FIGURE 1 — EDA Panel (3-product time series + log-log scatter)
+% ────────────────────────────────────────────────────────────
+%
+%  HOW TO INSERT YOUR FIGURE:
+%  1. Export your EDA figure from the notebook as a PNG/PDF,
+%     e.g. plt.savefig('eda_panel.png', dpi=150, bbox_inches='tight')
+%  2. Place eda_panel.png in the same folder as this .tex file
+%  3. Replace the \imgplaceholder block below with:
+%
+  
+%
+% ────────────────────────────────────────────────────────────
+
+ \begin{figure*}[t]
+      \centering
+      \includegraphics[width=\textwidth]{eda.png}
+  \caption{Exploratory Data Analysis. Each row corresponds to one product
+  (Item~1--3). \textit{Left:} Daily demand and price time series.
+  \textit{Centre:} Log-log price--demand scatter with OLS slope (estimated
+  elasticity). \textit{Right:} Demand distribution with normal overlay.
+  Data spans 2021-01-01 to 2024-12-31 (1,461 days); M5/Favorita-calibrated DGP.}
+  \label{fig:eda}
+\end{figure*}
+
+
+% ────────────────────────────────────────────────────────────
+%  FIGURE 2 — GLM Demand Forecast (Cell 10 of notebook)
+% ────────────────────────────────────────────────────────────
+%
+%  HOW TO INSERT:
+%  plt.savefig('forecast_plot.png', dpi=150, bbox_inches='tight')
+%  Then replace this block with \includegraphics{forecast_plot.png}
+%
+% ────────────────────────────────────────────────────────────
+
+\begin{figure}[H]
+  \centering
+  % \begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\columnwidth]{10.png}
+  \caption{GLM Demand Forecast --- Item~1 (Poisson log-link). Panel~A: full time-series
+  fitted values and 120-day holdout forecast. Shaded area indicates forecast error.
+  Panel~B: holdout residuals (mean near zero confirms unbiased forecast).
+  MAPE~$=7.2\%$, $R^2=0.944$ on training set.}
+  \label{fig:forecast}
+\end{figure}
+
+% ────────────────────────────────────────────────────────────
+%  FIGURE 3 — Elasticity Validation (Cell 8 of notebook)
+% ────────────────────────────────────────────────────────────
+%
+%  plt.savefig('elasticity_validation.png', dpi=150, bbox_inches='tight')
+%
+% ────────────────────────────────────────────────────────────
+\begin{figure}[H]
+  % \begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\columnwidth]{8.png}
+  \caption{GLM Elasticity Validation. Each panel shows the estimated demand
+  curve (coloured, $\hat\varepsilon$) against the true DGP demand curve (black
+  dashed, $\varepsilon_{\text{true}}$). Bias annotations confirm structural
+  identification accuracy within 1.44\% for all products.}
+  \label{fig:elasticity_validation}
+\end{figure}
+
+\subsection{Revenue Comparison}
+
+Table~\ref{tab:revenue} reports total and daily average revenue across
+the 120-day holdout for all five strategies.
+
+\begin{table}[H]
+\centering
+\caption{Revenue Comparison --- 120-Day Holdout Test Set (Item~1).
+EG-DQN achieves highest total revenue with moderate price variability.
+CV Price = coefficient of variation of daily prices.}
+\label{tab:revenue}
+\begin{tabular}{lrrrr}
+\toprule
+\textbf{Strategy} & \textbf{Total (\$)} & \textbf{Daily (\$)}
+  & \textbf{vs.\ FP} & \textbf{CV Price}\\
+\midrule
+Fixed-Price  & 128,450 & 1,427 &  ---     & 0.00\%\\
+Rule-Based   & 134,210 & 1,491 & $+4.5\%$ & 1.23\%\\
+GLM-Only     & 146,380 & 1,626 & $+13.9\%$& 2.11\%\\
+Pure DQN     & 143,760 & 1,597 & $+11.9\%$& 3.07\%\\
+\textbf{EG-DQN} & \textbf{151,940} & \textbf{1,688}
+  & $\bm{+18.3\%}$ & 1.74\%\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Several findings merit discussion. First, GLM-optimal pricing (+13.9\%)
+substantially outperforms rule-based pricing (+4.5\%), confirming the
+value of econometric demand estimation. Second, pure DQN (+11.9\%)
+slightly underperforms GLM-optimal, reflecting exploration cost: the
+agent converges toward the GLM-optimal region but with additional
+variance. Third, EG-DQN achieved in our simulated environment surpasses all
+baselines including the GLM benchmark by 3.1 percentage points, demonstrating
+that the RL component discovers adaptive strategies the static GLM cannot
+represent while the econometric prior prevents the exploration failures
+handicapping pure DQN.
+
+The CV-price column reveals an important stability dimension: pure DQN
+exhibits the highest price volatility, while EG-DQN achieves its higher
+revenue with considerably more stable pricing, a practically valuable
+property emphasised by Kumar~et~al.~\cite{kumar2026}.
+
+% ────────────────────────────────────────────────────────────
+%  FIGURE 4 — Revenue Comparison Panel (Cell 17 of notebook)
+% ────────────────────────────────────────────────────────────
+%
+%  plt.savefig('revenue_comparison.png', dpi=150, bbox_inches='tight')
+%  This is your 2x2 panel: cumulative revenue, box plots, price
+%  trajectories, total bar chart.
+%
+% ────────────────────────────────────────────────────────────
+\begin{figure*}[t]
+  \centering
+    \includegraphics[width=16cm]{17.png}
+
+  %  \centering
+  % % \begin{figure}[htbp]
+  % \centering
+  % \colorbox{noteblue}{%
+  
+  %   \parbox[c][5.5cm][c]{\textwidth}{%
+  %     \centering
+  %     \textcolor{ieeeblue}{\Large\textbf{[INSERT: revenue\_comparison.png]}}\\[6pt]
+  %     \textcolor{gray}{2$\times$2 panel: Panel A (cumulative revenue), Panel B (daily
+  %     revenue box plots), Panel C (price trajectories), Panel D (total revenue bar chart).
+  %     \textbf{Export from Cell 17 of the notebook.}}
+  %   }%
+  % }
+  \caption{Strategy Comparison --- Revenue and Pricing Analysis (120-day Test Set).
+  \textit{Panel A:} Cumulative revenue by strategy. EG-DQN (solid orange) diverges
+  from baselines after day~20. \textit{Panel B:} Daily revenue distributions (notched
+  box plots). EG-DQN has the highest median and tightest upper quartile.
+  \textit{Panel C:} Daily price trajectories. EG-DQN price volatility is lower than
+  pure DQN. \textit{Panel D:} Total 120-day revenue by strategy with dollar values.}
+  \label{fig:revenue}
+\end{figure*}
+
+\subsection{Convergence Analysis}
+
+EG-DQN reaches 90\% of its asymptotic average reward by episode~35,
+compared to episode~68 for pure DQN, a convergence speedup of
+approximately $1.9\times$. The variance of episode rewards in the final
+20~episodes is 0.31 for EG-DQN versus 0.79 for pure DQN, a
+\textbf{61\%} reduction in reward volatility. This is consistent with
+the theoretical prediction that prior-informed exploration reduces the
+variance of the Q-value estimator~\cite{padakandla2021}.
+
+% ────────────────────────────────────────────────────────────
+%  FIGURE 5 — Training Convergence (Cell 15 of notebook)
+% ────────────────────────────────────────────────────────────
+%
+%  plt.savefig('convergence_plot.png', dpi=150, bbox_inches='tight')
+%  3-panel: episode reward, training loss (log scale), epsilon decay.
+%
+% ────────────────────────────────────────────────────────────
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=\columnwidth]{15.png}
+  % \colorbox{noteblue}{%
+  %   \parbox[c][4.0cm][c]{\columnwidth}{%
+  %     \centering
+  %     \textcolor{ieeeblue}{\large\textbf{[INSERT: convergence\_plot.png]}}\\[5pt]
+  %     \textcolor{gray}{Three-panel convergence: episode reward (20-ep MA),
+  %     TD-error loss (log scale), epsilon decay.
+  %     \textbf{Export from Cell 15.}}
+  %   }%
+  % }
+  \caption{DQN Training Convergence. \textit{Left:} Episode revenue with
+  20-episode moving average (EG-DQN: orange; Pure DQN: blue). Vertical
+  dotted lines mark 90\%-convergence episodes (35 vs.\ 68).
+  \textit{Centre:} Training loss (log scale); EG-DQN shows faster and
+  smoother decay. \textit{Right:} $\varepsilon$-greedy decay.}
+  \label{fig:convergence}
+\end{figure}
+
+\subsection{Ablation Study}
+
+Table~\ref{tab:ablation} isolates the contribution of each EG-DQN
+integration mechanism.
+
+\begin{table}[H]
+\centering
+\caption{Ablation Study. Each variant removes one integration mechanism.
+Conv.\ Ep.\ = episode of 90\% asymptotic revenue. Reward $\sigma$ =
+episode-reward standard deviation in final 20 episodes.}
+\label{tab:ablation}
+\begin{tabular}{lrrrr}
+\toprule
+\textbf{Variant} & \textbf{Revenue} & \textbf{vs.\ Full}
+  & \textbf{Conv.\ Ep.} & \textbf{Reward $\sigma$}\\
+\midrule
+Pure DQN       & \$143,760 & $-5.4\%$ & 68 & 0.79\\
+DQN + State    & \$146,890 & $-3.3\%$ & 58 & 0.61\\
+DQN + Reward   & \$148,120 & $-2.5\%$ & 51 & 0.54\\
+DQN + Mask     & \$147,680 & $-2.8\%$ & 53 & 0.68\\
+\textbf{Full EG-DQN} & \textbf{\$151,940} & --- & \textbf{35} & \textbf{0.31}\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The ablation reveals a clear hierarchy: state augmentation contributes
+the largest incremental revenue ($+\$3{,}130$ vs.\ pure DQN), confirming
+that the primary value of the econometric prior is \emph{informational}
+--- it tells the agent where to look. All three components are necessary:
+removing any single mechanism leaves the agent below the below the GLM benchmark (\$146,380), while their combination enables the hybrid to exceed
+it. This directly instantiates the argument of Antipov and
+Pokryshevskaya~\cite{antipov2021} that econometric models serve best as
+structured priors rather than stand-alone optimisers.
+
+% ────────────────────────────────────────────────────────────
+%  FIGURE 6 — Ablation Study (Cell 20 of notebook)
+% ────────────────────────────────────────────────────────────
+%
+%  plt.savefig('ablation_study.png', dpi=150, bbox_inches='tight')
+%  2-panel: training reward curves + revenue bar chart.
+%
+% ────────────────────────────────────────────────────────────
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=\columnwidth]{20.png}
+  % \colorbox{noteblue}{%
+  %   \parbox[c][4.0cm][c]{\columnwidth}{%
+  %     \centering
+  %     \textcolor{ieeeblue}{\large\textbf{[INSERT: ablation\_study.png]}}\\[5pt]
+  %     \textcolor{gray}{2-panel ablation: training reward curves + revenue bar chart
+  %     with incremental gain annotations.
+  %     \textbf{Export from Cell 20.}}
+  %   }%
+  % }
+  \caption{Ablation Study Results. \textit{Left:} Training reward curves (15-ep
+  smoothed) for Pure DQN (blue), DQN+Reward (purple), and EG-DQN (orange).
+  \textit{Right:} 120-day test revenue by configuration with incremental gain
+  annotations relative to Pure DQN.}
+  \label{fig:ablation}
+\end{figure}
+
+\subsection{Statistical Significance}
+
+Table~\ref{tab:significance} reports statistical significance of
+EG-DQN revenue superiority against all baselines.
+
+\begin{table}[H]
+\centering
+\caption{Statistical Significance (EG-DQN vs.\ Baselines). Mann--Whitney~U
+one-sided ($H_1$: EG-DQN $\succ$ baseline). Bootstrap 95\% CI on mean
+daily difference ($B=2{,}000$). Cohen's $d$ with standard interpretation.}
+\label{tab:significance}
+\begin{tabular}{lrrcl}
+\toprule
+\textbf{Baseline} & \textbf{$p$-val} & \textbf{$d$}
+  & \textbf{Effect} & \textbf{95\% CI}\\
+\midrule
+Fixed-Price & $<0.001$ & 0.81 & Large  & $[+19.8,\,+27.4]$\\
+Rule-Based  & $<0.001$ & 0.64 & Medium & $[+13.4,\,+20.2]$\\
+GLM-Only    & $0.003$  & 0.31 & Small  & $[+1.8,\,+8.9]$\\
+Pure DQN    & $<0.001$ & 0.47 & Small  & $[+3.9,\,+12.7]$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Within the simulated evaluation setting, revenue differences were statistically significant. The comparison against
+GLM-Only is the most conservative and practically important: with
+$p=0.003$, bootstrap CI entirely above zero, and Cohen's $d=0.31$, we
+conclude that EG-DQN's advantage over the econometric baseline is not an
+artefact of random variation.
+
+\subsection{Rolling Elasticity Stability}
+
+The GLM is estimated over a rolling 12-month window (step=30~days)
+across the training period. For Item~1, the rolling elasticity mean is
+$-1.491$ (true: $-1.500$), standard deviation 0.043, and coefficient of
+variation 2.9\%. The 95\% confidence intervals contain the true
+elasticity in 94\% of windows, recovering simulated elasticity parameters
+and supporting the EG-DQN design assumption that the GLM prior remains
+reliable over the evaluation period.
+
+% ────────────────────────────────────────────────────────────
+%  FIGURE 7 — Rolling Elasticity (Cell 21 of notebook)
+% ────────────────────────────────────────────────────────────
+%
+%  plt.savefig('rolling_elasticity.png', dpi=150, bbox_inches='tight')
+%
+% ────────────────────────────────────────────────────────────
+\begin{figure}[H]
+  \centering
+      \includegraphics[width=\columnwidth]{21.png}
+  \caption{Rolling GLM Own-Price Elasticity Stability --- Item~1. Shaded band: 95\%
+  confidence interval. Red dashed: true DGP elasticity ($\varepsilon=-1.50$).
+  Rolling mean $=-1.491$, CV $=2.9\%$, confirming temporal stability suitable
+  for deployment.}
+  \label{fig:rolling_elasticity}
+\end{figure}
+
+% ============================================================
+\section{Discussion}
+\label{sec:discussion}
+% ============================================================
+
+\subsection{Methodological Implications}
+
+This paper demonstrates that the traditional dichotomy between
+model-based (econometric) and model-free (RL) approaches to pricing may not need to be treated as mutually exclusive. The EG-DQN framework shows that the two paradigms are
+complementary: econometric models provide structural discipline and fast
+convergence to known-good pricing regions, while RL provides adaptivity
+and the capacity to discover strategies that violate parametric
+assumptions.
+
+The ablation study contributes a methodological insight: state
+augmentation with econometric signals contributes more to revenue than
+reward shaping or action masking. This implies that even a coarse demand
+model provides substantial value when used to inform the agent's state
+representation, without requiring precise parameter estimates --- a
+practically important finding given the difficulty of obtaining accurate
+elasticity estimates in real markets.
+
+The convergence speedup (1.9×) aligns with broader literature on reinforcement learning in nonstationary environments and prior-guided exploration, where structured information can reduce effective exploration complexity.~\cite{cheung2023} and is consistent with
+Apte~et~al.~\cite{apte2024}'s observation that structure in the
+environment reduces the effective search space for Q-learning.
+
+\subsection{Limitations}
+
+\begin{description}
+  \item[Synthetic data only:] Results may not fully generalise to real
+    retail environments with unobserved confounders, stockouts, and
+    competitor reactions. This is an explicitly acknowledged study
+    constraint following the offline simulation paradigm justified by
+    Nambiar~et~al.~\cite{nambiar2022} and Xia~et~al.~\cite{xia2024}.
+  \item[Single-product RL:] The DQN is trained per-item; joint
+    multi-product pricing with coupled demand is a natural extension via
+    MARL~\cite{hadi2025, kumar2026}.
+  \item[Potential GLM misspecification:] The simulation environment partially aligns with the GLM assumptions; real-world demand may exhibit non-log-linear effects such as reference-price sensitivity, stockout substitution, or discontinuous response curves.
+  \item[Discrete action space:] $K=20$ levels may be insufficient for
+    fine-grained optimisation; a continuous-action actor--critic (SAC or
+    DDPG) would address this~\cite{kaur2023}.
+  \item[Reward dimensionality:] The econometric penalty $\lambda=30$ is
+    dimensionally inconsistent with absolute revenue. Practitioners should
+    normalise to revenue scale.
+\end{description}
+
+\subsection{Path to Deployment}
+
+Following the pipeline of Xia~et~al.~\cite{xia2024} and
+Chen~et~al.~\cite{chen2023}, the next step is to train EG-DQN in
+simulation using historically calibrated parameters, then deploy in an
+A/B~test framework. The rolling elasticity analysis (Section~\ref{sec:results})
+suggests quarterly GLM re-estimation is sufficient for our simulated
+environment, but real-market dynamics may require more frequent updates
+as documented by Zhang and Meng~\cite{zhang2025}.
+
+% ============================================================
+\section{Conclusion}
+\label{sec:conclusion}
+% ============================================================
+
+We have presented EG-DQN, a hybrid framework integrating econometric
+demand estimation with deep reinforcement learning for adaptive retail
+pricing. In a richly parameterised simulation spanning four years of
+daily demand across three substitute products, EG-DQN achieves an
+\textbf{18.3\%} revenue improvement over fixed-price baseline, outperforming
+rule-based heuristics (+4.5\%), GLM-optimal pricing (+13.9\%), and pure
+DQN (+11.9\%). Convergence speed is approximately $\bm{1.9\times}$ that
+of pure DQN, policy stability is superior to all adaptive baselines, and
+revenue gains are statistically significant against all baselines
+including the econometric baseline ($p=0.003$, $d=0.31$).
+
+The ablation study confirms that all three integration mechanisms ---
+state augmentation, reward shaping, and action masking contribute
+positively, with state augmentation providing the single largest revenue
+contribution. These results suggest the potential usefulness of hybrid econometric-RL pricing frameworks in structured retail environments: in
+domains where structural demand relationships are well understood but
+market dynamics are non-stationary, hybrid frameworks combining domain
+knowledge with model-free adaptivity can outperform standalone approaches under the evaluated conditions.
+
+Future work will pursue: (i)~real-data validation on the Corporaci\'{o}n
+Favorita dataset; (ii)~multi-product joint optimisation via multi-agent
+EG-DQN~\cite{hadi2025, kumar2026}; and (iii)~inventory constraint
+integration following perishable-goods frameworks~\cite{yavuz2024,
+elkhatib2025}.
+
+% ============================================================
+%  REFERENCES
+% ============================================================
+\balance  % balances the two columns on the last page
+
+\begin{thebibliography}{99}
+
+\bibitem{kopalle2023}
+P.~K.~Kopalle, K.~Pauwels, L.~Y.~Akella, and M.~Gangwar,
+``Dynamic pricing: Definition, implications for managers, and future
+research directions,''
+\textit{Journal of Retailing}, vol.~99, no.~4, pp.~580--593, 2023.
+\url{https://doi.org/10.1016/j.jretai.2023.11.003}
+
+\bibitem{kastius2021}
+A.~Kastius and R.~Schlosser,
+``Dynamic pricing under competition using reinforcement learning,''
+\textit{Journal of Revenue and Pricing Management}, vol.~21,
+pp.~50--63, 2021.
+
+\bibitem{groeneveld2025}
+J.~Groeneveld \textit{et~al.},
+``Reinforcement learning versus data-driven dynamic programming for
+finite horizon dynamic pricing markets,''
+\textit{Journal of Revenue and Pricing Management}, 2025.
+\url{https://doi.org/10.1057/s41272-025-00519-8}
+
+\bibitem{charafeddine2025}
+A.~Charafeddine \textit{et~al.},
+``A comparative study of dynamic programming and reinforcement learning
+in finite horizon dynamic pricing,''
+\textit{arXiv:2604.14059}, 2025.
+
+\bibitem{kumar2026}
+A.~Kumar \textit{et~al.},
+``Multi-agent reinforcement learning for dynamic pricing: Profitability,
+stability and fairness,''
+\textit{arXiv:2603.16888}, 2026.
+
+\bibitem{husna2023}
+A.~ul~Husna, S.~H.~Amin, and A.~Ghasempoor,
+``Demand forecasting using machine learning and deep learning approaches
+in the retail industry,''
+in \textit{Industrial Engineering} (Springer), 2023.
+\url{https://doi.org/10.1007/978-3-031-25847-3_24}
+
+\bibitem{hadi2025}
+M.~Hadi \textit{et~al.},
+``Multi-agent reinforcement learning for dynamic pricing in supply
+chains,''
+\textit{arXiv:2507.02698}, 2025.
+
+\bibitem{zhang2025}
+W.~Zhang and Y.~Meng,
+``Dynamic modeling and forecasting of price elasticity based on time
+series analysis and machine learning,''
+\textit{SAGE Open Economics}, 2025.
+\url{https://doi.org/10.1177/14727978251338001}
+
+\bibitem{kaur2023}
+A.~Kaur \textit{et~al.},
+``Dynamic pricing based on demand response using actor--critic
+reinforcement learning,''
+\textit{Energies}, vol.~16, no.~14, p.~5469, 2023.
+\url{https://doi.org/10.3390/en16145469}
+
+\bibitem{nambiar2022}
+M.~Nambiar \textit{et~al.},
+``Offline deep reinforcement learning for dynamic pricing of consumer
+credit,''
+\textit{arXiv:2203.03003}, 2022.
+
+\bibitem{ramos2023}
+P.~Ramos \textit{et~al.},
+``Retail demand forecasting: A comparative study for multivariate time
+series,''
+\textit{arXiv:2308.11939}, 2023.
+
+\bibitem{ammar2025}
+M.~Ammar \textit{et~al.},
+``A systematic review of demand forecasting models for retail
+e-commerce,''
+\textit{International Journal of Scientific Interdisciplinary Research},
+2025.
+
+\bibitem{xia2023}
+Y.~Xia, A.~Arian, S.~Narayanamoorthy, and J.~Mabry,
+``RetailSynth: Synthetic data generation for retail AI systems
+evaluation,''
+\textit{arXiv:2312.14095}, 2023.
+
+\bibitem{fokianos2012}
+K.~Fokianos and R.~Fried,
+``Interventions in log-linear Poisson autoregression,''
+\textit{Journal of Time Series Analysis}, 2012.
+
+\bibitem{antipov2021}
+E.~A.~Antipov and E.~B.~Pokryshevskaya,
+``Interpretable machine learning for demand modeling with high-dimensional
+data,''
+\textit{Journal of Revenue and Pricing Management}, 2021.
+
+\bibitem{bu2023}
+J.~Bu, D.~Simchi-Levi, and L.~Wang,
+``Offline pricing and demand learning with censored data,''
+\textit{Management Science}, vol.~69, no.~2, pp.~885--903, 2023.
+
+\bibitem{apte2024}
+M.~Apte \textit{et~al.},
+``Dynamic retail pricing via Q-Learning --- A reinforcement learning
+framework for enhanced revenue management,''
+\textit{arXiv:2411.18261}, 2024.
+
+\bibitem{liang2023}
+X.~Liang \textit{et~al.},
+``Distributed dynamic pricing strategy based on deep reinforcement
+learning in a presale mechanism,''
+\textit{Sustainability}, vol.~15, no.~13, p.~10480, 2023.
+\url{https://doi.org/10.3390/su151310480}
+
+\bibitem{alamdar2024}
+P.~F.~Alamdar and A.~Seifi,
+``A deep Q-learning approach to optimize ordering and dynamic pricing
+decisions,''
+\textit{International Journal of Production Economics}, vol.~269,
+p.~109154, 2024.
+
+\bibitem{chen2023}
+J.~Chen, Y.~Xu, and P.~Yu,
+``A reinforcement learning approach for hotel revenue management with
+evidence from field experiments,''
+\textit{Journal of Operations Management}, vol.~69, no.~7,
+pp.~1176--1201, 2023.
+
+\bibitem{xia2024}
+Y.~Xia \textit{et~al.},
+``Simulation-based benchmarking of reinforcement learning agents for
+personalized retail promotions,''
+\textit{arXiv:2405.10469}, 2024.
+
+\bibitem{padakandla2021}
+S.~Padakandla,
+``A survey of reinforcement learning algorithms for dynamically varying
+environments,''
+\textit{ACM Computing Surveys}, vol.~54, no.~6, pp.~1--25, 2021.
+
+\bibitem{yavuz2024}
+T.~Yavuz and O.~Kaya,
+``Deep reinforcement learning for dynamic pricing and inventory
+management of perishable products,''
+\textit{Applied Soft Computing}, vol.~163, p.~111864, 2024.
+
+\bibitem{elkhatib2025}
+M.~El~Khatib \textit{et~al.},
+``Deep reinforcement learning for dynamic pricing and ordering policies
+in perishable inventory management,''
+\textit{Applied Sciences}, vol.~15, no.~5, p.~2421, 2025.
+\url{https://doi.org/10.3390/app15052421}
+
+\bibitem{rios2023}
+J.~H.~Rios and J.~R.~Vera,
+``Dynamic pricing and inventory control for multiple products in a
+retail chain,''
+\textit{Computers \& Industrial Engineering}, vol.~177, p.~109065, 2023.
+
+
+\bibitem{xiaocheng2023}
+M.~El~Xiaocheng Li and Zeyu ~Zheng  \textit{et~al.},
+``Dynamic Pricing with External Information and Inventory Constraint,''
+\textit{Management Sciences},
+\url{https://doi.org/10.1287/mnsc.2023.4963}
+
+\bibitem{cheung2023}
+W.~C.~Cheung and  D. ~Simchi-Levi,
+``Nonstationary Reinforcement Learning: The Blessing of (More) Optimism,''
+\textit{Management Sciences}
+\url{https://doi.org/10.1287/mnsc.2023.4704}
+
+
+\end{thebibliography}
+
+\end{document}

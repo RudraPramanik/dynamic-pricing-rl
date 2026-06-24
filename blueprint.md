@@ -18,7 +18,7 @@
 
 Re-running is **optional** at this stage. What matters is **consistency**, not re-execution.
 
-| Situation | Action |
+| Situation | Action | 
 |-----------|--------|
 | You have final tables/figures and know which run produced them | **Audit only** — align `main.tex` to those outputs |
 | Paper numbers match your saved tables exactly | **Skip re-run** — proceed to writing/citations |
