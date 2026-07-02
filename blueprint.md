@@ -18,7 +18,127 @@
 
 **Working principle:** Every sentence that reports a number or claims “significance” must trace to `data.md` or a figure in `figures/`. No number in the abstract unless it appears in the updated Results tables.
 
-**Last updated:** 2026-07-02 — Priority 0 **complete**; ledger locked; ready for manuscript pass.
+**Review philosophy (locked):** This is **our simulation study** — honest, scoped, limitation-forward. We are **not** claiming a new SOTA pricing method or a general RL breakthrough. If a result looks too strong, is artifact-driven, or cannot be defended under scrutiny, **do not headline it** (and do not put it in the abstract). Prefer “we observe / in this run / under these conditions” over “we prove / outperform / novel.”
+
+**Last updated:** 2026-07-02 — conservative claim policy added; ready for defensible manuscript pass.
+
+---
+
+## Review-safe claim policy (read before every edit)
+
+### What this paper IS
+
+| Yes | No |
+|-----|-----|
+| A **simulation study** of a hybrid EG-DQN **design** | A deployed pricing product |
+| An **honest comparison** of five strategies on one holdout | Proof that hybrid RL beats econometrics in general |
+| **Method + benchmark + evaluation protocol** contribution | A new RL algorithm or theory result |
+| **Limitation-first** reporting | Marketing language (“breakthrough,” “dominates,” “SOTA”) |
+
+### Four-tier claim rule
+
+| Tier | Where it may appear | Rule |
+|------|---------------------|------|
+| **A — Headline** | Abstract, Conclusion (1 sentence max each) | Only Tier-A claims. Must be boringly defensible. |
+| **B — Body** | Results, Tables, Figure captions | Supported numbers; always scoped (“Item 1,” “120-day holdout,” “simulation”). |
+| **C — Limitations / Discussion only** | §Limitations, §Discussion | Artifacts, ties, corner solutions, misfit, failed tests. |
+| **D — Do not claim** | Nowhere in manuscript | Unsupported, wrong run, or reviewer-bait. |
+
+**“Hide” means Tier D or C** — not fabricating data. We **report** awkward findings in Limitations; we **do not** put them in the abstract or sell them as success.
+
+### Tier assignment for OUR data
+
+#### Tier A — safe to headline (abstract / conclusion)
+
+- We propose **EG-DQN** with three named integration mechanisms and evaluate them in simulation.
+- Five-strategy comparison on a **120-day holdout (Item 1)** in a synthetic three-product environment.
+- **GLM-optimal and EG-DQN achieve identical holdout revenue** in this run (tie — not a win for hybrid).
+- **EG-DQN does not significantly differ from GLM-optimal** on daily holdout revenue (*p* = 0.50).
+- Adaptive / econometric-guided policies **outperform naive fixed-price and rule-based** baselines in this simulation (with scope).
+- Study is **simulation-only**, per-item RL, discrete price grid.
+
+#### Tier B — report in Results tables/prose (not abstract)
+
+- Exact holdout revenues (\$175,651 – \$226,764) and prices (\$6 – \$16).
+- Pure DQN **lower** than GLM/EG-DQN on holdout (\$183,549) — descriptive only until significance re-run.
+- Ablation: reward shaping associated with higher test revenue; **EG-DQN = DQN+Reward** on holdout.
+- Training: EG-DQN **slightly higher** last-20-episode rewards than Pure DQN (+26.9% vs +25.5% learning gain).
+- GLM elasticity recovery within **~4%** of simulated truth (per product).
+- Holdout forecast MAPE **~5.2%** for Item 1.
+
+#### Tier C — Limitations / Discussion only (honest, not hidden)
+
+- GLM-optimal price **collapses to grid minimum (\$6)** for all 120 holdout days — corner solution, not rich dynamic pricing.
+- DGP is **partially aligned** with GLM log-link structure → may **favour** econometric-guided methods.
+- GLM recovers **elasticity** reasonably but **level** misfit (`8.png` curves above true demand).
+- Test forecast **mean residual ≈ −4.57** (systematic over-forecast on holdout).
+- **Rule-based** heuristic **underperforms** fixed-price (−20.9%) — heuristic design flaw, not a general claim about rule-based pricing.
+- EG-DQN **adds no holdout revenue** over GLM in this run — hybrid value is **not** established on OOS revenue.
+- Full hybrid **does not beat** reward-only ablation on test revenue.
+- `Loss=nan` during training — learning diagnostics unreliable.
+- Single item, single seed, single holdout window — no generalization claim.
+- Large Cohen’s *d* vs FP/RB (*d* > 2) — report in table but **note** policies are far apart (constant prices); effect size is not “hybrid magic.”
+
+#### Tier D — do NOT claim (delete if still in `main.tex`)
+
+| Do not claim | Why |
+|--------------|-----|
+| EG-DQN beats GLM / “highest revenue” | Tied; *p* = 0.50 |
+| Significant vs **all** baselines | False for GLM |
+| +18.3%, \$151,940, ep 35/68, 61% variance | Wrong run |
+| State augmentation = main holdout driver | Not in ablation design |
+| Stable TD-loss / “faster loss decay” | `Loss=nan`; Fig. 15 middle panel unreliable |
+| “Structural identification” | Not formal ID |
+| Deployment / “suitable for deployment” | Simulation only |
+| “Novel / SOTA / breakthrough” | Wrong paper type |
+| +29.1% in **abstract** | Technically true but **reviewer-bait** without corner-solution context — keep **B** or **C** only |
+| Cohen’s *d* = 4.6 in abstract | Looks unbelievable headline — table only, with caveat |
+| Training rewards in **millions** in abstract | Scale confuses readers; use % improvement only if mentioned |
+
+### Percentage rule
+
+Large lifts (e.g. +29.1% vs fixed) are **allowed in Results tables** with Item 1 + simulation scope. In **Abstract**, prefer:
+
+- “substantially higher than fixed-price and rule-based baselines” **or**
+- “+29.1% vs fixed-price **in this simulation** (GLM and EG-DQN at grid-minimum price)”
+
+Never imply the lift transfers to real retail without validation.
+
+### Significance rule
+
+| Comparison | Claim in main text? |
+|------------|---------------------|
+| EG-DQN vs Fixed-Price | ✅ Yes — *p* < 0.001 |
+| EG-DQN vs Rule-Based | ✅ Yes — *p* < 0.001 |
+| EG-DQN vs GLM-Only | ✅ Report as **not significant** — this is a **strength** (honesty) |
+| EG-DQN vs Pure DQN | ⚠️ **Descriptive only** until re-run — say “higher cumulative revenue” without *p* |
+
+**Significance table in paper: 3 rows** (FP, RB, GLM with NS). Add Pure DQN row only after clean re-run.
+
+### Ablation rule
+
+- Report 3-config ablation honestly.
+- **Do not** claim “full EG-DQN > DQN+Reward.”
+- **Do** say: “holdout revenue increases when econometric reward shaping is enabled; full EG-DQN matches reward-only in this run.”
+- State-only / mask-only: **future work** (not fabricated).
+
+### Figure caption rule
+
+| Figure | Caption must NOT say |
+|--------|----------------------|
+| `17.png` | “EG-DQN diverges / dominates” — lines **overlap** GLM |
+| `15.png` | “stable loss decay” — loss unreliable |
+| `8.png` | “structural identification” — say “elasticity recovery” |
+| `21.png` | “deployment-ready” — say “rolling estimate stability” |
+| `10.png` | Perfect forecast — mention holdout residual bias in body |
+
+### Title direction (conservative)
+
+Prefer simulation-study framing:
+
+> **Integrating an Econometric Demand Model with Deep Q-Network Pricing: A Simulation Study**
+
+Avoid: “Novel,” “Superior,” “Optimal Hybrid Framework.”
 
 ---
 
@@ -60,24 +180,20 @@
 
 ---
 
-## Locked headline framing — Branch C
+## Locked headline framing — Branch C (conservative)
 
-**Holdout (Item 1, 120 days):**
-- GLM-Only and EG-DQN **tie** at **\$226,764** (+29.1% vs fixed-price) — same \$6 constant price.
-- EG-DQN **does not** outperform GLM on holdout revenue (Mann–Whitney *p*=0.5004, CI [0, 0]).
-- Pure DQN **underperforms** GLM/EG-DQN (\$183,549, +4.5% vs fixed) — separate price (\$9.1).
-- Rule-based **underperforms** fixed-price (−20.9%) — high price (\$16) hurts revenue.
+**Primary message for reviewers:** We ran a careful simulation study. The hybrid **does not beat** GLM on holdout. That is the honest result — and it is **publishable** as a design + evaluation paper.
 
-**Training / ablation:**
-- EG-DQN achieves higher **training** episode rewards than Pure DQN (Last20: \$2.00M vs \$1.96M).
-- Ablation (`20.png`): **reward shaping** drives holdout lift (+30.5% vs Pure DQN baseline \$173,830); EG-DQN = DQN+Reward on test.
-- **Do not claim:** ep 35 vs 68, 61% variance reduction, state augmentation as largest holdout contributor (not in this ablation design).
+**Holdout (Item 1, 120 days) — Tier B facts:**
+- GLM-Only and EG-DQN **tie** at **\$226,764** (both \$6 constant price — **Tier C** corner artifact).
+- EG-DQN **≈ GLM** statistically (*p* = 0.50) — **lead with this in abstract**.
+- Pure DQN lower (\$183,549, \$9.1) — descriptive comparison only.
+- Fixed-price \$175,651; rule-based \$138,864 (heuristic fails — Tier C).
 
-**Significance (confirmed from `data.md` cell-18):**
-- ✅ EG-DQN vs Fixed-Price: *p*<0.001, *d*=2.495, CI [+421.5, +437.4]
-- ✅ EG-DQN vs Rule-Based: *p*<0.001, *d*=4.628, CI [+725.6, +751.7]
-- ❌ EG-DQN vs GLM-Only: *p*=0.5004 — **not significant**
-- ❓ EG-DQN vs Pure DQN: *p*=0.5004 in export — **stale**; re-run before claiming
+**Training / ablation — secondary evidence (Tier B, not abstract headline):**
+- Reward shaping linked to holdout lift; EG-DQN = DQN+Reward on test.
+- Modest training-reward edge for EG-DQN vs Pure DQN.
+- **Do not claim:** ep 35/68, 61% variance, state augmentation holdout driver, stable loss.
 
 ---
 
@@ -99,14 +215,14 @@
 
 ### Table: Statistical significance — EG-DQN vs baselines
 
-*Source: `data.md` cell-18. Report only confirmed rows until Pure DQN is re-tested.*
+*Source: `data.md` cell-18. **Paper table: 3 rows only** (add Pure DQN after re-run).*
 
-| Baseline | *p*-value | Cohen's *d* | Effect | 95% CI (daily \$ diff) |
-|----------|-----------|-------------|--------|-------------------------|
-| Fixed-Price | <0.001 | 2.495 | Large | [+421.5, +437.4] |
-| Rule-Based | <0.001 | 4.628 | Large | [+725.6, +751.7] |
-| GLM-Only | 0.5004 | 0.000 | — | [0.0, 0.0] |
-| Pure DQN | — | — | — | **Re-run required** |
+| Baseline | *p*-value | Cohen's *d* | Report? | Notes |
+|----------|-----------|-------------|---------|-------|
+| Fixed-Price | <0.001 | 2.495 | ✅ Tier B | Add Discussion caveat: constant-price policies → large *d* |
+| Rule-Based | <0.001 | 4.628 | ✅ Tier B | Same caveat |
+| GLM-Only | 0.5004 | 0.000 | ✅ Tier B | **Report NS** — key honesty point |
+| Pure DQN | — | — | ⏸ Hold | Descriptive revenue gap only until re-run |
 
 ### Table: Ablation — 3 configurations (this run)
 
@@ -172,11 +288,13 @@
 | 8 | Elasticity bias < 1.44% all items | Max 3.7% (Item 3) | ⚠️ Partial | **Per-product** biases; fix caption |
 | 9 | MAPE 7.83% / R² 0.944 | MAPE 5.20%, R² 0.965 | ❌ Wrong | **Replace** forecast numbers |
 | 10 | GLM = EG-DQN on holdout | `17.png` identical bars | ✅ Supported | **Add** to Results + Limitations |
-| 11 | EG-DQN > Pure DQN on holdout | \$226,764 vs \$183,549 | ✅ Supported | **Report**; re-run significance |
-| 12 | Rule-based beats FP | −20.9% | ✅ Supported | **Report** honestly (heuristic fails) |
-| 13 | Training: EG-DQN > Pure DQN | Last20 rewards higher | ✅ Supported | **Lead** training-layer evidence |
-| 14 | Ablation: reward drives +30.5% | `20.png` | ✅ Supported | **Emphasize** in Results/Discussion |
-| 15 | Stable TD-loss / convergence caption | `Loss=nan` | ❌ Unsupported | **Soften** Fig. 15 caption |
+| 11 | EG-DQN > Pure DQN on holdout | \$226,764 vs \$183,549 | ✅ Supported | **Tier B** descriptive only; no *p* until re-run |
+| 12 | Rule-based beats FP | −20.9% | ✅ Supported | **Tier B** report; **Tier C** note heuristic flaw |
+| 13 | Training: EG-DQN > Pure DQN | Last20 rewards higher | ✅ Supported | **Tier B** only; % gain not raw \$M in abstract |
+| 14 | Ablation: reward +30.5% | `20.png` | ✅ Supported | **Tier B**; **Tier C** that EG-DQN = DQN+Reward |
+| 15 | Stable TD-loss / convergence caption | `Loss=nan` | ❌ Unsupported | **Tier D** — omit loss claims |
+| 16 | +29.1% headline lift | True but corner-driven | ⚠️ Reviewer-bait | **Tier B** table; **not** abstract headline |
+| 17 | Cohen's *d* > 2 | True vs FP/RB | ⚠️ Reviewer-bait | **Tier B** table + caveat in Discussion |
 
 ---
 
@@ -196,36 +314,38 @@ These numbers are **not from this run** and must not remain:
 
 ## Defensible framing — use everywhere
 
-### Lead with ✅
+### Lead with ✅ (Tier A only in abstract)
 
-1. **EG-DQN design** — three integration mechanisms (state, reward, masking); honest ablation of what each contributes in **this** run.
-2. **Simulation benchmark** — 3 products, 1,460 days, M5-calibrated DGP, known ε, 120-day holdout, five strategies.
-3. **Evaluation protocol** — Mann–Whitney + bootstrap + Cohen's *d* (report honestly).
-4. **Findings (scoped):**
-   - Econometric-guided policies (GLM, EG-DQN) match grid-minimum price and maximize holdout revenue vs naive baselines.
-   - EG-DQN matches GLM on holdout but exceeds Pure DQN in revenue and training rewards.
-   - Reward shaping explains holdout gain in ablation.
+1. **Study type** — simulation evaluation of EG-DQN hybrid **design** (not a product claim).
+2. **Protocol** — five strategies, 120-day holdout, non-parametric tests, ablation.
+3. **Honest holdout result** — GLM and EG-DQN **tie**; both beat naive baselines **in this run**.
+4. **Design value** — documents **when** econometric signals help training vs when they do not add OOS revenue over GLM.
 
-### Do not headline ❌
+### Do not headline ❌ (Tier D or C only)
 
-- EG-DQN beats GLM on holdout
+- EG-DQN beats GLM / “hybrid superiority”
 - “Statistically significant vs all baselines”
-- +18.3% (use +29.1% vs fixed, with simulation scope)
-- Convergence ep 35/68 or 61% variance reduction
-- State augmentation as primary holdout driver
+- Large % lifts without “simulation” + corner-price context
+- Convergence ep 35/68, 61% variance, state augmentation as holdout driver
+- Cohen’s *d* > 2 as a selling point
 - Deployment readiness
+- “Novel algorithm / SOTA”
 
-### Locked abstract template (draft from ledger)
+### Conservative abstract template (use this — not the old one)
 
-> We propose EG-DQN (Econometric-Guided Deep Q-Network), a hybrid retail pricing agent that injects GLM demand signals into a Deep Q-Network via state augmentation, econometric reward shaping, and early action masking. In a simulation study of three substitute products over four years of synthetic daily demand (M5-calibrated DGP, 120-day holdout on Item 1), we compare five strategies: fixed-price, rule-based, GLM-optimal, pure DQN, and EG-DQN. GLM-optimal and EG-DQN achieve identical holdout revenue (\$226,764; +29.1% vs fixed-price at \$175,651), while pure DQN earns less (\$183,549). Mann–Whitney tests confirm significant daily-revenue gains over fixed-price and rule-based baselines (*p*<0.001) but not over GLM-optimal pricing (*p*=0.50). An ablation isolating reward shaping shows a +30.5% holdout gain over pure DQN. Training-phase episode rewards are higher for EG-DQN than for pure DQN. Results are confined to this synthetic, per-item, discrete-price simulation with partially GLM-aligned demand.
+> **Integrating an Econometric Demand Model with Deep Q-Network Pricing: A Simulation Study.** Retail dynamic pricing must balance econometric structure and sequential adaptivity. We describe **EG-DQN**, a hybrid agent that injects GLM demand signals into a Deep Q-Network via state augmentation, econometric reward shaping, and early action masking, and we evaluate it in a **controlled simulation** of three substitute products (1,460 days; 120-day holdout on Item 1). Five strategies are compared: fixed-price, rule-based, GLM-optimal, pure DQN, and EG-DQN. On the holdout window, **GLM-optimal and EG-DQN attain the same cumulative revenue** and select the same constant price on the discrete grid; EG-DQN **does not** significantly differ from GLM-optimal on daily revenue (*p* = 0.50). Relative to fixed-price and rule-based baselines, EG-DQN achieves **higher** holdout revenue in this simulation (Mann–Whitney *p* < 0.001 for both). Pure DQN earns less than GLM/EG-DQN under the learned policy. Ablations indicate that **econometric reward shaping** is associated with the holdout gain; the full hybrid does not exceed reward-only on test revenue. Training-episode rewards are modestly higher for EG-DQN than for pure DQN. **Limitations:** synthetic data, per-item estimation, discrete actions, GLM–DGP partial alignment, and a grid-minimum corner solution for GLM-guided prices. We do not claim deployment readiness or general superiority over econometric pricing.
 
-*Adjust Pure DQN significance sentence after re-run if needed.*
+*No large % or Cohen’s *d* in abstract — those go in Results table only.*
 
-### Locked contribution statement (Intro — 3 bullets)
+### Conservative contribution statement (Intro — 3 bullets)
 
-1. We propose EG-DQN and three explicit mechanisms for integrating GLM-derived signals into DQN pricing.
-2. We implement a reproducible simulation benchmark with known elasticities and a five-strategy evaluation protocol including non-parametric inference and ablation.
-3. We show that in this simulation, econometric-guided policies tie on holdout revenue while outperforming naive baselines; reward shaping drives most holdout gain, and EG-DQN improves training rewards relative to pure DQN.
+1. We **describe** EG-DQN and three mechanisms for injecting GLM-derived signals into DQN-based retail pricing.
+2. We **implement** a reproducible simulation benchmark (known elasticities, five strategies, holdout evaluation, Mann–Whitney tests, ablation).
+3. We **report** that in this simulation GLM-optimal and EG-DQN **tie** on holdout revenue while outperforming naive baselines; reward shaping aligns holdout outcomes with GLM-guided prices, and EG-DQN shows modest training-phase gains over pure DQN — **without** claiming hybrid dominance over econometrics.
+
+### One-sentence conclusion (Tier A)
+
+> This simulation study suggests that econometric-guided reward shaping can align RL pricing with GLM-optimal outcomes on the holdout window, but **does not** demonstrate holdout gains beyond GLM-only pricing; further work with richer action spaces, real data, and fuller ablations is needed before operational claims.
 
 ---
 
@@ -234,9 +354,9 @@ These numbers are **not from this run** and must not remain:
 | Risk | Severity | Mitigation |
 |------|----------|------------|
 | Simulation-only | High | Scope claims; cite Nambiar, Xia, Chen in Methods |
-| Overclaiming holdout superiority | **Critical** | Ledger Branch C; GLM tie explicit |
-| Simulation favors EG-DQN | High | DGP–GLM alignment + \$6 corner solution in Limitations |
-| `main.tex` ≠ figures | **Resolved** | Rewrite tables per this blueprint |
+| Overclaiming / unbelievable stats | **Critical** | Tier A–D policy; no % or *d* in abstract |
+| Corner solution at \$6 | High | Tier C — explain before any % lift |
+| `main.tex` ≠ figures | **Resolved** | Rewrite per blueprint |
 | arXiv-heavy bib | Medium | Priority 3 rebalance |
 | `Loss=nan` | Medium | Acknowledge; no loss claims |
 
@@ -250,22 +370,20 @@ These numbers are **not from this run** and must not remain:
 
 **Owner:** assistant
 
-- [ ] Replace revenue, significance, ablation, elasticity, forecast tables (use Authoritative numbers above).
-- [ ] Point `\includegraphics` to `figures/`.
-- [ ] Apply language fixes from `critic.md` (structural identification, theoretical prediction, deployment caption).
-- [ ] Add Limitations: GLM–DGP alignment, \$6 corner, level misfit, GLM=EG-DQN tie, `data.md` note on eval.
-- [ ] Add simulation-defense sentence in Methods.
+- [ ] Replace revenue, significance (**3 rows**), ablation, elasticity, forecast tables.
+- [ ] Apply **Tier A–D** policy to every Results paragraph.
+- [ ] Expand **Limitations** (corner solution, GLM tie, level misfit, DGP alignment, rule-based failure, no hybrid OOS gain).
+- [ ] Fig. `15.png`: caption **episode revenue only** — no loss claims (Tier D).
 
 ### 🔴 Priority 2 — Abstract, Results, Conclusion
 
 **Owner:** assistant
 
-- [ ] Single abstract (locked template above).
-- [ ] Results: **Layer 1** holdout (`17.png`); **Layer 2** training (`15.png`) + ablation (`20.png`).
-- [ ] Split significance: confirmed (FP, RB) vs not confirmed (GLM).
-- [ ] Conclusion: match Branch C; no deleted claims.
-- [ ] Contributions → 3 bullets.
-- [ ] Title grammar fix.
+- [ ] Abstract from **conservative template** (tie with GLM upfront; no % / Cohen's *d*).
+- [ ] Results: holdout facts → limitations cross-refs → training/ablation (secondary).
+- [ ] Conclusion: one honest sentence (no victory lap).
+- [ ] Title: include **“A Simulation Study”**.
+- [ ] Contributions: “describe / implement / report” — not “prove / outperform”.
 
 ### 🟡 Priority 3 — References
 
@@ -339,4 +457,4 @@ These numbers are **not from this run** and must not remain:
 
 ---
 
-*Sources: `data.md`, `figures/` (audit 2026-07-02), `critic.md`, `context.md`. Manuscript edits may now proceed per Priority 1.*
+*Sources: `data.md`, `figures/`, `critic.md`, `context.md`. **Manuscript rule:** when in doubt, downgrade one tier (headline → body → limitations → omit). Honesty passes review; hype fails it.*
