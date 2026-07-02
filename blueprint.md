@@ -2,89 +2,165 @@
 
 **Goal:** Pass review by presenting an honest, defensible **experimental simulation study** — not an overclaimed “new best pricing method.”
 
+**Positioning target (from `critic.md`):** The paper should read as **economically grounded pricing research with RL integration**, not a generic “RL simulation paper.”
+
 **Files in scope:**
 - `main.tex` — manuscript
 - `Dynamic_pricing_hybrid_EG_DQN.ipynb` — experiment source
+- `critic.md` — external review notes (integrated below)
+- `context.md` — agent onboarding / method summary
 - Your exported **tables & figures** (authoritative outputs)
-- Reference PDFs (when added to `references/`)
+- Reference PDFs in `references/`
 
 **Working principle:** Every sentence that reports a number or claims “significance” must trace to one saved table or figure. No number in the abstract unless it appears in Results.
 
----
-
-## Do we need to re-run the notebook?
-
-### Short answer: **No full re-run required right now** — if your saved tables/figures are the source of truth.
-
-Re-running is **optional** at this stage. What matters is **consistency**, not re-execution.
-
-| Situation | Action | 
-|-----------|--------|
-| You have final tables/figures and know which run produced them | **Audit only** — align `main.tex` to those outputs |
-| Paper numbers match your saved tables exactly | **Skip re-run** — proceed to writing/citations |
-| Paper numbers ≠ saved tables, or you’re unsure which run the figures came from | **Re-run once** (or export tables from the run that made the figures) |
-| Reviewer asks for reproducibility / you find a bug (e.g. `Loss=nan`, identical revenues across methods) | **Re-run after fix** — not before polish |
-
-### Recommended now: **Audit pass (30–60 min, no GPU time)**
-
-1. Open your saved revenue table, significance table, and ablation table.
-2. Compare every number in `main.tex` (Abstract, Table I–IV, Conclusion) against those files.
-3. Fill the **Claims Ledger** below — mark each claim ✅ / ❌ / ⚠️.
-4. Only re-run if the ledger shows mismatches you cannot resolve from existing exports.
-
-**Rule:** The figures you already have define the experiment. The text must follow them — not the other way around.
+**Last updated:** 2026-07-02 — integrated `critic.md` verdict + notebook/paper audit.
 
 ---
 
-## What to focus on NOW (priority order)
+## Reviewer risk matrix (from critic — treat as design constraints)
 
-### 🔴 Priority 1 — Evidence alignment (before any prose polish)
+| Risk | Severity | Mitigation in blueprint |
+|------|----------|-------------------------|
+| “Simulation-only” | High | Scope every claim; defend simulation in Methods; cite Nambiar, Xia, Chen |
+| “Incremental hybrid RL” | High | Lead with **integration design + ablation**, not SOTA claims |
+| “Overclaiming” | High | Claims Ledger; soften holdout if adaptive methods tie |
+| “Simulation favors EG-DQN” | **Critical** | Explicit limitation: DGP–GLM partial alignment may advantage guided methods |
+| “Too many arXiv citations” | Medium | Rebalance bib: journal anchors first, trim decorative arXiv |
+| Notebook ≠ paper numbers | **Critical** | Priority 0 audit before abstract or results edits |
 
-**Owner:** You (tables) + me (`main.tex` audit)
-
-- [ ] Locate authoritative exports: revenue comparison, significance tests, ablation, convergence.
-- [ ] Complete Claims Ledger (Section below).
-- [ ] Decide the **headline result** the paper will honestly lead with (see Framing).
-- [ ] Flag any figure captions that overstate what the panel shows.
-
-**Do not** rewrite Abstract/Conclusion until this is done.
+**Main danger is reviewer perception, not missing implementation** (`critic.md`).
 
 ---
 
-### 🟠 Priority 2 — Fix review blockers in structure
+## Realistic venue targets (after polish)
 
-**Owner:** me (with your approval on framing)
+| Venue type | Outlook |
+|------------|---------|
+| IEEE workshop / regional conference | Strong chance |
+| Mid-tier applied conference | Borderline but possible |
+| Springer AI / operations application journal, JRPM-type | Possible after polish |
+| IEEE Access | Maybe after stronger polish |
+| Top-tier RL/ML conference | No — wrong contribution type |
 
-- [ ] **Abstract** — one paragraph; remove duplicate/commented block (`//` lines); fix typos; match ledger numbers.
-- [ ] **Title** — fix grammar (e.g. “Integrating” not “With Integrating”).
-- [ ] **Related Work** — fix broken citations (`Charafeddine` / `xiaocheng2023` / `charafeddine2025` mix-up); tighten positioning.
-- [ ] **Results** — split into two layers:
-  - **Holdout revenue** (what happened on the 120-day test set)
-  - **Training dynamics** (convergence, variance, ablation)
-- [ ] **Significance language** — only claim significance for baselines where tests actually reject; do not say “all baselines” unless table shows it.
-- [ ] **Limitations** — explicitly state if adaptive methods (GLM / DQN / EG-DQN) tied on holdout.
-- [ ] **Conclusion** — soften to “we evaluate / observe / within this simulation.”
+**Do not frame as:** breakthrough RL algorithm, new RL theory, or deployment-ready pricing product.
+
+---
+
+## Priority order (revised)
+
+### 🔴 Priority 0 — Evidence audit (**blocker — do before abstract**)
+
+**Owner:** You (confirm source of truth) + assistant (cross-check `main.tex`)
+
+- [ ] Decide authoritative run: `main.tex` tables/figures **or** saved notebook outputs.
+- [ ] Complete Claims Ledger (pre-seeded below with known conflicts).
+- [ ] Resolve notebook red flags if notebook is authoritative:
+  - `Loss=nan` throughout DQN training
+  - GLM-Only = Pure DQN = EG-DQN identical holdout revenue (\$226,764; price \$6.00)
+  - EG-DQN vs GLM/DQN: *p* = 0.5004 (not significant)
+- [ ] Choose **headline result** honestly (see Framing decision tree).
+
+**Do not** rewrite Abstract, Results, or Conclusion until Priority 0 is resolved.
+
+---
+
+### 🔴 Priority 1 — Language & framing blockers (from `critic.md`)
+
+**Owner:** assistant (after Priority 0 framing is chosen)
+
+#### Already fixed in `main.tex` ✅
+
+| Critic item | Status |
+|-------------|--------|
+| Remove “GLM ceiling” → use “GLM benchmark / econometric baseline” | ✅ Body uses “GLM benchmark”; verify no “ceiling” remains |
+| Remove “dominate both pure approaches” | ✅ Conclusion: “can outperform standalone approaches under the evaluated conditions” |
+| “Theoretical Implications” → “Methodological Implications” | ✅ Done (§Discussion) |
+| “Correctly specified GLM” limitation heading | ✅ Renamed to “Potential GLM misspecification” with mature rewrite |
+
+#### Still required ❌
+
+| Location | Current (bad) | Replace with |
+|----------|---------------|--------------|
+| §GLM Derived Signals (~L388) | “validates structural identification against the known DGP” | “validates accurate elasticity recovery against known simulated parameters” |
+| Fig. 8 caption (`8.png`) | “confirm structural identification accuracy” | “estimated elasticities closely match simulated ground-truth values” |
+| Convergence § (~L759) | “consistent with the theoretical prediction” | “consistent with prior-informed RL literature” (cite Cheung) |
+| Fig. 21 caption (`21.png`) | “suitable for deployment” | “stable over the evaluation window” (deployment → Future Work) |
+| Limitations § | partial GLM-alignment note only | **Add:** “The simulated demand process was partially aligned with GLM assumptions, which may advantage econometric-guided methods relative to highly irregular real-world retail environments.” |
+| Simulation § (Methods) | no simulation defense | **Add one sentence:** simulation is standard when controlled comparison and known structure are needed; cite Nambiar, Xia, Chen |
+| Abstract | two competing drafts + `//` artifact + typos | Single paragraph; match ledger |
+| Title | “With Integrating” | “Integrating an Econometric Demand Model” (or similar) |
+
+#### Search-and-destroy terms (never use)
+
+- `GLM ceiling`, `econometric ceiling`
+- `structural identification` (unless formal ID proof — we do not have one)
+- `dominate`, `breakthrough`, `state-of-the-art`, `promising framework`, `comprehensive study`, `tightly couples`
+- `theoretical prediction` (we are not making a theory contribution)
+- `suitable for deployment` in Results/captions
+
+---
+
+### 🟠 Priority 2 — Results structure & contribution emphasis
+
+**Owner:** assistant + your approval on headline
+
+- [ ] **Abstract** — one paragraph; scoped to simulation + Item 1 holdout; match ledger.
+- [ ] **Title** — grammar fix.
+- [ ] **Results** — two explicit layers:
+  1. **Holdout revenue** (120-day test set)
+  2. **Training dynamics** (convergence ep 35 vs 68, variance, ablation)
+- [ ] **Emphasize ablation** (`critic.md` §5) — largest defensible differentiator; expand 1–2 sentences in Results intro + Discussion.
+- [ ] **Significance language** — only claim rejection where table supports; never “all baselines” unless all rows reject.
+- [ ] **Conclusion** — match ledger framing; no holdout superiority among adaptive methods if audit shows ties.
+- [ ] **Contributions** — reduce to **3 bullets** (design, benchmark, evaluation/ablation).
 
 ---
 
 ### 🟡 Priority 3 — References & citations
 
-**Owner:** you (PDFs) + me (integration)
+**Owner:** you (PDFs) + assistant (integration)
 
-- [ ] Add PDFs to `references/` (no `.md` conversion needed).
-- [ ] Fix malformed `\bibitem` entries in `main.tex`.
-- [ ] Map each in-text claim → one correct source; remove decorative citations.
-- [ ] Add missing citations where Related Work makes claims without support.
+**Critic verdict:** References are a weakness, but **do not purge good topical arXiv** (e.g. `apte2024`, `xia2024`). Rebalance instead.
+
+#### Keep and lead with (Tier A anchors — already in bib)
+
+- `kopalle2023` — *J. Retailing*
+- `xiaocheng2023` (Li & Zheng) — *Management Science* — fix confusing `\bibitem` key/author field
+- `cheung2023` — *Management Science* — nonstationary RL / guided exploration
+- `bu2023` — *Management Science* — offline demand learning
+- `chen2023` — *J. Oper. Manag.* — field experiments (add to Intro for deployment credibility)
+- `groeneveld2025` — *JRPM*
+- `liu2024`, `alamdar2024`, `rios2023` — operational retail / inventory
+
+#### Keep but reduce prominence (Tier B arXiv — cite with purpose)
+
+- `apte2024` — direct retail Q-learning baseline (essential)
+- `xia2023`, `xia2024` — simulation / RetailSynth framing
+- `zheng2024`, `safonov2024` — hybrid neighbours
+- `razumovskiy2025`, `hadi2025`, `kumar2026` — cite sparingly in future work / MARL
+
+#### Removed / not in current `main.tex` (critic outdated)
+
+- Charafeddine — already absent; no action
+
+#### Tasks
+
+- [ ] Fix `xiaocheng2023` `\bibitem` metadata (authors = Li & Zheng, not wrong key label).
+- [ ] Intro: one sentence on field-evidence RL pricing → cite `chen2023`.
+- [ ] Related Work §II.A: lead paragraph with journal anchors before arXiv neighbours.
+- [ ] Demote decorative citations (one cite per claim).
+- [ ] Target: **≤35% arXiv** in final bib (currently ~10/26 ≈ 38%).
 
 ---
 
-### 🟢 Priority 4 — De-AI tone & academic polish
+### 🟢 Priority 4 — De-AI tone & caption polish
 
-**Owner:** me — **only after Priority 1–2**
+**Owner:** assistant — **only after Priority 0–2**
 
-- [ ] Remove AI tells: “promising framework,” “comprehensive study,” “tightly couples,” stacked superlatives.
-- [ ] Use cautious academic voice: “in our simulation,” “relative to,” “suggest,” “consistent with.”
-- [ ] Reduce contribution bullets from 4 → **3 precise, defensible** items.
+- [ ] Remove ornate phrasing: “directly instantiates,” “richly parameterised,” stacked superlatives.
+- [ ] Use: “in our simulation,” “relative to,” “suggest,” “consistent with,” “under the evaluated conditions.”
+- [ ] Shorten figure captions — technical, concise; move interpretation to body text.
 - [ ] Full section pass: Intro → Methods → Results → Discussion.
 
 ---
@@ -92,66 +168,112 @@ Re-running is **optional** at this stage. What matters is **consistency**, not r
 ### ⚪ Priority 5 — Pre-submission checklist
 
 - [ ] Abstract claims ⊆ Results claims
-- [ ] All table/figure numbers match saved exports
-- [ ] Methods parameters match notebook (SEED, episodes, λ, holdout, K=20, per-item training)
-- [ ] Limitations cover: synthetic data, single-item RL, discrete actions, tied adaptive outcomes (if true)
-- [ ] Figures referenced exist and match captions (`8.png`, `10.png`, `15.png`, `17.png`, `20.png`, `21.png`)
-- [ ] Optional: anonymous notebook link or appendix for reproducibility
+- [ ] All table/figure numbers match authoritative run
+- [ ] Methods parameters match notebook (SEED=42, episodes=300, λ=30, holdout=120, K=20, per-item RL)
+- [ ] Limitations cover: synthetic data, single-item RL, discrete actions, DGP–GLM alignment advantage, tied adaptive outcomes (if true)
+- [ ] No “structural identification,” “ceiling,” “deployment-ready” in Results
+- [ ] Figures exist and match captions (`eda.png`, `8.png`, `10.png`, `15.png`, `17.png`, `20.png`, `21.png`)
+- [ ] Optional: reproducibility appendix or anonymized notebook link
 
 ---
 
-## Defensible framing (use this throughout)
+## Framing decision tree (after audit)
 
-### Lead with ✅
+```
+Do holdout revenues separate EG-DQN from GLM and Pure DQN?
+├── YES (main.tex tables + figures agree)
+│   ├── Headline: holdout revenue + significance vs GLM (p=0.003)
+│   └── Secondary: convergence + ablation
+└── NO (notebook saved outputs: identical adaptive revenues)
+    ├── Headline: integration design + ablation + convergence (1.9×, 61% variance)
+    ├── Holdout: adaptive methods achieve similar revenue — state in Limitations
+    ├── Significance: claim only vs Fixed-Price / Rule-Based
+    └── Do NOT claim EG-DQN beats GLM/DQN on holdout
+```
 
-1. **Design** — EG-DQN integrates GLM signals via state augmentation, reward shaping, and action masking (ablated separately).
-2. **Benchmark** — reproducible simulation with known ground-truth elasticities (RetailSynth / M5-calibrated style).
-3. **Evaluation protocol** — five-strategy comparison + non-parametric tests (Mann–Whitney, bootstrap CI, Cohen’s *d*).
-4. **Learning-process evidence** — convergence speed and training variance (if supported by your convergence/ablation figures).
+### Lead with ✅ (always safe)
 
-### Keep in background ⚠️ (report, don’t headline)
+1. **Design** — three named, ablated integration mechanisms (state, reward, masking).
+2. **Benchmark** — reproducible simulation, known elasticities, five-strategy protocol.
+3. **Evaluation rigor** — non-parametric tests, ablation, convergence, elasticity validation.
 
-- Large % revenue lifts vs fixed-price unless clearly scoped (single item, single holdout, simulation only).
-- “EG-DQN outperforms GLM and DQN on holdout” — **only if your revenue table shows separation**.
-- “Statistically significant against all baselines” — **only if significance table supports it**.
-- Deployment / A/B-test readiness — keep in Future Work.
+### Keep in background ⚠️
 
-### Honest narrative template (adapt after ledger)
+- Large % lifts vs fixed-price (scope: Item 1, 120-day, simulation).
+- Holdout superiority among adaptive methods — **only if ledger confirms separation**.
+- “Significant vs all baselines” — **only if every row in significance table rejects**.
+- Deployment / A/B readiness — Future Work only.
 
-> We propose EG-DQN, a hybrid that injects GLM-derived demand signals into DQN. In a synthetic three-product retail simulation, adaptive policies outperform naive fixed and rule-based baselines. [If tied:] On the holdout window, GLM-optimal, pure DQN, and EG-DQN achieved similar revenue, so we do not claim holdout superiority among adaptive methods. The main evidence for hybrid integration comes from [convergence / ablation / training stability — whichever your tables support].
+### Honest narrative templates
 
----
+**If holdout separates (main.tex tables authoritative):**
 
-## Claims Ledger (fill this first)
+> We propose EG-DQN, a hybrid that injects GLM-derived demand signals into DQN via state augmentation, reward shaping, and action masking. In a synthetic three-product simulation (120-day holdout, Item 1), EG-DQN achieves the highest cumulative revenue among five strategies, with significant gains over naive and econometric baselines. Training evidence — faster convergence (~1.9×), lower reward variance (61%), and ablation — supports econometric guidance as a stabilizing prior rather than a stand-alone policy.
 
-Copy your numbers from saved tables into the “Evidence” column. Mark status before editing text.
+**If adaptive methods tie (notebook authoritative):**
 
-| # | Claim in current `main.tex` | Evidence (your table/figure) | Status | Action |
-|---|----------------------------|------------------------------|--------|--------|
-| 1 | EG-DQN +18.3% vs fixed-price | Revenue table: _____ | ☐ | Keep / revise / drop |
-| 2 | GLM +13.9%, DQN +11.9% | Same table: _____ | ☐ | Keep / revise / drop |
-| 3 | EG-DQN highest total revenue ($151,940) | Same table: _____ | ☐ | Keep / revise / drop |
-| 4 | Significant vs **all** baselines incl. GLM ($p=0.003$) | Significance table: _____ | ☐ | Keep / revise / drop |
-| 5 | EG-DQN 1.9× faster convergence (ep 35 vs 68) | Convergence fig / ablation: _____ | ☐ | Keep / revise / drop |
-| 6 | 61% lower reward variance (EG-DQN vs DQN) | Ablation / training log: _____ | ☐ | Keep / revise / drop |
-| 7 | State augmentation = largest ablation contributor | Ablation table: _____ | ☐ | Keep / revise / drop |
-| 8 | GLM elasticity recovery (bias < 1.44%) | Elasticity fig (`8.png`): _____ | ☐ | Keep / revise / drop |
-| 9 | MAPE 7.2%, R² 0.944 forecast | Forecast fig (`10.png`): _____ | ☐ | Keep / revise / drop |
-| 10 | Adaptive methods tied on holdout (GLM = DQN = EG-DQN) | If true in your table | ☐ | Add to Limitations + soften Results |
-
-**Status key:** ✅ supported · ⚠️ partially supported · ❌ not supported · ❓ needs your table to confirm
+> We propose EG-DQN, a hybrid that injects GLM-derived demand signals into DQN via three ablated mechanisms. In a synthetic three-product simulation, adaptive policies substantially outperform fixed and rule-based baselines, while GLM-optimal, pure DQN, and EG-DQN achieve similar holdout revenue; we therefore do not claim holdout superiority among adaptive methods. The main evidence for hybrid integration comes from training dynamics: faster convergence (~1.9×), lower reward variance (61%), and ablation showing state augmentation as the largest contributor.
 
 ---
 
-## Known issues already flagged (verify against your exports)
+## Claims Ledger (pre-seeded from audit — **you must confirm**)
 
-These came from comparing draft `main.tex` to notebook outputs — **your saved tables override this list**:
+**Status key:** ✅ supported · ⚠️ partially supported · ❌ not supported · ❓ unconfirmed
 
-1. Abstract contains **two competing versions** (duplicate paragraph + `//` comment).
-2. Related Work has **broken author/citation text** (Charafeddine / Li / Zheng mix-up).
-3. Possible **number mismatch** between paper tables and one notebook run — resolve via ledger, not assumptions.
-4. Some `\bibitem` entries have formatting errors (e.g. `xiaocheng2023` author field).
-5. Figure captions describe EG-DQN “diverging” from baselines — confirm against `17.png` before keeping.
+| # | Claim in current `main.tex` | `main.tex` table/fig | Notebook saved output | Status | Action |
+|---|----------------------------|----------------------|------------------------|--------|--------|
+| 1 | EG-DQN +18.3% vs fixed-price | Table revenue: +18.3% | +29.1% (\$226,764 vs \$175,651) | ❓ **Conflict** | Confirm source; revise all % if notebook |
+| 2 | GLM +13.9%, DQN +11.9% | Table revenue | GLM/DQN/EG-DQN all +29.1% (tied) | ❓ **Conflict** | If tied: drop differentiated adaptive % |
+| 3 | EG-DQN highest revenue (\$151,940) | Table revenue | \$226,764 tied with GLM/DQN | ❓ **Conflict** | If tied: remove “highest among adaptive” |
+| 4 | Significant vs all baselines incl. GLM (*p*=0.003) | Table significance | GLM *p*=0.5004, DQN *p*=0.5004 — **NS** | ❓ **Conflict** | If notebook: claim FP/RB only |
+| 5 | Convergence ep 35 vs 68 (~1.9×) | Fig. 15, ablation table | Ablation cell references same metric | ❓ | Likely keep — verify from training logs |
+| 6 | 61% lower reward variance | Convergence § | Not yet cross-checked | ❓ | Verify from ablation table |
+| 7 | State augmentation = largest ablation gain | Table ablation | Ablation cell exists | ❓ | Likely keep — verify \$ amounts |
+| 8 | Elasticity bias < 1.44% | Fig. `8.png` | Elasticity validation cell | ❓ | Keep wording fix (no “structural ID”) |
+| 9 | MAPE 7.83% mean (table) / 7.2% Item 1 | Forecast table | MAPE ~5.2% in one cell output | ❓ | Reconcile Item 1 vs mean |
+| 10 | Adaptive methods tied on holdout | Not stated in paper | GLM = DQN = EG-DQN identical | ⚠️ | **Add to Limitations if notebook true** |
+| 11 | DQN training stable | Implied | `Loss=nan` all episodes | ❌ | Investigate if notebook is source |
+
+---
+
+## Critic integration tracker (`critic.md` → blueprint)
+
+| Critic # | Recommendation | Verdict | Blueprint priority |
+|----------|----------------|---------|-------------------|
+| GLM “ceiling” language | Replace with benchmark/baseline | ✅ Mostly done | P1 verify |
+| “Dominate” in conclusion | Soften | ✅ Done | — |
+| GLM misspecification limitation | Rename + rewrite | ✅ Done | P1 add “may advantage” clause |
+| Structural identification | Remove | ❌ 2 locations remain | P1 |
+| Emphasize ablation | Expand | Adopt | P2 |
+| Theoretical prediction | Remove | ❌ 1 location | P1 |
+| Methodological not theoretical | Rename section | ✅ Done | — |
+| Dense / AI prose | Simplify | Adopt | P4 |
+| Short figure captions | Trim | Adopt | P4 |
+| Reference rebalance | Journal anchors | Partial adopt | P3 |
+| Simulation favors method | Acknowledge explicitly | Adopt | P1 |
+| Defend simulation in Methods | One sentence + cites | Adopt | P1 |
+| Venue / framing | Simulation hybrid OR paper | Adopt | Throughout |
+| Notebook ≠ paper | *(not in critic)* | **Critical** | **P0** |
+
+---
+
+## Do we need to re-run the notebook?
+
+### Short answer: **Depends on Priority 0 outcome.**
+
+| Situation | Action |
+|-----------|--------|
+| `main.tex` tables match the run that produced `17.png`, `20.png`, etc. | **Audit only** — align text to figures |
+| Notebook saved outputs are authoritative and match figures | Update `main.tex` tables to notebook; soften claims |
+| Paper numbers ≠ notebook **and** figures look like notebook (flat \$6 prices, tied revenues) | **Re-run after fixing** (`Loss=nan`, evaluation bug) |
+| Uncertain which run made figures | **Stop** — identify run first; do not edit abstract |
+
+**Known notebook warnings (saved outputs):**
+- `Loss=nan` for all training episodes
+- Identical holdout revenue and price across GLM / DQN / EG-DQN
+- Significance NS vs GLM and Pure DQN
+
+**Rule:** Figures + exported tables define the experiment. Text follows them — not the other way around.
 
 ---
 
@@ -159,12 +281,12 @@ These came from comparing draft `main.tex` to notebook outputs — **your saved 
 
 | Main text | Appendix / supplementary (optional) |
 |-----------|-------------------------------------|
-| Final revenue table (one holdout window) | Sensitivity: different seeds, holdout lengths |
-| Significance tests (honest subset) | Extra runs that showed larger gains |
+| Final revenue table (one holdout window) | Sensitivity: seeds, holdout lengths |
+| Significance tests (honest subset only) | Runs that showed larger gains |
 | One convergence + one ablation figure | Hyperparameter grid (λ, episodes) |
-| Core limitations | Full training logs |
+| Core limitations incl. DGP–GLM alignment | Full training logs, `Loss=nan` diagnosis |
 
-**Do not hide contradictory runs.** De-emphasize them; don’t delete them if you used them to develop the method.
+**Do not hide contradictory runs.** De-emphasize; document in appendix if used during development.
 
 ---
 
@@ -172,45 +294,62 @@ These came from comparing draft `main.tex` to notebook outputs — **your saved 
 
 | Task | You | Assistant |
 |------|-----|-----------|
-| Provide saved tables / confirm headline claim | ✅ | |
+| Confirm authoritative tables/figures | ✅ | |
+| Resolve Claims Ledger conflicts | ✅ | audit + recommend framing |
 | Add reference PDFs to `references/` | ✅ | |
-| Fill Claims Ledger evidence column | ✅ | audit |
-| Rewrite Abstract, Results, Conclusion to match ledger | | ✅ |
-| Fix citations & Related Work | | ✅ |
-| De-AI prose pass | | ✅ |
-| Re-run notebook (only if ledger fails) | ✅ optional | verify after |
+| Priority 1 language fixes (`critic.md`) | | ✅ |
+| Rewrite Abstract / Results / Conclusion | | ✅ (after P0) |
+| References rebalance + `xiaocheng2023` fix | | ✅ |
+| De-AI prose + caption pass | | ✅ |
+| Re-run notebook (if P0 requires) | ✅ | verify after |
 
 ---
 
-## Suggested workflow for next session
+## Suggested workflow (next sessions)
 
-1. **You:** Paste or attach your revenue + significance + ablation tables (screenshot, CSV, or copied notebook output).
-2. **Me:** Complete the Claims Ledger and list exact `main.tex` edits needed.
-3. **Me:** Rewrite Abstract + Conclusion + Results framing (no overclaim).
-4. **You:** Add PDFs to `references/`.
-5. **Me:** Related Work + bibliography cleanup.
-6. **Both:** Pre-submission checklist.
+### Session 1 — Evidence (before abstract)
+
+1. **You:** Confirm whether `main.tex` tables or notebook outputs match your figures (`17.png`, `20.png`).
+2. **You:** Paste revenue + significance + ablation tables (or mark ledger rows ✅/❌).
+3. **Assistant:** Finalize Claims Ledger + choose framing branch (separate vs tied holdout).
+4. **Assistant:** Apply Priority 1 language fixes (quick wins from `critic.md`).
+
+### Session 2 — Abstract & Results
+
+5. **Assistant:** Rewrite Abstract (single paragraph, ledger-aligned).
+6. **Assistant:** Restructure Results (holdout layer + training layer).
+7. **Assistant:** Update Conclusion + Limitations (DGP–GLM advantage sentence).
+
+### Session 3 — References & polish
+
+8. **You:** Add any missing PDFs to `references/`.
+9. **Assistant:** Related Work rebalance, caption trim, de-AI pass.
+10. **Both:** Pre-submission checklist (Priority 5).
 
 ---
 
-## Re-run decision tree (future reference)
+## Target contribution statement (Intro — after ledger confirmed)
 
-```
-Do paper numbers match your saved tables?
-├── YES → No re-run. Proceed Priority 2–4.
-└── NO → Do saved tables come from a known notebook run?
-    ├── YES → Update main.tex to match tables. No re-run.
-    └── NO → Re-run once with SEED=42, export tables, regenerate figures.
-```
-
----
-
-## Target contribution statement (for Intro — after ledger confirmed)
-
-> 1. We propose EG-DQN, a hybrid pricing agent that integrates GLM-derived demand signals into DQN via three explicit and ablated mechanisms.
+> 1. We propose EG-DQN, a hybrid pricing agent that integrates GLM-derived demand signals into DQN via three explicit and ablated mechanisms (state augmentation, reward shaping, action masking).
 > 2. We implement a reproducible simulation benchmark with known elasticities and a five-strategy evaluation protocol with non-parametric inference.
-> 3. We report [holdout revenue comparisons / training convergence / ablation findings — fill from ledger] and discuss when econometric priors help RL pricing in simulation.
+> 3. We report [holdout comparisons and/or training convergence and ablation — per ledger] and discuss when econometric priors help RL pricing in simulation.
 
 ---
 
-*Last updated: planning phase — no manuscript edits until Claims Ledger is filled.*
+## Re-run decision tree
+
+```
+Which run produced your figures (17.png, 20.png, etc.)?
+├── main.tex table run → Align notebook export OR update paper if figures differ
+└── notebook run → Update main.tex tables + soften claims if adaptive methods tie
+
+Do paper numbers match that run?
+├── YES → No re-run. Proceed P1–P4.
+└── NO → Can you fix without code changes (wrong export cell)?
+    ├── YES → Re-export tables from correct cell
+    └── NO → Fix notebook (Loss=nan, eval bug) → re-run SEED=42 once
+```
+
+---
+
+*Sources: `critic.md` (external review), `context.md` (method), notebook audit 2026-07-02. No abstract/manuscript edits until Claims Ledger conflicts are resolved.*
