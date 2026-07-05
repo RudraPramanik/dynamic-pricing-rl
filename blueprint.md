@@ -144,11 +144,52 @@ Avoid: “Novel,” “Superior,” “Optimal Hybrid Framework.”
 
 ## Human academic tone (write like a researcher, not a template)
 
-**Goal:** Prose that reads as **careful human scholarship** — plain, specific, scoped — not polished AI marketing. Peer reviewers care about this; some venues also run automated text checks. The reliable path is **good academic writing**, not tricks to “beat” detectors.
+**Goal:** Prose that satisfies **scholarly conventions** in operations research / retail analytics — precise, restrained, evidence-led — while remaining readable. Apply on every section edit (Steps 0–12).
 
-**Apply on every section edit (Steps 0–12), not only at the end.**
+### Academic writing principles (non-negotiable)
 
-### What human academic writing sounds like
+These are standard expectations in peer-reviewed OR/MS and IEEE venues. Follow them in every unit.
+
+| Principle | What it means | Example for this paper |
+|-----------|---------------|------------------------|
+| **Epistemic humility** | Match claim strength to evidence | “suggest,” “in this simulation,” “on the holdout window” — not “prove” or “demonstrate superiority” |
+| **Explicit scope** | Bound every finding | “Item~1,” “120-day holdout,” “discrete price grid,” “per-item training” |
+| **Logical progression** | One rhetorical move per paragraph | context → method → evaluation → finding → limitation |
+| **Terminological consistency** | Same name throughout | EG-DQN (Econometric-Guided Deep Q-Network); GLM-optimal price $p^*_{\text{GLM}}$ |
+| **Definition before use** | Acronym on first mention | “Generalized Linear Model (GLM)” then “GLM” |
+| **Evidence-linked assertions** | Claims point to table/figure/test | “Table~\ref{tab:revenue} reports…”; “$p=0.50$” |
+| **Hedging where appropriate** | Strong tests → cautious interpretation | Significant vs FP ≠ “EG-DQN is the best pricing system” |
+| **Nominal academic register** | Formal but plain | “evaluate,” “estimate,” “compare” — not conversational, not ornate |
+| **Economy** | No filler or repetition | State a result once; do not re-list all percentages in abstract and conclusion |
+| **Objectivity** | Limitations stated plainly | GLM–EG-DQN tie is a **finding**, not buried |
+| **IEEE conventions** | Present tense for method; past for experiments | “We describe…” / “We compared…” / “EG-DQN attained…” |
+
+**Modal verbs (academic hedging scale):**
+
+| Strength | Verbs | Use when |
+|----------|-------|----------|
+| Design / protocol | describe, formulate, implement, evaluate | Methods, contributions |
+| Empirical pattern | show, indicate, suggest, appear to | Results aligned to figures |
+| Strong (rare here) | demonstrate, establish | Only if table/test unambiguous **and** scoped |
+
+**Do not use** “clearly,” “obviously,” “undoubtedly,” “it goes without saying.”
+
+**Paragraph architecture (Results / Discussion):**
+
+1. **Topic sentence** — the paragraph’s single point.  
+2. **Evidence** — table, figure, or test statistic.  
+3. **Interpretation** — one or two sentences, scoped.  
+4. **Limitation or caveat** (if needed) — especially for corner solutions and ties.
+
+**Abstract architecture (IEEE):**
+
+1. Problem context (1–2 sentences).  
+2. Method + what was evaluated (2–3 sentences).  
+3. Principal findings — **include GLM tie** (2–3 sentences).  
+4. Scope / limitation closing (1 sentence).  
+No citations in abstract; no equation numbers; minimal abbreviations beyond GLM, DQN, EG-DQN.
+
+---
 
 | Human academic | AI-typical (avoid) |
 |----------------|-------------------|
@@ -594,8 +635,8 @@ Mark: `⬜` not started · `🔄` in progress · `✅` done · `👁` your revie
 
 | Step | Unit | `main.tex` | Figures | Tables | Citations | Status |
 |------|------|------------|---------|--------|-----------|--------|
-| 0a | **Title** | `\title{...}` | — | — | — | ⬜ |
-| 0b | **Keywords** | `\begin{IEEEkeywords}` | — | — | — | ⬜ |
+| 0a | **Title** | `\title{...}` | — | — | — | ✅ |
+| 0b | **Keywords** | `\begin{IEEEkeywords}` | — | — | — | ✅ |
 
 **0a Done when:** Title includes “Simulation Study”; no “novel/superior/optimal.”  
 **0b Done when:** Keywords include *simulation study*; no deployment hype.
@@ -606,7 +647,7 @@ Mark: `⬜` not started · `🔄` in progress · `✅` done · `👁` your revie
 
 | Step | Unit | `main.tex` | Figures | Tables | Citations | Status |
 |------|------|------------|---------|--------|-----------|--------|
-| 1 | **Abstract** | `\begin{abstract}` | — | — | — | ⬜ |
+| 1 | **Abstract** | `\begin{abstract}` | — | — | — | ✅ |
 
 **Content (Tier A only):**
 - Study type: simulation evaluation of EG-DQN design.

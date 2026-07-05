@@ -103,7 +103,7 @@
 
 % ── Title ────────────────────────────────────────────────────
 \title{%
-  Reinforcement Learning for Dynamic Pricing With Integrating an Econometric Demand Model: \\
+  Integrating an Econometric Demand Model with Deep Q-Network Pricing:\\
   A Simulation Study%
 }
 
@@ -121,35 +121,38 @@
 
 % ── Abstract ─────────────────────────────────────────────────
 \begin{abstract}
-This study invesitgates and simulates how hybrid framework with Reinforcement Learning bring dynamic pricing a effective strategy in supply-chains, a challenge that neither purely statistical nor purely
-algorithmic approaches resolve in isolation. This work proposes and
-evaluates \textit{EG-DQN} (Guided Deep Q-Network), a
-hybrid framework that tightly couples a Generalized Linear Model~(GLM)
-for econometric demand forecast with a Deep Q-Network agent for
-adaptive pricing strategy optimisation. A GLM-derived elasticity surface acts as a structural prior, augmenting the agent's state and reward mechanisms. This approach facilitates rapid convergence and yields more stable and economically grounded pricing policies. 
-
-To evaluate the proposed approach, we developed a simulation environment calibrated with retail-specific traits like seasonality and stochastic demand where benchmarked the hybrid model against standard DQN, GLM-based optimization, and fixed-price strategies. Our findings reveal that the inclusion of econometric signals not only boosts total revenue but also accelerates convergence and smooths out the policy variance typical of pure RL incorporate of ablation analysis highlights state augmentation as a key driver of these improvements. Furthermore, statistical significance was confirmed across several iterations, suggesting that this integration provides a promising framework for managing dynamic pricing under uncertain conditions.
-//
-Experiments are conducted in a
-richly parameterised simulation environment spanning four years of
-synthetic daily demand across three interacting products, calibrated to
-the statistical properties of the M5~Walmart Sales dataset. We compare
-five pricing strategies --- fixed-price, rule-based, GLM-optimal, pure
-DQN, and EG-DQN --- across cumulative revenue, convergence speed, price
-stability, and statistical significance of gains.
-In this comprehensive study EG-DQN achieves an
-\textbf{18.3\%} revenue improvement over fixed-price baseline,
-and GLM-optimal pricing (+13.9\%) and pure DQN (+11.9\%). An ablation study
-confirms that state augmentation, reward shaping, and action masking
-each contribute positively. Non-parametric significance tests
-(Mann--Whitney~U, bootstrap 95\% CI, Cohen's~$d$) confirm that all
-revenue gains are statistically significant.Results suggest that econometric priors can improve the efficiency and stability of RL-based pricing systems.
+Retail dynamic pricing requires both demand structure and sequential
+adaptivity; purely econometric and purely model-free reinforcement-learning
+(RL) methods address complementary aspects of this problem.
+We describe \textit{EG-DQN} (Econometric-Guided Deep Q-Network), a hybrid
+agent that incorporates Generalized Linear Model~(GLM) demand signals into
+a Deep Q-Network through state augmentation, econometric reward shaping,
+and early action masking.
+The approach is evaluated in a controlled simulation of three substitute
+products over 1{,}460~days of synthetic daily demand, with a 120-day
+holdout on Item~1 and comparison of fixed-price, rule-based, GLM-optimal,
+pure DQN, and EG-DQN policies.
+On the holdout set, GLM-optimal pricing and EG-DQN attain identical
+cumulative revenue and select the same price on the discrete grid; a
+one-sided Mann--Whitney test does not indicate higher daily revenue for
+EG-DQN relative to the GLM benchmark ($p=0.50$).
+Relative to fixed-price and rule-based baselines, EG-DQN yields higher
+holdout revenue in this experiment (Mann--Whitney $p<0.001$ in both
+comparisons).
+An ablation suggests that econometric reward shaping accounts for the
+principal holdout improvement over pure DQN, while the full hybrid does
+not exceed a reward-only configuration on test revenue.
+Training-episode rewards are marginally higher for EG-DQN than for pure
+DQN.
+These findings are confined to a synthetic, per-item, discrete-action
+environment with partial alignment between the data-generating process
+and the GLM specification; operational deployment is not claimed.
 \end{abstract}
 
 \begin{IEEEkeywords}
-Dynamic pricing, demand forecasting, reinforcement learning, Deep
-Q-Network, Generalized Linear Model, price elasticity, simulation study,
-retail operations, econometric RL hybrid.
+Dynamic pricing, reinforcement learning, deep Q-network, generalized linear
+model, price elasticity, demand forecasting, simulation study, retail
+pricing.
 \end{IEEEkeywords}
 
 % ============================================================
