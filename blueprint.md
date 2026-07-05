@@ -20,7 +20,7 @@
 
 **Review philosophy (locked):** This is **our simulation study** — honest, scoped, limitation-forward. We are **not** claiming a new SOTA pricing method or a general RL breakthrough. If a result looks too strong, is artifact-driven, or cannot be defended under scrutiny, **do not headline it** (and do not put it in the abstract). Prefer “we observe / in this run / under these conditions” over “we prove / outperform / novel.”
 
-**Last updated:** 2026-07-02 — conservative claim policy added; ready for defensible manuscript pass.
+**Last updated:** 2026-07-06 — human academic tone guide added; section-by-section workflow active.
 
 ---
 
@@ -142,7 +142,118 @@ Avoid: “Novel,” “Superior,” “Optimal Hybrid Framework.”
 
 ---
 
-## Priority 0 — Evidence audit ✅ COMPLETE
+## Human academic tone (write like a researcher, not a template)
+
+**Goal:** Prose that reads as **careful human scholarship** — plain, specific, scoped — not polished AI marketing. Peer reviewers care about this; some venues also run automated text checks. The reliable path is **good academic writing**, not tricks to “beat” detectors.
+
+**Apply on every section edit (Steps 0–12), not only at the end.**
+
+### What human academic writing sounds like
+
+| Human academic | AI-typical (avoid) |
+|----------------|-------------------|
+| Short, direct sentences mixed with longer technical ones | Every sentence same length and shape |
+| Names **your** design choices (EG-DQN, Item 1, 120-day holdout) | Generic “the proposed approach” / “this framework” |
+| States **limitations** without drama | Hedges everything with “comprehensive,” “promising,” “robust” |
+| Uses verbs: *describe, report, compare, estimate, evaluate* | *leverage, delve, underscore, facilitate, utilize* |
+| One clear claim per sentence | Stacked clauses + three adjectives |
+| “In this simulation…” / “On the holdout window…” | “In today’s rapidly evolving landscape…” |
+| Figures/tables do the heavy lifting | Prose repeats all numbers twice |
+
+### Banned words & phrases (search `main.tex` before each unit ✅)
+
+**Delete or rewrite if found:**
+
+`comprehensive` · `promising framework` · `richly parameterised` · `tightly couples` · `directly instantiates` · `traditional dichotomy` · `paradigms` (unless quoting literature) · `bridge these traditions` · `landscape` · `delve` · `leverage` · `utilize` · `Furthermore,` (paragraph opener) · `Moreover,` (every paragraph) · `It is important to note` · `In conclusion,` (in body) · `novel` / `innovative` / `groundbreaking` · `seamlessly` · `holistic` · `pivotal` · `underscores` · `facilitates rapid` · `notably` · `crucially`
+
+**Current `main.tex` offenders (fix when that section is edited):**
+
+| Phrase | Location | Replace with |
+|--------|----------|--------------|
+| “tightly couples” | Abstract | “combines” or “integrates” |
+| “promising framework” | Abstract | delete sentence |
+| “comprehensive study” | Abstract | “simulation study” |
+| “richly parameterised” | Conclusion | “synthetic three-product” |
+| “bridge these traditions” | Intro | “combines econometric estimation with RL” |
+| “traditional dichotomy” | Discussion | “distinction between model-based and model-free pricing” |
+| “directly instantiates” | Results/ablation | “is consistent with” |
+
+*Exception:* “HC3-robust standard errors” is **statistical terminology** — keep.
+
+### Preferred voice for **this** paper
+
+1. **First person plural, restrained:** “We describe…”, “We report…”, “We do not claim…” — not “This study investigates and simulates how hybrid framework…”
+2. **Scope tag on every result:** “on Item 1,” “over 120 holdout days,” “in this run,” “under the discrete price grid.”
+3. **Honest negatives upfront:** GLM–EG-DQN tie reads **human** because AI rarely volunteers it.
+4. **Active voice for your actions:** “We train a DQN per product” not “Training is conducted.”
+5. **Passive only for standard bits:** “Demand is modelled as…” / “Prices are selected from a grid.”
+6. **No throat-clearing:** Cut “This paper proposes and evaluates…” → start with the object: “EG-DQN integrates…”
+
+### Sentence patterns that work (examples for your study)
+
+**Abstract / Intro**
+
+- ❌ “This study investigates how hybrid frameworks bring dynamic pricing as an effective strategy in supply chains.”
+- ✅ “We evaluate EG-DQN, a hybrid that feeds GLM demand signals into a DQN pricing agent, in a synthetic retail simulation.”
+
+**Results**
+
+- ❌ “EG-DQN diverges from baselines after day 20, demonstrating superior adaptive capability.”
+- ✅ “On the holdout window, GLM-optimal and EG-DQN policies coincide at \$6 and produce identical cumulative revenue (\$226,764).”
+
+**Discussion**
+
+- ❌ “This directly instantiates Safonov’s argument that econometric structure is most valuable as an interpretable prior.”
+- ✅ “This pattern is consistent with Safonov’s view that econometric structure is most useful as an interpretable prior rather than a stand-alone optimiser.”
+
+**Limitations (human = specific)**
+
+- ❌ “Results may not generalise to real-world settings.”
+- ✅ “GLM-optimal prices hit the grid lower bound (\$6) on every holdout day, so the experiment does not explore interior price dynamics.”
+
+### Structure rules (IEEE / OR style)
+
+| Rule | Target |
+|------|--------|
+| Paragraph length | 4–7 sentences; one idea each |
+| Opening sentence | States the paragraph’s point — no “Furthermore,” |
+| Transitions | “On the holdout set,” “During training,” “By contrast,” — not “Additionally,” chains |
+| Figure captions | **Descriptive** only; interpretation stays in body |
+| Contribution bullets | Start with verb: “Describe,” “Implement,” “Report” — not “A novel framework…” |
+| Equations | Introduced in plain English before symbols |
+
+### Per-section tone checklist (run after each Step ✅)
+
+- [ ] No banned phrases in this unit
+- [ ] At least one **scope** phrase (“simulation,” “Item 1,” “holdout”)
+- [ ] No claim stronger than Tier allows (see claim policy)
+- [ ] One short sentence (≤15 words) somewhere in the unit
+- [ ] No paragraph starts with “Furthermore” / “Moreover” / “Additionally”
+- [ ] Citations support claims, not decoration
+- [ ] Read aloud once — if it sounds like a brochure, rewrite
+
+### Process: tone pass built into section-by-section workflow
+
+For each Step (0–12):
+
+1. **Draft** content from blueprint numbers + conservative framing.
+2. **Strip** banned list (search within edited lines).
+3. **Add** scope tags to every numeric claim.
+4. **Shorten** by ~10% — cut filler adjectives.
+5. **You read aloud** — approve or flag awkward lines (human check beats any detector).
+
+**Optional final pass (Step 14):** Read Abstract + Conclusion side-by-side; they should sound like the same author, not two different templates.
+
+### What we do *not* do
+
+- Stuffing synonyms or random typos to fool detectors
+- Over-casual or blog-style writing
+- Fake “personal anecdotes”
+- Inflated claims to sound impressive (detectors flag generic hype too)
+
+**Honest limitation-first science reads human** — use that as the main strategy.
+
+---
 
 | Step | Status |
 |------|--------|
@@ -364,34 +475,27 @@ These numbers are **not from this run** and must not remain:
 
 ## Priority order — current status
 
+**Active workflow:** Section-by-section completion (see **Manuscript approach** below). Do not skip ahead without marking prior unit ✅.
+
 ### ✅ Priority 0 — Evidence audit — DONE
 
-### 🔴 Priority 1 — `main.tex` tables & numbers (NEXT)
+### 🔄 Priority 1 — Section-by-section `main.tex` rewrite (IN PROGRESS)
 
-**Owner:** assistant
+Work through **Steps 0 → 12** in order. Results split into **8a–8f**. References (Step 11) after Conclusion; sync pass (Step 14) last.
 
-- [ ] Replace revenue, significance (**3 rows**), ablation, elasticity, forecast tables.
-- [ ] Apply **Tier A–D** policy to every Results paragraph.
-- [ ] Expand **Limitations** (corner solution, GLM tie, level misfit, DGP alignment, rule-based failure, no hybrid OOS gain).
-- [ ] Fig. `15.png`: caption **episode revenue only** — no loss claims (Tier D).
-
-### 🔴 Priority 2 — Abstract, Results, Conclusion
-
-**Owner:** assistant
-
-- [ ] Abstract from **conservative template** (tie with GLM upfront; no % / Cohen's *d*).
-- [ ] Results: holdout facts → limitations cross-refs → training/ablation (secondary).
-- [ ] Conclusion: one honest sentence (no victory lap).
-- [ ] Title: include **“A Simulation Study”**.
-- [ ] Contributions: “describe / implement / report” — not “prove / outperform”.
+*Legacy bulk tasks (replace all tables at once) superseded by per-unit tracker above.*
 
 ### 🟡 Priority 3 — References
 
 - [ ] Fix `xiaocheng2023` bibitem; add `chen2023` to Intro; rebalance arXiv.
 
-### 🟢 Priority 4 — Prose & captions
+### 🟢 Priority 4 — Human tone & captions (every section, not only at end)
 
-- [ ] De-AI pass; shorten captions; fix Fig. 17 caption (GLM/EG-DQN overlap, not “diverges”).
+- [ ] Apply **Human academic tone** checklist after each Step 0–12 unit.
+- [ ] Search banned-word list in edited section before marking ✅.
+- [ ] Shorten figure captions; move interpretation to body.
+- [ ] Fix Fig. 17 caption (GLM/EG-DQN overlap, not “diverges”).
+- [ ] Step 14: Abstract + Conclusion sound like same author.
 
 ### ⚪ Priority 5 — Pre-submission
 
@@ -434,26 +538,248 @@ These numbers are **not from this run** and must not remain:
 |------|-----|-----------|
 | Evidence package (`data.md`, figures) | ✅ Done | |
 | Re-run significance vs Pure DQN | Optional | Can script if asked |
-| Rewrite `main.tex` tables + Results | | ✅ Next |
-| Abstract + Conclusion | | ✅ After tables |
-| References + prose polish | | ✅ P3–P4 |
+| Section-by-section `main.tex` rewrite | Review each unit | ✅ Lead edits |
+| References + prose polish | | ✅ Per section |
 
 ---
 
-## Suggested workflow — remaining sessions
+## Manuscript approach — section by section (locked)
 
-### Session 1 (next): Tables + language fixes
-1. Replace all Results tables in `main.tex`.
-2. Update figure paths to `figures/`.
-3. P1 language fixes (structural ID, captions, Limitations).
+**Your approach:** Complete `main.tex` **one section (or subsection) at a time** — abstract → conclusion — with citations, tables, and figures done **inside that unit** before moving on. **Agreed.** This is the right strategy for a defensible rewrite: each unit is self-contained, reviewable, and aligned to `data.md` / `figures/` + Tier A–D policy.
 
-### Session 2: Abstract + narrative
-4. Write abstract from locked template.
-5. Rewrite Results prose (two layers).
-6. Update Conclusion + Intro contributions.
+### Rules for every unit
 
-### Session 3: Polish
-7. References, de-AI pass, pre-submission checklist.
+1. **Read** blueprint Tier rules + relevant `data.md` / figure before editing.
+2. **Edit** only that section in `main.tex` (minimal diff).
+3. **Include** in the same pass: prose, `\cite{}`, tables, `\includegraphics`, labels.
+4. **Check** done-criteria below before marking ✅.
+5. **You review** the unit; we fix feedback; then advance.
+6. **No forward references** to numbers not yet written in an earlier Results subsection.
+7. After **§Results** is complete, do a **sync pass** on Abstract + Conclusion (one short pass, not a full rewrite).
+
+### Recommended order (front → back)
+
+| Step | Unit | Why this order |
+|------|------|----------------|
+| 0 | Title + Keywords | Sets simulation-study tone |
+| 1 | **Abstract** | Locks Tier-A story early (re-sync after Results) |
+| 2 | **§Introduction** | Contributions must match abstract; no results leakage |
+| 3 | **§Related Work** | Citations stable before Methods cite same keys |
+| 4 | **§Problem Formulation** | MDP/DGP — no results numbers |
+| 5 | **§Econometric Demand Model** | GLM spec; fix “structural identification” here |
+| 6 | **§RL Framework** | EG-DQN mechanisms + algorithm |
+| 7 | **§Simulation Environment** | Defense of simulation + hyperparams + baselines |
+| 8a | **§Results — Demand estimation** | Elasticity + forecast tables/figs |
+| 8b | **§Results — Revenue** | **Highest scrutiny** — `17.png` + revenue table |
+| 8c | **§Results — Training** | `15.png`; no loss claims |
+| 8d | **§Results — Ablation** | `20.png`; 3-config table only |
+| 8e | **§Results — Significance** | 3 rows; report GLM NS |
+| 8f | **§Results — Rolling elasticity** | `21.png`; no deployment language |
+| 9 | **§Discussion — Methodological** | Interpretation only; no new numbers |
+| 10 | **§Discussion — Limitations** | Corner solution, tie, DGP alignment |
+| 11 | **§Discussion — Path to deployment** | Future work tone only |
+| 12 | **§Conclusion** | Tier-A only; mirror abstract |
+| 13 | **References** | Fix bibitems; sync with all `\cite{}` |
+| 14 | **Sync pass** | Abstract ↔ Results ↔ Conclusion consistency |
+
+**Note:** Results is split into **6 sub-units (8a–8f)** because it is the largest section and carries most claim risk.
+
+---
+
+## Section completion tracker
+
+Mark: `⬜` not started · `🔄` in progress · `✅` done · `👁` your review
+
+### Step 0 — Front matter
+
+| Step | Unit | `main.tex` | Figures | Tables | Citations | Status |
+|------|------|------------|---------|--------|-----------|--------|
+| 0a | **Title** | `\title{...}` | — | — | — | ⬜ |
+| 0b | **Keywords** | `\begin{IEEEkeywords}` | — | — | — | ⬜ |
+
+**0a Done when:** Title includes “Simulation Study”; no “novel/superior/optimal.”  
+**0b Done when:** Keywords include *simulation study*; no deployment hype.
+
+---
+
+### Step 1 — Abstract
+
+| Step | Unit | `main.tex` | Figures | Tables | Citations | Status |
+|------|------|------------|---------|--------|-----------|--------|
+| 1 | **Abstract** | `\begin{abstract}` | — | — | — | ⬜ |
+
+**Content (Tier A only):**
+- Study type: simulation evaluation of EG-DQN design.
+- GLM and EG-DQN **tie** on holdout; *p* = 0.50 vs GLM.
+- Beats naive baselines in this run (no % or Cohen’s *d*).
+- Reward shaping in ablation; no hybrid > GLM claim.
+- Limitations sentence in abstract (simulation, discrete grid, per-item).
+
+**Done when:** Single paragraph; no `//` artifact; no Tier D terms; conservative template from §Defensible framing applied.
+
+**After §Results:** Re-read once (Step 14 sync) — numbers in abstract must ⊆ Results.
+
+---
+
+### Step 2 — Introduction
+
+| Step | Unit | `main.tex` | Figures | Tables | Citations | Status |
+|------|------|------------|---------|--------|-----------|--------|
+| 2 | **§Introduction** | `\section{Introduction}` | — | — | kopalle, apte, groeneveld, nambiar, chen | ⬜ |
+
+**Sub-parts (one edit pass):**
+- 2.1 Problem motivation (econometric vs RL gap).
+- 2.2 EG-DQN one-paragraph preview (three mechanisms).
+- 2.3 **Contributions** — exactly **3 bullets** (describe / implement / report).
+
+**Done when:** No result numbers in Intro; contributions match abstract; “propose/describe” not “prove/outperform.”
+
+---
+
+### Step 3 — Related Work
+
+| Step | Unit | `main.tex` | Figures | Tables | Citations | Status |
+|------|------|------------|---------|--------|-----------|--------|
+| 3a | **§II.A** Dynamic Pricing and RL | `\subsection{Dynamic Pricing...}` | — | — | groeneveld, xiaocheng2023, liu, razumovskiy | ⬜ |
+| 3b | **§II.B** Demand Forecasting | `\subsection{Demand Forecasting}` | — | — | husna, ramos, bu, zhang, xia2023 | ⬜ |
+| 3c | **§II.C** Econometric Models | `\subsection{Econometric...}` | — | — | zhang, safonov | ⬜ |
+| 3d | **§II.D** RL for Pricing | `\subsection{RL for Pricing}` | — | — | apte, zheng, alamdar, nambiar | ⬜ |
+
+**Done when:** Journal anchors lead each subsection; no decorative cites; `xiaocheng2023` author text correct; gap statement points to **hybrid design + simulation protocol** (not SOTA).
+
+---
+
+### Step 4 — Problem Formulation
+
+| Step | Unit | `main.tex` | Figures | Tables | Citations | Status |
+|------|------|------------|---------|--------|-----------|--------|
+| 4a | Market structure | `\subsection{Market Structure}` | — | — | rios2023 | ⬜ |
+| 4b | DGP | `\subsection{Demand Data-Generating Process}` | — | elasticity matrix (if here) | kopalle, zhang | ⬜ |
+| 4c | MDP | `\subsection{Pricing as a Markov...}` | — | — | — | ⬜ |
+
+**Done when:** Eqs. (objective, DGP, reward) unchanged unless notebook differs; note “approximately aligned” with GLM (not “correctly specified”).
+
+---
+
+### Step 5 — Econometric Demand Model
+
+| Step | Unit | `main.tex` | Figures | Tables | Citations | Status |
+|------|------|------------|---------|--------|-----------|--------|
+| 5a | GLM specification | `\subsection{Specification}` | — | — | — | ⬜ |
+| 5b | Derived signals | `\subsection{Derived Econometric Signals}` | — | — | — | ⬜ |
+
+**Done when:** “Structural identification” → “elasticity recovery”; enumerate three signals (ε̂, p\*\_GLM, D̂).
+
+---
+
+### Step 6 — Reinforcement Learning Framework
+
+| Step | Unit | `main.tex` | Figures | Tables | Citations | Status |
+|------|------|------------|---------|--------|-----------|--------|
+| 6a | Network | `\subsection{Network Architecture}` | — | — | — | ⬜ |
+| 6b | Training | `\subsection{Training Procedure}` | — | — | — | ⬜ |
+| 6c | EG-DQN mechanisms | `\subsection{EG-DQN Integration...}` | — | — | cheung2023 (optional) | ⬜ |
+| 6d | Algorithm | `Algorithm~\ref{alg:egdqn}` | — | — | — | ⬜ |
+
+**Done when:** Three mechanisms named; λ, K, episodes match `data.md`; no performance claims.
+
+---
+
+### Step 7 — Simulation Environment
+
+| Step | Unit | `main.tex` | Figures | Tables | Citations | Status |
+|------|------|------------|---------|--------|-----------|--------|
+| 7a | Design & calibration | `\subsection{Design and Calibration}` | — | cross-price ε table | xia2023, xia2024 | ⬜ |
+| 7b | Hyperparameters | `\subsection{Hyperparameters}` | — | Table hyperparams | — | ⬜ |
+| 7c | Baselines | `\subsection{Baseline Strategies}` | — | — | — | ⬜ |
+
+**Done when:** One sentence defending simulation (Nambiar, Xia, Chen); SEED=42, holdout=120, Item 1 stated; five baselines defined.
+
+---
+
+### Step 8 — Experiments and Results (split into 6 units)
+
+| Step | Unit | `main.tex` | Figures | Tables | Citations | Status |
+|------|------|------------|---------|--------|-----------|--------|
+| 8a | Demand estimation accuracy | `\subsection{Demand Estimation...}` | `eda.png`, `8.png`, `10.png` | elasticity, forecast | — | ⬜ |
+| 8b | **Revenue comparison** | `\subsection{Revenue Comparison}` | `17.png` | revenue (5 strategies) | kumar2026 optional | ⬜ |
+| 8c | Training convergence | `\subsection{Convergence Analysis}` | `15.png` | — | cheung2023 | ⬜ |
+| 8d | Ablation | `\subsection{Ablation Study}` | `20.png` | 3-config ablation | safonov2024 | ⬜ |
+| 8e | Significance | `\subsection{Statistical Significance}` | — | 3 rows (FP, RB, GLM) | — | ⬜ |
+| 8f | Rolling elasticity | `\subsection{Rolling Elasticity...}` | `21.png` | — | — | ⬜ |
+
+**8a Done when:** Elasticity table from `data.md` (max bias 3.7%); forecast MAPE 5.20%; fig captions Tier-safe; `figures/` paths.
+
+**8b Done when:** Revenue table matches `17.png`; prose states GLM=EG-DQN tie; Pure DQN lower; **no** “diverges/dominate”; % only with simulation scope.
+
+**8c Done when:** Training reward comparison only; **delete** ep 35/68 and 61% variance; **no** TD-loss claims; caption describes episode revenue panel only.
+
+**8d Done when:** 3-row ablation only; reward shaping interpretation; EG-DQN = DQN+Reward stated; state/mask → future work.
+
+**8e Done when:** GLM row shows NS (*p*=0.50); Cohen’s *d* with Discussion caveat; Pure DQN row omitted until re-run.
+
+**8f Done when:** Rolling elasticity descriptive; caption: “stable over evaluation window” not “deployment.”
+
+---
+
+### Step 9 — Discussion
+
+| Step | Unit | `main.tex` | Figures | Tables | Citations | Status |
+|------|------|------------|---------|--------|-----------|--------|
+| 9a | Methodological implications | `\subsection{Methodological Implications}` | — | — | cheung2023, apte2024 | ⬜ |
+| 9b | **Limitations** | `\subsection{Limitations}` | — | — | nambiar, xia2024 | ⬜ |
+| 9c | Path to deployment | `\subsection{Path to Deployment}` | — | — | chen2023, xia2024 | ⬜ |
+
+**9b must include (Tier C):** synthetic only; per-item RL; discrete grid; \$6 corner; GLM=EG-DQN tie; DGP–GLM alignment; level misfit; rule-based failure; no hybrid OOS gain over GLM.
+
+**Done when:** No new numeric claims; “theoretical prediction” removed; deployment framed as future work.
+
+---
+
+### Step 10 — Conclusion
+
+| Step | Unit | `main.tex` | Figures | Tables | Citations | Status |
+|------|------|------------|---------|--------|-----------|--------|
+| 10 | **§Conclusion** | `\section{Conclusion}` | — | — | future: hadi, nomura | ⬜ |
+
+**Done when:** One honest Tier-A summary; no 18.3%, no ep 35/68, no “significant vs all”; future work 2–3 bullets; matches abstract.
+
+---
+
+### Step 11 — References
+
+| Step | Unit | `main.tex` | Figures | Tables | Citations | Status |
+|------|------|------------|---------|--------|-----------|--------|
+| 11 | **Bibliography** | `\begin{thebibliography}` | — | — | all keys | ⬜ |
+
+**Done when:** Every `\cite{}` has `\bibitem`; `xiaocheng2023` fixed; no orphan bibitems; arXiv ≤35%.
+
+---
+
+### Step 12 — Final sync pass
+
+| Step | Unit | Action | Status |
+|------|------|--------|--------|
+| 14 | **Cross-section sync** | Abstract ⊆ Results; Conclusion ⊆ Results; Intro contributions ⊆ Abstract; figure paths compile | ⬜ |
+| 15 | **Pre-submission** | Priority 5 checklist | ⬜ |
+
+---
+
+## How we work in chat (one unit per session)
+
+**Per unit, you say:** e.g. *“Let’s do Step 1 — Abstract.”*
+
+**I will:**
+1. Quote current `main.tex` text for that unit.
+2. Propose replacement (or edit file directly if you prefer).
+3. List citations/tables/figures added.
+4. Run **tone checklist** (banned words, scope tags, read-aloud test).
+5. Show done-criteria checklist.
+6. Wait for your 👁 before marking ✅ and moving on.
+
+**Suggested first session:** Step 0a–1 (Title + Abstract) — smallest unit, sets tone for everything else.
+
+**Suggested heavy session:** Step 8b only (Revenue) — do not combine with 8e in one pass.
 
 ---
 
