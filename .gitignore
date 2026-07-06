@@ -1,0 +1,31 @@
+# ── Local tooling (MiKTeX package cache, etc.) ───────────────
+.tools/
+
+# ── LaTeX build artifacts ────────────────────────────────────
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.bbl
+*.blg
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.nav
+*.snm
+*.vrb
+
+# Built PDFs (keep figures/ and references/ PDFs)
+/index.pdf
+/main.pdf
+
+# ── Jupyter ──────────────────────────────────────────────────
+.ipynb_checkpoints/
+
+# ── OS / editor ──────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+*.swp
+*~

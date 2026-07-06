@@ -1,0 +1,50 @@
+{
+  "latex-workshop.latex.rootFile": "index.tex",
+  "latex-workshop.latex.rootFile.useSubFile": false,
+  "latex-workshop.latex.autoBuild.run": "onSave",
+  "latex-workshop.latex.recipes": [
+    {
+      "name": "pdflatex ×2",
+      "tools": ["pdflatex", "pdflatex"]
+    }
+  ],
+  "latex-workshop.latex.tools": [
+    {
+      "name": "pdflatex",
+      "command": "C:/Users/Niloy Dey/AppData/Local/Programs/MiKTeX/miktex/bin/x64/pdflatex.exe",
+      "args": [
+        "--enable-installer",
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "%DOC%"
+      ]
+    }
+  ],
+  "latex-workshop.latex.outDir": "%DIR%",
+  "latex-workshop.view.pdf.viewer": "tab",
+  "latex-workshop.view.pdf.internal.synctex.keybinding": "double-click",
+  "latex-workshop.latex.clean.fileTypes": [
+    "*.aux",
+    "*.bbl",
+    "*.blg",
+    "*.idx",
+    "*.ind",
+    "*.lof",
+    "*.lot",
+    "*.out",
+    "*.toc",
+    "*.acn",
+    "*.acr",
+    "*.alg",
+    "*.glg",
+    "*.glo",
+    "*.gls",
+    "*.fls",
+    "*.log",
+    "*.fdb_latexmk",
+    "*.snm",
+    "*.nav",
+    "*.synctex.gz"
+  ]
+}
