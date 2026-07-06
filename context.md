@@ -132,9 +132,9 @@ Historical demand + prices
 - GLM elasticity bias: within **~3.7%** per product; forecast MAPE **~5.2%** on holdout
 - **Do not claim:** ep 35/68, 61% variance, state augmentation as main driver, stable TD-loss, EG-DQN beats GLM
 
-### Body of `main.tex` still stale
+### Manuscript rewrite status (`index.tex`)
 
-Steps 0–1 (title, abstract) match evidence. **§Introduction onward** still contains pre-audit numbers and framing — rewrite per `blueprint.md` Steps 2–12.
+Steps 0–2 (title, keywords, abstract, **§Introduction**) match evidence and Branch~C framing. **`main.tex`** body (§Introduction onward) remains stale reference material. Next: Step~3 — §Related Work.
 
 ---
 
@@ -229,8 +229,8 @@ Mark: ⬜ not started · 🔄 in progress · ✅ done · 👁 user review
 | 0a | Title | ✅ |
 | 0b | Keywords | ✅ |
 | 1 | Abstract | ✅ |
-| 2 | §Introduction | ⬜ **← next** |
-| 3a–3d | §Related Work (4 subsections) | ⬜ |
+| 2 | §Introduction | ✅ |
+| 3a–3d | §Related Work (4 subsections) | ⬜ **← next** |
 | 4a–4c | §Problem Formulation | ⬜ |
 | 5a–5b | §Econometric Demand Model | ⬜ |
 | 6a–6d | §RL Framework | ⬜ |
@@ -247,7 +247,7 @@ Mark: ⬜ not started · 🔄 in progress · ✅ done · 👁 user review
 | 14 | Abstract ↔ Results sync pass | ⬜ |
 | 15 | Pre-submission checklist | ⬜ |
 
-**Progress:** 3 / ~25 units complete in `index.tex` (~12%). Highest-risk block: **8a–8f** (Results).
+**Progress:** 4 / ~25 units complete in `index.tex` (~16%). Highest-risk block: **8a–8f** (Results).
 
 ---
 
@@ -308,7 +308,7 @@ Full list: `citations.md`.
 
 ## 16. Current focus
 
-1. **Next session:** Step 2 — §Introduction in `index.tex` (3 contribution bullets; no result numbers).
+1. **Next session:** Step 3 — §Related Work in `index.tex` (4 subsections; gap statement → hybrid design + simulation protocol).
 2. **After Results complete:** Step 14 sync pass on Abstract + Conclusion.
 3. **User before submission:** Author names and institution.
 4. **Optional (non-blocking):** Re-run Mann–Whitney EG-DQN vs Pure DQN; fix `data.md` Pure DQN row.

@@ -160,8 +160,120 @@ model, price elasticity, demand forecasting, simulation study, retail
 pricing.
 \end{IEEEkeywords}
 
-% ── Steps 2–10: Body sections (pending) ────────────────────────
-% ── Steps 2–10: Body sections (pending) ────────────────────────
-% ── Step 11: References from main.tex (pending) ──────────────
+% ── Step 2: Introduction ─────────────────────────────────────
+\section{Introduction}
+\label{sec:intro}
+
+Retail managers set prices under incomplete information.
+When tomorrow's price is chosen, competitor reactions, seasonal
+shifts, and the price sensitivity of the current customer pool
+are not directly observable.
+Mistakes are costly: a price set too low forfeits revenue that
+cannot be recovered, and a price set too high suppresses demand
+immediately.
+
+The literature has developed two complementary approaches.
+Econometric methods estimate price-response relationships from
+historical transactions, yielding interpretable parameters---in
+particular, own-price elasticity---that managers can audit and reconcile with
+demand theory~\cite{kopalle2023}.
+Their optimisation is typically open-loop and rests on assumptions
+such as relatively stable demand relationships over the estimation
+window.
+Reinforcement learning~(RL), by contrast, treats pricing as a
+sequential decision problem in which an agent learns a policy from
+repeated market interaction~\cite{groeneveld2025}.
+RL adapts to feedback without committing to a fixed parametric form,
+yet retail applications must contend with sample-efficient learning,
+noisy rewards, and exploration over large price sets~\cite{apte2024,
+cheung2023}.
+
+Apte~et~al.~\cite{apte2024} show that tabular Q-learning can improve
+on static pricing in simulated retail settings.
+Groeneveld~et~al.~\cite{groeneveld2025} report that RL remains
+competitive under demand-model misspecification but can learn more
+slowly when demand structure is known---the regime in which
+econometric guidance may be most informative.
+When live experimentation is impractical, simulation-based evaluation
+offers a controlled alternative~\cite{nambiar2022, chen2023}.
+We adopt that evaluation mode here; operational deployment is not
+claimed.
+
+We describe \textit{EG-DQN} (Econometric-Guided Deep Q-Network),
+which couples a Generalized Linear Model~(GLM) demand specification
+with a Deep Q-Network~(DQN) pricing agent.
+GLM-derived signals enter the agent through three mechanisms:
+state augmentation with the GLM-optimal price at each timestep,
+econometric reward shaping, and early action masking during
+exploration.
+The design is assessed in a synthetic environment with three
+substitute products, 1{,}460~days of daily demand, and a 120-day
+holdout on Item~1; we compare fixed-price, rule-based, GLM-optimal,
+pure DQN, and EG-DQN policies using holdout revenue, Mann--Whitney
+tests, and a three-configuration ablation.
+
+\subsection*{Contributions}
+
+\begin{itemize}
+  \item We \textbf{describe} EG-DQN and three mechanisms for
+    injecting GLM demand signals---optimal-price guidance, reward
+    shaping, and masked exploration---into DQN-based retail pricing.
+  \item We \textbf{implement} a reproducible simulation benchmark
+    with known elasticities, five baseline strategies, holdout
+    evaluation on Item~1, non-parametric significance testing, and
+    ablation of econometric reward shaping.
+  \item We \textbf{report} that GLM-optimal and EG-DQN policies
+    coincide on holdout revenue in this simulation while exceeding
+    naive fixed-price and rule-based strategies; econometric reward
+    shaping aligns RL outcomes with GLM-guided prices, and EG-DQN
+    attains modest training-phase gains over pure DQN, without
+    claiming holdout dominance over econometric pricing alone.
+\end{itemize}
+
+% ── Steps 3–10: Body sections (pending) ────────────────────────
+% ── Step 11: Full bibliography from main.tex (pending) ──────────
+
+\begin{thebibliography}{99}
+
+\bibitem{kopalle2023}
+P.~K.~Kopalle, K.~Pauwels, L.~Y.~Akella, and M.~Gangwar,
+``Dynamic pricing: Definition, implications for managers, and future
+research directions,''
+\textit{Journal of Retailing}, vol.~99, no.~4, pp.~580--593, 2023.
+\url{https://doi.org/10.1016/j.jretai.2023.11.003}
+
+\bibitem{groeneveld2025}
+J.~Groeneveld \textit{et~al.},
+``Reinforcement learning versus data-driven dynamic programming for
+finite horizon dynamic pricing markets,''
+\textit{Journal of Revenue and Pricing Management}, 2025.
+\url{https://doi.org/10.1057/s41272-025-00519-8}
+
+\bibitem{apte2024}
+M.~Apte, K.~Kale, P.~Datar, and P.~R.~Deshmukh,
+``Dynamic retail pricing via Q-Learning --- A reinforcement learning
+framework for enhanced revenue management,''
+\textit{arXiv:2411.18261}, 2024.
+
+\bibitem{nambiar2022}
+M.~Nambiar \textit{et~al.},
+``Offline deep reinforcement learning for dynamic pricing of consumer
+credit,''
+\textit{arXiv:2203.03003}, 2022.
+
+\bibitem{chen2023}
+J.~Chen, Y.~Xu, and P.~Yu,
+``A reinforcement learning approach for hotel revenue management with
+evidence from field experiments,''
+\textit{Journal of Operations Management}, vol.~69, no.~7,
+pp.~1176--1201, 2023.
+
+\bibitem{cheung2023}
+W.~C.~Cheung and D.~Simchi-Levi,
+``Nonstationary reinforcement learning: The blessing of (more) optimism,''
+\textit{Manag. Sci.}, 2023.
+\url{https://doi.org/10.1287/mnsc.2023.4704}
+
+\end{thebibliography}
 
 \end{document}
