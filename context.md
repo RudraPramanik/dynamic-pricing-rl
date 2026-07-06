@@ -178,7 +178,8 @@ Use in Intro / Conclusion (match abstract):
 
 ```
 dynamic pricing/
-├── main.tex                            ← Manuscript (IEEEtran, manual bibliography)
+├── main.tex                            ← Original manuscript (reference)
+├── index.tex                           ← Clean rewrite (blueprint Steps 0–12)
 ├── Dynamic_pricing_hybrid_EG_DQN.ipynb ← Experiment source code
 ├── context.md                          ← This file (agent onboarding + progress snapshot)
 ├── blueprint.md                        ← Edit plan, claim tiers, step criteria, full tables
@@ -221,14 +222,14 @@ Mark: ⬜ not started · 🔄 in progress · ✅ done · 👁 user review
 | Citations cleaned (27 refs) | ✅ |
 | Author block | ⬜ placeholder |
 
-### Section-by-section rewrite (`main.tex`)
+### Section-by-section rewrite (`index.tex`)
 
 | Step | Unit | Status |
 |------|------|--------|
 | 0a | Title | ✅ |
 | 0b | Keywords | ✅ |
-| 1 | Abstract | ✅ |
-| 2 | §Introduction | ⬜ **← next** |
+| 1 | Abstract | ⬜ **← next** |
+| 2 | §Introduction | ⬜ |
 | 3a–3d | §Related Work (4 subsections) | ⬜ |
 | 4a–4c | §Problem Formulation | ⬜ |
 | 5a–5b | §Econometric Demand Model | ⬜ |
@@ -246,7 +247,7 @@ Mark: ⬜ not started · 🔄 in progress · ✅ done · 👁 user review
 | 14 | Abstract ↔ Results sync pass | ⬜ |
 | 15 | Pre-submission checklist | ⬜ |
 
-**Progress:** 3 / ~25 units complete (~12%). Highest-risk block: **8a–8f** (Results).
+**Progress:** 2 / ~25 units complete in `index.tex` (~8%). `main.tex` has Steps 0–1 from earlier pass. Highest-risk block: **8a–8f** (Results).
 
 ---
 
@@ -307,7 +308,7 @@ Full list: `citations.md`.
 
 ## 16. Current focus
 
-1. **Next session:** Step 2 — §Introduction (3 contribution bullets; no result numbers).
+1. **Next session:** Step 1 — Abstract in `index.tex` (Tier-A only; copy/adapt from `main.tex`).
 2. **After Results complete:** Step 14 sync pass on Abstract + Conclusion.
 3. **User before submission:** Author names and institution.
 4. **Optional (non-blocking):** Re-run Mann–Whitney EG-DQN vs Pure DQN; fix `data.md` Pure DQN row.

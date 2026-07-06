@@ -1,0 +1,136 @@
+% ============================================================
+%  IEEE TRANSACTIONS — MANUSCRIPT REWRITE (index.tex)
+%  Integrating an Econometric Demand Model with Deep Q-Network
+%  Pricing: A Simulation Study
+%  Compile with: pdflatex -> pdflatex
+%  Source of truth for numbers: data.md, figures/
+%  Edit plan: blueprint.md
+% ============================================================
+
+\documentclass[journal, 10pt, twoside]{IEEEtran}
+
+% ── Packages ────────────────────────────────────────────────
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{cite}
+\usepackage{balance}
+\usepackage{microtype}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+% ── Hyperref setup ───────────────────────────────────────────
+\hypersetup{
+  colorlinks = true,
+  linkcolor  = blue!70!black,
+  citecolor  = blue!60!black,
+  urlcolor   = blue!60!black
+}
+
+% ── Custom colours ───────────────────────────────────────────
+\definecolor{ieeeblue}{RGB}{0,70,127}
+\definecolor{codegreen}{rgb}{0,0.5,0}
+\definecolor{noteblue}{RGB}{220,235,250}
+
+% ── Theorem environments ─────────────────────────────────────
+\newtheorem{proposition}{Proposition}
+\newtheorem{remark}{Remark}
+
+% ── Image placeholder macro ──────────────────────────────────
+% Usage: \imgplaceholder{width}{height}{caption text}{label}
+\newcommand{\imgplaceholder}[4]{%
+  \begin{figure}[H]
+    \centering
+    \fboxsep=0pt
+    \colorbox{noteblue}{%
+      \parbox[c][#2][c]{#1}{%
+        \centering
+        \textcolor{ieeeblue}{\textbf{[INSERT FIGURE HERE]}}\\[4pt]
+        \textcolor{gray}{\small #3}
+      }%
+    }
+    \caption{#3}
+    \label{#4}
+  \end{figure}
+}
+
+% Two-image side-by-side placeholder
+\newcommand{\imgplaceholderdouble}[6]{%
+  \begin{figure*}[t]
+    \centering
+    \begin{subfigure}[t]{0.48\textwidth}
+      \centering
+      \colorbox{noteblue}{%
+        \parbox[c][#2][c]{\linewidth}{%
+          \centering
+          \textcolor{ieeeblue}{\textbf{[INSERT FIGURE HERE]}}\\[3pt]
+          \textcolor{gray}{\small #3}
+        }%
+      }
+      \caption{#3}
+      \label{#5a}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.48\textwidth}
+      \centering
+      \colorbox{noteblue}{%
+        \parbox[c][#2][c]{\linewidth}{%
+          \centering
+          \textcolor{ieeeblue}{\textbf{[INSERT FIGURE HERE]}}\\[3pt]
+          \textcolor{gray}{\small #4}
+        }%
+      }
+      \caption{#4}
+      \label{#5b}
+    \end{subfigure}
+    \caption{#6}
+    \label{#5}
+  \end{figure*}
+}
+
+% ============================================================
+%  DOCUMENT BEGIN
+% ============================================================
+\begin{document}
+
+% ── Step 0a: Title ───────────────────────────────────────────
+\title{%
+  Integrating an Econometric Demand Model with Deep Q-Network Pricing:\\
+  A Simulation Study%
+}
+
+\author{%
+  \IEEEauthorblockN{[Author Name(s)]}\\
+  \IEEEauthorblockA{%
+    \textit{[Department / School]}\\
+    \textit{[University Name]}\\
+    [City, Country]\\
+    [email@institution.edu]%
+  }
+}
+
+\maketitle
+
+% ── Step 0b: Keywords ────────────────────────────────────────
+\begin{IEEEkeywords}
+Dynamic pricing, reinforcement learning, deep Q-network, generalized linear
+model, price elasticity, demand forecasting, simulation study, retail
+pricing.
+\end{IEEEkeywords}
+
+% ── Step 1: Abstract (pending) ───────────────────────────────
+% ── Steps 2–10: Body sections (pending) ────────────────────────
+% ── Step 11: References from main.tex (pending) ──────────────
+
+\end{document}
