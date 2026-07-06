@@ -122,6 +122,37 @@
 
 \maketitle
 
+% ── Step 1: Abstract ─────────────────────────────────────────
+\begin{abstract}
+Retail dynamic pricing requires both demand structure and sequential
+adaptivity; purely econometric and purely model-free reinforcement-learning
+(RL) methods address complementary aspects of this problem.
+We describe \textit{EG-DQN} (Econometric-Guided Deep Q-Network), a hybrid
+agent that incorporates Generalized Linear Model~(GLM) demand signals into
+a Deep Q-Network through state augmentation, econometric reward shaping,
+and early action masking.
+We evaluate the design in a controlled simulation of three substitute
+products over 1{,}460~days of synthetic daily demand, with a 120-day
+holdout on Item~1 and comparison of fixed-price, rule-based, GLM-optimal,
+pure DQN, and EG-DQN policies.
+On the holdout window, GLM-optimal pricing and EG-DQN attain identical
+cumulative revenue and select the same price on the discrete grid; a
+one-sided Mann--Whitney test does not indicate higher daily revenue for
+EG-DQN relative to the GLM benchmark ($p=0.50$).
+Relative to fixed-price and rule-based baselines, EG-DQN yields higher
+holdout revenue in this simulation (Mann--Whitney $p<0.001$ in both
+comparisons).
+Pure DQN attains lower holdout revenue than GLM-optimal and EG-DQN under
+the learned policies.
+An ablation suggests that econometric reward shaping accounts for the
+principal holdout improvement over pure DQN, while the full hybrid does
+not exceed a reward-only configuration on test revenue.
+Training-episode rewards are modestly higher for EG-DQN than for pure DQN.
+These findings are confined to a synthetic, per-item, discrete-action
+environment with partial alignment between the data-generating process
+and the GLM specification; operational deployment is not claimed.
+\end{abstract}
+
 % ── Step 0b: Keywords ────────────────────────────────────────
 \begin{IEEEkeywords}
 Dynamic pricing, reinforcement learning, deep Q-network, generalized linear
@@ -129,7 +160,7 @@ model, price elasticity, demand forecasting, simulation study, retail
 pricing.
 \end{IEEEkeywords}
 
-% ── Step 1: Abstract (pending) ───────────────────────────────
+% ── Steps 2–10: Body sections (pending) ────────────────────────
 % ── Steps 2–10: Body sections (pending) ────────────────────────
 % ── Step 11: References from main.tex (pending) ──────────────
 

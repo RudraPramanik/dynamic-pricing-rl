@@ -228,8 +228,8 @@ Mark: ⬜ not started · 🔄 in progress · ✅ done · 👁 user review
 |------|------|--------|
 | 0a | Title | ✅ |
 | 0b | Keywords | ✅ |
-| 1 | Abstract | ⬜ **← next** |
-| 2 | §Introduction | ⬜ |
+| 1 | Abstract | ✅ |
+| 2 | §Introduction | ⬜ **← next** |
 | 3a–3d | §Related Work (4 subsections) | ⬜ |
 | 4a–4c | §Problem Formulation | ⬜ |
 | 5a–5b | §Econometric Demand Model | ⬜ |
@@ -247,7 +247,7 @@ Mark: ⬜ not started · 🔄 in progress · ✅ done · 👁 user review
 | 14 | Abstract ↔ Results sync pass | ⬜ |
 | 15 | Pre-submission checklist | ⬜ |
 
-**Progress:** 2 / ~25 units complete in `index.tex` (~8%). `main.tex` has Steps 0–1 from earlier pass. Highest-risk block: **8a–8f** (Results).
+**Progress:** 3 / ~25 units complete in `index.tex` (~12%). Highest-risk block: **8a–8f** (Results).
 
 ---
 
@@ -308,7 +308,7 @@ Full list: `citations.md`.
 
 ## 16. Current focus
 
-1. **Next session:** Step 1 — Abstract in `index.tex` (Tier-A only; copy/adapt from `main.tex`).
+1. **Next session:** Step 2 — §Introduction in `index.tex` (3 contribution bullets; no result numbers).
 2. **After Results complete:** Step 14 sync pass on Abstract + Conclusion.
 3. **User before submission:** Author names and institution.
 4. **Optional (non-blocking):** Re-run Mann–Whitney EG-DQN vs Pure DQN; fix `data.md` Pure DQN row.
