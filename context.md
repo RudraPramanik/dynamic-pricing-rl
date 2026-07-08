@@ -220,7 +220,7 @@ Mark: ⬜ not started · 🔄 in progress · ✅ done · 👁 user review
 | Evidence package (`data.md`, `figures/`) | ✅ |
 | Claims Ledger + Branch C framing | ✅ |
 | Citations baseline (20 refs) | ✅ |
-| Wave 1 expansion (`proposal.md` R0–R7) | 🔄 R0–R2 done |
+| Wave 1 expansion (`proposal.md` R0–R7) | 🔄 R0–R3 done |
 | Author block | ⬜ placeholder |
 
 ### Section-by-section rewrite (`index.tex`)
@@ -287,6 +287,10 @@ Mark: ⬜ not started · 🔄 in progress · ✅ done · 👁 user review
 | Paper | Role for us |
 |-------|-------------|
 | `apte2024` | Closest retail Q-learning baseline |
+| `yuan2024` | DQN for supply-chain inventory MDPs (adjacent operations RL) |
+| `loukili2025` | DQN adaptive pricing in digital marketing |
+| `liang2023` | Dueling DQN for presale dynamic pricing |
+| `alamdar2024` | Joint DQN ordering and pricing |
 | `lange2025` | DP vs RL comparison (finite-horizon pricing markets) |
 | `orspectrum2024` | Flexible heterogeneous sales-response models beyond log-link GLM |
 | `chenfair2023` | Contextual pricing with demand learning and fairness constraints |
@@ -314,7 +318,7 @@ Full list: `citations.md`.
 
 ## 16. Current focus
 
-1. **Wave 1 citation expansion** — next: **R3** (`yuan2024`, `loukili2025`, `liang2023` in §II.D); see `proposal.md`.
+1. **Wave 1 citation expansion** — next: **R4** (`orspectrum2024` in §Limitations); see `proposal.md`.
 2. **User before submission:** Replace `[Author Name(s)]`, department, university, email in `index.tex`.
 3. **Optional:** Mann–Whitney re-run vs Pure DQN; fix `data.md` cell-16 Pure DQN row.
 
