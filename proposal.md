@@ -42,7 +42,8 @@ Only add one of these if a reviewer-facing sentence needs explicit support that 
 | **8d** Ablation | ✅ in `index.tex` | `20.png`; 3 rows; reward shaping = lift; EG-DQN = DQN+Reward |
 | **8e** Significance | ✅ in `index.tex` | 3 rows; GLM *p*=0.50; large *d* caveat |
 | **8f** Rolling elasticity | ✅ in `index.tex` | `21.png`; descriptive; no deployment / 94% claims |
-| **9** Discussion | ⬜ **next** | limitations + future work tone |
+| **9** Discussion | ✅ in `index.tex` | 9a–9c; limitations Tier C; deployment = future only |
+| **10** Conclusion | ⬜ **next** | Tier-A mirror abstract |
 
 ### Step 8a locked numbers (authoritative)
 
@@ -105,3 +106,9 @@ Only add one of these if a reviewer-facing sentence needs explicit support that 
 - Protocol: 12-month rolling GLM, 30-day step, Item 1 own-price ε.
 - **Say:** estimates drift; elastic range; truth sometimes inside/outside CI; simulation diagnostic only.
 - **Do not say:** deployment-ready, 94% coverage, CV 2.9%, “confirming reliability,” outperform.
+
+### Step 9 locked (Discussion)
+
+- **9a:** Reward shaping aligns RL with GLM; no hybrid > GLM; ablation = reward channel; `cheung2023`, `apte2024`; Cohen's *d* caveat.
+- **9b:** Synthetic; \$6 corner; GLM=EG-DQN tie; DGP alignment; level misfit; per-item/discrete/single seed; Loss=nan; rule-based flaw; λ scale; incomplete ablation; `nambiar2022`, `xia2024`.
+- **9c:** Field path as future work only; `chen2023`, `xia2024`, `zhang2025`; not a deployment recommendation.

@@ -1037,7 +1037,101 @@ red dashed: simulator truth ($\varepsilon=-1.50$).}
 \label{fig:rolling_elasticity}
 \end{figure}
 
-% ── Steps 9–10: Discussion / Conclusion (pending) ─────────────
+% ── Step 9: Discussion ────────────────────────────────────────
+\section{Discussion}
+\label{sec:discussion}
+
+\subsection{Methodological Implications}
+
+This simulation compares econometric and model-free pricing on common
+ground rather than treating them as mutually exclusive toolkits.
+GLM-optimal pricing and EG-DQN reach the same holdout revenue on
+Item~1, which suggests that econometric \emph{reward shaping} can steer
+a DQN toward GLM-endorsed prices when the discrete grid makes those
+prices optimal.
+The ablation points in the same direction: holdout gains over pure DQN
+appear once the GLM bonus is switched on, while state augmentation and
+masking do not add further test revenue in this run.
+We do not read that pattern as hybrid dominance over econometrics; it
+is a design observation about where GLM signals mattered under our
+protocol.
+
+The distinction between model-based structure and sequential learning
+still matters for how one would build a pricing system.
+Econometric estimates supply interpretable elasticities and a price
+benchmark; RL supplies a policy that can, in principle, adapt when
+relationships drift~\cite{apte2024}.
+Prior work on nonstationary RL notes that restricting early exploration
+can limit the cost of uninformed price trials~\cite{cheung2023}; our
+masking and shaping mechanisms follow that logic, though we did not
+establish faster convergence or lower variance from the loss logs
+(\texttt{Loss=nan}).
+
+Large Cohen's $d$ values against fixed-price and rule-based baselines
+(Table~\ref{tab:significance}) should be interpreted cautiously: those
+policies held nearly constant prices on the holdout, so daily revenue
+series are far apart for reasons that mix policy design with adaptive
+skill.
+
+\subsection{Limitations}
+
+Several constraints bound the findings.
+
+\smallskip\noindent\textbf{Simulation scope.}
+All evidence comes from a synthetic three-product environment with known
+elasticities, following the offline evaluation logic used when field
+tests are costly~\cite{nambiar2022, xia2024}.
+We do not claim transfer to a live retailer.
+
+\smallskip\noindent\textbf{Holdout tie and corner pricing.}
+GLM-optimal and EG-DQN policies coincide at the grid minimum
+(\$6) on every holdout day, so the experiment does not explore interior
+price dynamics and the hybrid adds no out-of-sample revenue over
+GLM-only pricing.
+Percentage lifts versus fixed-price therefore partly reflect that corner
+outcome, not a general ranking of methods.
+
+\smallskip\noindent\textbf{DGP--model alignment.}
+The simulator is approximately consistent with a Poisson log-link GLM,
+which may favour econometric-guided agents relative to settings with
+different demand geometry.
+The GLM recovers own-price elasticities reasonably well yet can
+misstate demand \emph{levels} (Figure~\ref{fig:elasticity_validation}),
+and holdout forecasts show a slight mean over-forecast
+(Figure~\ref{fig:forecast}).
+
+\smallskip\noindent\textbf{Protocol choices.}
+DQN training is per item, not joint across products; actions are limited
+to $K=20$ prices; a single random seed and one 120-day holdout window
+were used.
+Training TD losses were not usable (\texttt{nan}), so learning dynamics
+are under-reported.
+The rule-based heuristic underperformed fixed-price in this run---a
+weakness of that heuristic, not a general statement about rule-based
+pricing.
+The reward penalty $\lambda$ is not normalised to revenue units.
+
+\smallskip\noindent\textbf{Incomplete ablation.}
+State-only and mask-only variants were not estimated; rolling elasticity
+estimates drift over time (Figure~\ref{fig:rolling_elasticity}), so a
+fixed GLM prior may need more frequent updating in practice than our
+simulation assumed.
+
+\subsection{Path to Deployment}
+
+Operational use would require steps beyond this study.
+A credible path would follow simulation-to-field pipelines discussed in
+retail RL benchmarking~\cite{xia2024} and field-tested revenue management
+work~\cite{chen2023}: calibrate a simulator or historical replay
+environment from store data, re-estimate demand models on a rolling basis
+(given time-varying elasticity in retail~\cite{zhang2025}), run fuller
+ablations of each EG-DQN channel, and only then consider controlled
+store experiments.
+Until those steps are completed, EG-DQN should be read as a documented
+hybrid \emph{design} and evaluation protocol, not as a deployment
+recommendation.
+
+% ── Step 10: Conclusion (pending) ─────────────────────────────
 % ── Step 11: Remaining bibliography entries (pending) ──────────
 
 \begin{thebibliography}{99}

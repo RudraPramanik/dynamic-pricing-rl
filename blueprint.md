@@ -767,9 +767,9 @@ Mark: `⬜` not started · `🔄` in progress · `✅` done · `👁` your revie
 
 | Step | Unit | `main.tex` | Figures | Tables | Citations | Status |
 |------|------|------------|---------|--------|-----------|--------|
-| 9a | Methodological implications | `\subsection{Methodological Implications}` | — | — | cheung2023, apte2024 | ⬜ |
-| 9b | **Limitations** | `\subsection{Limitations}` | — | — | nambiar, xia2024 | ⬜ |
-| 9c | Path to deployment | `\subsection{Path to Deployment}` | — | — | chen2023, xia2024 | ⬜ |
+| 9a | Methodological implications | `\subsection{Methodological Implications}` | — | — | cheung2023, apte2024 | ✅ |
+| 9b | **Limitations** | `\subsection{Limitations}` | — | — | nambiar, xia2024 | ✅ |
+| 9c | Path to deployment | `\subsection{Path to Deployment}` | — | — | chen2023, xia2024 | ✅ |
 
 **9b must include (Tier C):** synthetic only; per-item RL; discrete grid; \$6 corner; GLM=EG-DQN tie; DGP–GLM alignment; level misfit; rule-based failure; no hybrid OOS gain over GLM.
 
