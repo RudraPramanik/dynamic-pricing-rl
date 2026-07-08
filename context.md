@@ -134,7 +134,7 @@ Historical demand + prices
 
 ### Manuscript rewrite status (`index.tex`)
 
-Steps 0–8c (through **Results — training convergence**) are in `index.tex`. Next: **Step 8d** — ablation (`figures/20.png`, 3-config table only).
+Steps 0–8d (through **Results — ablation**) are in `index.tex`. Next: **Step 8e** — statistical significance (3 rows: FP, RB, GLM NS; no Pure DQN *p*).
 
 ---
 
@@ -241,8 +241,8 @@ Mark: ⬜ not started · 🔄 in progress · ✅ done · 👁 user review
 | 8a | Results — demand estimation | ✅ |
 | 8b | Results — revenue (`17.png`) | ✅ |
 | 8c | Results — training (`15.png`) | ✅ |
-| 8d | Results — ablation (`20.png`) | ⬜ **← next** |
-| 8e | Results — significance | ⬜ |
+| 8d | Results — ablation (`20.png`) | ✅ |
+| 8e | Results — significance | ⬜ **← next** |
 | 8f | Results — rolling elasticity (`21.png`) | ⬜ |
 | 9a–9c | §Discussion | ⬜ |
 | 10 | §Conclusion | ⬜ |
@@ -250,7 +250,7 @@ Mark: ⬜ not started · 🔄 in progress · ✅ done · 👁 user review
 | 14 | Abstract ↔ Results sync pass | ⬜ |
 | 15 | Pre-submission checklist | ⬜ |
 
-**Progress:** 16 / ~27 units complete in `index.tex` (~59%). Next: **8d** (ablation).
+**Progress:** 17 / ~27 units complete in `index.tex` (~63%). Next: **8e** (significance table; **alone**).
 
 ---
 
@@ -311,11 +311,11 @@ Full list: `citations.md`.
 
 ## 16. Current focus
 
-1. **Next session:** Step **8d** — ablation (`figures/20.png`). **3-config table only**; reward shaping drives holdout lift; EG-DQN = DQN+Reward on test; no state/mask variants.
+1. **Next session:** Step **8e only** — Mann–Whitney table (FP, RB, GLM NS at *p*=0.50). Omit Pure DQN row until re-run. Note large *d* vs constant-price baselines as caveat for Discussion.
 2. **After Results complete:** Step 14 sync pass on Abstract + Conclusion.
 3. **User before submission:** Author names and institution.
-4. **Optional (non-blocking):** Re-run Mann–Whitney EG-DQN vs Pure DQN; fix `data.md` Pure DQN row (stale \$226k; figure says \$183,549).
-5. **Optional citation candidates:** See `proposal.md` (“Citation Parking Lot”) — keep parked unless a reviewer gap appears.
+4. **Optional (non-blocking):** Re-run Mann–Whitney EG-DQN vs Pure DQN; fix `data.md` Pure DQN row.
+5. **Optional citation candidates:** See `proposal.md` (“Citation Parking Lot”).
 
 ---
 

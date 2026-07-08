@@ -39,8 +39,8 @@ Only add one of these if a reviewer-facing sentence needs explicit support that 
 | **8a** Demand estimation | ✅ in `index.tex` | Tables + `figures/eda.png`, `8.png`, `10.png` |
 | **8b** Revenue | ✅ in `index.tex` | `17.png`; GLM=EG-DQN tie @ \$226,764 / \$6; Pure DQN \$183,549 |
 | **8c** Training | ✅ in `index.tex` | `15.png`; +25.5%/+26.9%; **no** loss / ep 35/68 |
-| **8d** Ablation | ⬜ **next** | `20.png`; 3-config only |
-| **8e** Significance | ⬜ | 3 rows; GLM NS |
+| **8d** Ablation | ✅ in `index.tex` | `20.png`; 3 rows; reward shaping = lift; EG-DQN = DQN+Reward |
+| **8e** Significance | ⬜ **next** | 3 rows; GLM NS |
 | **8f** Rolling elasticity | ⬜ | `21.png`; no deployment language |
 
 ### Step 8a locked numbers (authoritative)
@@ -78,3 +78,13 @@ Only add one of these if a reviewer-facing sentence needs explicit support that 
 | Best episode | \$1,976,095 | \$2,017,148 |
 
 **Banned in 8c:** ep 35/68, 61% variance, “stable/faster loss decay,” interpreting centre panel. Cite `cheung2023` only for guided-exploration design context.
+
+### Step 8d locked (ablation — `figures/20.png` Panel B)
+
+| Variant | Test revenue | vs Pure DQN |
+|---------|--------------|-------------|
+| Pure DQN | \$173,830 | — |
+| DQN + Reward | \$226,764 | +30.5% |
+| Full EG-DQN | \$226,764 | +30.5% |
+
+**Framing:** reward shaping = principal holdout gain; full hybrid **does not** beat reward-only; state/mask → future work. No 5-variant table.

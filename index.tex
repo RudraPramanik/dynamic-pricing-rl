@@ -906,7 +906,60 @@ interpreted (training logs report \texttt{Loss=nan}).}
 \label{fig:convergence}
 \end{figure}
 
-% ── Steps 8d–10: Ablation / Discussion / Conclusion (pending) ─
+% ── Step 8d: Results — Ablation Study ─────────────────────────
+\subsection{Ablation Study}
+
+We isolate the holdout contribution of econometric reward shaping in a
+three-configuration ablation on Item~1.
+Each variant is trained for $200$ episodes under the same simulator and
+evaluated on the 120-day holdout; Table~\ref{tab:ablation} and
+Figure~\ref{fig:ablation} summarise the outcome.
+
+Pure DQN attains \$173{,}830 on the holdout window.
+Adding the GLM-based reward bonus (DQN\,+\,Reward) raises test revenue to
+\$226{,}764 ($+30.5\%$ relative to Pure DQN in this ablation run).
+The full EG-DQN configuration---state augmentation and early action masking
+included---matches DQN\,+\,Reward exactly on holdout revenue (\$226{,}764,
+$+30.5\%$).
+In this simulation, therefore, econometric \emph{reward shaping} accounts
+for the principal holdout improvement over pure DQN; the additional
+integration channels do not increase out-of-sample revenue beyond the
+reward-only variant.
+That pattern is consistent with the view that econometric structure is
+most informative as a training signal rather than as a guarantee of
+hybrid dominance over a GLM-only benchmark~\cite{safonov2024}.
+Separate ablations of state augmentation alone and action masking alone
+are left to future work.
+
+\begin{table}[H]
+\centering
+\caption{Ablation on Item~1 holdout revenue ($200$ training episodes per
+configuration).
+``vs.\ Pure DQN'' is relative to the first row in this ablation run.}
+\label{tab:ablation}
+\begin{tabular}{lrr}
+\toprule
+\textbf{Variant} & \textbf{Test revenue (\$)} & \textbf{vs.\ Pure DQN} \\
+\midrule
+Pure DQN           & 173{,}830 & --- \\
+DQN + Reward       & 226{,}764 & $+30.5\%$ \\
+Full EG-DQN        & 226{,}764 & $+30.5\%$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\columnwidth]{figures/20.png}
+\caption{Ablation study (Item~1).
+Panel~A: episode revenue during training ($200$ episodes per
+configuration).
+Panel~B: holdout test revenue; DQN\,+\,Reward and Full EG-DQN reach the
+same total (\$226{,}764).}
+\label{fig:ablation}
+\end{figure}
+
+% ── Steps 8e–10: Significance / Discussion / Conclusion (pending)
 % ── Step 11: Remaining bibliography entries (pending) ──────────
 
 \begin{thebibliography}{99}
