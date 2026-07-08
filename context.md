@@ -248,9 +248,9 @@ Mark: ⬜ not started · 🔄 in progress · ✅ done · 👁 user review
 | 10 | §Conclusion | ✅ |
 | 11 | References | ✅ |
 | 14 | Abstract ↔ Results sync pass | ✅ |
-| 15 | Pre-submission checklist | ⬜ **← next** |
+| 15 | Pre-submission checklist | ✅ |
 
-**Progress:** 23 / ~27 units complete in `index.tex` (~85%). Manuscript draft **complete**; author block + pre-submission remain.
+**Progress:** 24 / ~27 units complete in `index.tex` (~89%). Manuscript **submission-ready** pending author block.
 
 ---
 
@@ -311,8 +311,8 @@ Full list: `citations.md`.
 
 ## 16. Current focus
 
-1. **Next session:** Step **15** — pre-submission checklist.
-2. **User before submission:** Author names and institution.
+1. **User before submission:** Replace `[Author Name(s)]`, department, university, email in `index.tex`.
+2. **Optional:** Mann–Whitney re-run vs Pure DQN; fix `data.md` cell-16 Pure DQN row.
 3. **User before submission:** Author names and institution.
 4. **Optional:** `data.md` Pure DQN row fix; Mann–Whitney re-run vs Pure DQN.
 

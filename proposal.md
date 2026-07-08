@@ -46,6 +46,7 @@ Only add one of these if a reviewer-facing sentence needs explicit support that 
 | **10** Conclusion | ✅ in `index.tex` | Tier-A; GLM tie; future work cites added |
 | **11** References | ✅ | 20 keys; arXiv 35%; 0 orphans |
 | **14** Sync pass | ✅ | Abstract ↔ Conclusion ↔ Results aligned (2026-07-08) |
+| **15** Pre-submission | ✅ | All checks pass; author block pending |
 
 ### Step 8a locked numbers (authoritative)
 

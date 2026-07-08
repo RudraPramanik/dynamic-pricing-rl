@@ -541,9 +541,16 @@ Work through **Steps 0 → 12** in order. Results split into **8a–8f**. Refere
 - [ ] Fix Fig. 17 caption (GLM/EG-DQN overlap, not “diverges”).
 - [ ] Step 14: Abstract + Conclusion sound like same author.
 
-### ⚪ Priority 5 — Pre-submission
+### ⚪ Priority 5 — Pre-submission — DONE (2026-07-08)
 
-- [ ] Abstract ⊆ Results; all numbers trace to `data.md`/`figures/`; optional notebook re-run for Pure DQN *p*-value.
+- [x] Abstract ⊆ Results; Conclusion ⊆ Results; Intro contributions ⊆ Abstract
+- [x] All Results numbers trace to `data.md` / `figures/` (`17.png` overrides `data.md` Pure DQN row)
+- [x] Tier-D claims absent (no 18.3%, ep 35/68, beats GLM, etc.)
+- [x] Banned phrases scan clean (negated uses of “structural identification”, “deployment-ready” only)
+- [x] 7/7 figures present under `figures/`; all `\includegraphics` compile
+- [x] 20 `\cite{}` ↔ 20 `\bibitem{}`; double `pdflatex` — no undefined refs/cites
+- [ ] **User:** replace `[Author Name(s)]` and institution before submit
+- [ ] **Optional:** Mann–Whitney re-run vs Pure DQN; fix `data.md` cell-16 Pure DQN row
 
 ---
 
@@ -805,7 +812,7 @@ Mark: `⬜` not started · `🔄` in progress · `✅` done · `👁` your revie
 | Step | Unit | Action | Status |
 |------|------|--------|--------|
 | 14 | **Cross-section sync** | Abstract ⊆ Results; Conclusion ⊆ Results; Intro contributions ⊆ Abstract; figure paths compile | ✅ |
-| 15 | **Pre-submission** | Priority 5 checklist | ⬜ **← next** |
+| 15 | **Pre-submission** | Priority 5 checklist | ✅ |
 
 ---
 
