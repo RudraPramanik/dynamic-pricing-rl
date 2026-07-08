@@ -312,6 +312,7 @@ Full list: `citations.md`.
 2. **After Results complete:** Step 14 sync pass on Abstract + Conclusion.
 3. **User before submission:** Author names and institution.
 4. **Optional (non-blocking):** Re-run Mann–Whitney EG-DQN vs Pure DQN; fix `data.md` Pure DQN row.
+5. **Optional citation candidates:** See `proposal.md` (“Citation Parking Lot”) for two deferred sources and suggested insertion points (`§II`, `§V`, `§IX`).
 
 ---
 
