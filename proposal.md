@@ -44,6 +44,7 @@ Only add one of these if a reviewer-facing sentence needs explicit support that 
 | **8f** Rolling elasticity | ✅ in `index.tex` | `21.png`; descriptive; no deployment / 94% claims |
 | **9** Discussion | ✅ in `index.tex` | 9a–9c; limitations Tier C; deployment = future only |
 | **10** Conclusion | ✅ in `index.tex` | Tier-A; GLM tie; future work cites added |
+| **11** References | ✅ | 20 keys; arXiv 35%; 0 orphans |
 | **14** Sync pass | ✅ | Abstract ↔ Conclusion ↔ Results aligned (2026-07-08) |
 
 ### Step 8a locked numbers (authoritative)

@@ -236,4 +236,4 @@ grep -E 'charafeddine|elkhatib|Kumar~et' main.tex   # should be empty
 
 ---
 
-*Updated: 2025-06-24 · Citation cleanup applied in `main.tex` (27 cited references, 0 orphans).*
+*Updated: 2026-07-08 · `index.tex`: 20 cited references, 0 orphans, 7 arXiv (35%). Removed from active ms: `razumovskiy2025`, `ramos2023`, `hadi2025` (redundant; still in master list for optional use).*

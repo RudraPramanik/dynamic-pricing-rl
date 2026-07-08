@@ -526,9 +526,12 @@ Work through **Steps 0 → 12** in order. Results split into **8a–8f**. Refere
 
 *Legacy bulk tasks (replace all tables at once) superseded by per-unit tracker above.*
 
-### 🟡 Priority 3 — References
+### 🟡 Priority 3 — References — DONE (2026-07-08)
 
-- [ ] Fix `xiaocheng2023` bibitem; add `chen2023` to Intro; rebalance arXiv.
+- [x] `xiaocheng2023` bibitem verified (X. Li, Z. Zheng; *Manag. Sci.*; DOI)
+- [x] `chen2023` in Intro (with `nambiar2022`)
+- [x] arXiv rebalanced: **7/20 = 35%** (removed redundant `razumovskiy2025`, `ramos2023`, `hadi2025`)
+- [x] 20 `\cite{}` keys ↔ 20 `\bibitem{}`; 0 orphans; DOIs added where missing
 
 ### 🟢 Priority 4 — Human tone & captions (every section, not only at end)
 
@@ -791,7 +794,7 @@ Mark: `⬜` not started · `🔄` in progress · `✅` done · `👁` your revie
 
 | Step | Unit | `main.tex` | Figures | Tables | Citations | Status |
 |------|------|------------|---------|--------|-----------|--------|
-| 11 | **Bibliography** | `\begin{thebibliography}` | — | — | all keys | ⬜ |
+| 11 | **Bibliography** | `\begin{thebibliography}` | — | — | all keys | ✅ |
 
 **Done when:** Every `\cite{}` has `\bibitem`; `xiaocheng2023` fixed; no orphan bibitems; arXiv ≤35%.
 

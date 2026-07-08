@@ -244,9 +244,7 @@ pricing and the econometric questions that remain open in retail
 practice.
 On the algorithmic side, Groeneveld~et~al.~\cite{groeneveld2025}
 compare reinforcement learning with data-driven dynamic programming
-in finite-horizon markets; Razumovskiy and Karenin~\cite{razumovskiy2025}
-report a related finite-horizon comparison of fitted dynamic programming
-and RL.
+in finite-horizon pricing markets.
 Liu~et~al.~\cite{liu2024} extend deep RL to joint omni-channel pricing
 and inventory control when demand is uncertain.
 Li and Zheng~\cite{xiaocheng2023} study pricing under inventory
@@ -263,8 +261,6 @@ embedded in many static GLM specifications.
 Bu~et~al.~\cite{bu2023} analyse offline demand learning when sales are
 censored by stockouts, a common complication in retail transaction
 data.
-Ramos~et~al.~\cite{ramos2023} benchmark multivariate forecasters on
-retail sales series at the SKU level.
 Xia~et~al.~\cite{xia2023} generate synthetic retail demand with known
 elasticities so that estimated parameters can be checked against
 ground truth; we adopt that validation logic in our simulation
@@ -1160,14 +1156,14 @@ environment with partial alignment between the data-generating process
 and the GLM specification; operational deployment is not claimed.
 
 Future work should test the design on store data, extend estimation to
-joint multi-product pricing~\cite{hadi2025, kumar2026}, incorporate
+joint multi-product pricing~\cite{kumar2026}, incorporate
 inventory constraints for perishable categories~\cite{yavuz2024,
 nomura2025}, and complete ablations that isolate state augmentation and
 action masking.
 Richer price grids and field experiments will be needed before any
 operational recommendation can be made.
 
-% ── Step 11: Remaining bibliography entries (pending) ──────────
+% ── Step 11: Bibliography ─────────────────────────────────────
 
 \begin{thebibliography}{99}
 
@@ -1191,12 +1187,6 @@ J.~Groeneveld \textit{et~al.},
 finite horizon dynamic pricing markets,''
 \textit{Journal of Revenue and Pricing Management}, 2025.
 \url{https://doi.org/10.1057/s41272-025-00519-8}
-
-\bibitem{razumovskiy2025}
-L.~Razumovskiy and N.~Karenin,
-``A comparative study of dynamic programming and reinforcement learning
-in finite-horizon dynamic pricing,''
-\textit{arXiv:2604.14059}, 2025.
 
 \bibitem{liu2024}
 S.~Liu \textit{et~al.},
@@ -1222,12 +1212,7 @@ series analysis and machine learning,''
 J.~Bu, D.~Simchi-Levi, and L.~Wang,
 ``Offline pricing and demand learning with censored data,''
 \textit{Management Science}, vol.~69, no.~2, pp.~885--903, 2023.
-
-\bibitem{ramos2023}
-P.~Ramos \textit{et~al.},
-``Retail demand forecasting: A comparative study for multivariate time
-series,''
-\textit{arXiv:2308.11939}, 2023.
+\url{https://doi.org/10.1287/mnsc.2022.4498}
 
 \bibitem{xia2023}
 Y.~Xia, A.~Arian, S.~Narayanamoorthy, and J.~Mabry,
@@ -1259,6 +1244,7 @@ P.~F.~Alamdar and A.~Seifi,
 decisions,''
 \textit{International Journal of Production Economics}, vol.~269,
 p.~109154, 2024.
+\url{https://doi.org/10.1016/j.ijpe.2024.109154}
 
 \bibitem{cheung2023}
 W.~C.~Cheung and D.~Simchi-Levi,
@@ -1284,12 +1270,14 @@ J.~Chen, Y.~Xu, and P.~Yu,
 evidence from field experiments,''
 \textit{Journal of Operations Management}, vol.~69, no.~7,
 pp.~1176--1201, 2023.
+\url{https://doi.org/10.1002/joom.1276}
 
 \bibitem{rios2023}
 J.~H.~Rios and J.~R.~Vera,
 ``Dynamic pricing and inventory control for multiple products in a
 retail chain,''
 \textit{Computers \& Industrial Engineering}, vol.~177, p.~109065, 2023.
+\url{https://doi.org/10.1016/j.cie.2023.109065}
 
 \bibitem{kumar2026}
 K.~K.~N.~Pillai and S.~K.~Amma,
@@ -1297,23 +1285,19 @@ K.~K.~N.~Pillai and S.~K.~Amma,
 profitability, stability and fairness,''
 \textit{arXiv:2603.16888}, 2026.
 
-\bibitem{hadi2025}
-M.~Hadi \textit{et~al.},
-``Multi-agent reinforcement learning for dynamic pricing in supply
-chains,''
-\textit{arXiv:2507.02698}, 2025.
-
 \bibitem{yavuz2024}
 T.~Yavuz and O.~Kaya,
 ``Deep reinforcement learning for dynamic pricing and inventory
 management of perishable products,''
 \textit{Applied Soft Computing}, vol.~163, p.~111864, 2024.
+\url{https://doi.org/10.1016/j.asoc.2024.111864}
 
 \bibitem{nomura2025}
 Y.~Nomura, Z.~Liu, and T.~Nishi,
 ``Deep reinforcement learning for dynamic pricing and ordering policies
 in perishable inventory management,''
 \textit{Appl. Sci.}, vol.~15, no.~5, p.~2421, 2025.
+\url{https://doi.org/10.3390/app15052421}
 
 \end{thebibliography}
 
