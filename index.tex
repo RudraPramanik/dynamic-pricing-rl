@@ -959,7 +959,85 @@ same total (\$226{,}764).}
 \label{fig:ablation}
 \end{figure}
 
-% ── Steps 8e–10: Significance / Discussion / Conclusion (pending)
+% ── Step 8e: Results — Statistical Significance ───────────────
+\subsection{Statistical Significance}
+
+We test whether EG-DQN daily holdout revenue exceeds each baseline using
+one-sided Mann--Whitney $U$ tests ($H_1$: EG-DQN $>$ baseline) on the
+120-day Item~1 window.
+Bootstrap $95\%$ confidence intervals on the mean daily revenue
+difference use $B=2{,}000$ resamples.
+Table~\ref{tab:significance} reports three comparisons; a fourth row for
+Pure DQN is omitted because the exported daily series tied at the wrong
+revenue level in the notebook log and should be re-tested before any
+$p$-value is reported.
+
+Relative to fixed-price and rule-based policies, EG-DQN yields
+significantly higher daily revenue ($p<0.001$ in both cases).
+Cohen's $d$ values are large ($2.50$ and $4.63$), but both naive
+baselines hold essentially constant prices on the holdout
+(Section~\ref{sec:results}), so the effect sizes reflect policy separation
+as much as adaptive pricing skill; we return to that point in the
+Discussion.
+Against GLM-optimal pricing, EG-DQN does \emph{not} show higher daily
+revenue: $p=0.50$, Cohen's $d=0.00$, and a bootstrap interval of
+$[+0.00,\,+0.00]$, consistent with the identical cumulative totals in
+Table~\ref{tab:revenue}.
+Reporting this non-significant comparison is central to an honest reading
+of the hybrid design in this simulation.
+
+\begin{table}[H]
+\centering
+\caption{Statistical significance of EG-DQN daily holdout revenue vs.\
+selected baselines (Item~1, 120~days).
+Mann--Whitney~$U$, one-sided; bootstrap $95\%$ CI on mean daily
+difference ($B=2{,}000$).}
+\label{tab:significance}
+\begin{tabular}{lrrl}
+\toprule
+\textbf{Baseline} & \textbf{$p$-value} & \textbf{Cohen's $d$} &
+  \textbf{Bootstrap $95\%$ CI} \\
+\midrule
+Fixed-Price & $<0.001$ & $2.50$ & $[+421.5,\,+437.4]$ \\
+Rule-Based  & $<0.001$ & $4.63$ & $[+725.6,\,+751.7]$ \\
+GLM-Only    & $0.50$   & $0.00$ & $[+0.00,\,+0.00]$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ── Step 8f: Results — Rolling Elasticity ─────────────────────
+\subsection{Rolling Elasticity Estimates}
+
+EG-DQN conditions learning on GLM outputs that are re-estimated as data
+accumulate.
+As a descriptive check on Item~1, we refit the Poisson log-link model on
+rolling twelve-month windows (advance $30$~days per step) and record the
+own-price elasticity at each window end.
+Figure~\ref{fig:rolling_elasticity} plots the point estimate and an
+approximate $95\%$ interval against the simulator parameter
+($\varepsilon=-1.50$).
+
+Over 2022--2024 the estimate moves with window composition: values lie
+between roughly $-1.35$ and $-1.7$, so demand stays in the elastic range
+($|\varepsilon|>1$) throughout, but the path is not flat.
+The dashed truth line sits inside some intervals and outside others,
+which is plausible when prices change in steps and each window mixes
+different promotional regimes.
+We read this figure as evidence that the econometric input to EG-DQN is
+\emph{usable} in simulation---not that elasticity is fixed, nor that the
+GLM prior would remain dependable in a live store without revalidation.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\columnwidth]{figures/21.png}
+\caption{Rolling twelve-month GLM own-price elasticity for Item~1
+($30$-day step).
+Blue line: point estimate; shaded band: approximate $95\%$ interval;
+red dashed: simulator truth ($\varepsilon=-1.50$).}
+\label{fig:rolling_elasticity}
+\end{figure}
+
+% ── Steps 9–10: Discussion / Conclusion (pending) ─────────────
 % ── Step 11: Remaining bibliography entries (pending) ──────────
 
 \begin{thebibliography}{99}

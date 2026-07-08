@@ -40,8 +40,9 @@ Only add one of these if a reviewer-facing sentence needs explicit support that 
 | **8b** Revenue | ✅ in `index.tex` | `17.png`; GLM=EG-DQN tie @ \$226,764 / \$6; Pure DQN \$183,549 |
 | **8c** Training | ✅ in `index.tex` | `15.png`; +25.5%/+26.9%; **no** loss / ep 35/68 |
 | **8d** Ablation | ✅ in `index.tex` | `20.png`; 3 rows; reward shaping = lift; EG-DQN = DQN+Reward |
-| **8e** Significance | ⬜ **next** | 3 rows; GLM NS |
-| **8f** Rolling elasticity | ⬜ | `21.png`; no deployment language |
+| **8e** Significance | ✅ in `index.tex` | 3 rows; GLM *p*=0.50; large *d* caveat |
+| **8f** Rolling elasticity | ✅ in `index.tex` | `21.png`; descriptive; no deployment / 94% claims |
+| **9** Discussion | ⬜ **next** | limitations + future work tone |
 
 ### Step 8a locked numbers (authoritative)
 
@@ -88,3 +89,19 @@ Only add one of these if a reviewer-facing sentence needs explicit support that 
 | Full EG-DQN | \$226,764 | +30.5% |
 
 **Framing:** reward shaping = principal holdout gain; full hybrid **does not** beat reward-only; state/mask → future work. No 5-variant table.
+
+### Step 8e locked (significance — `data.md` cell 18)
+
+| Baseline | *p* | Cohen's *d* | Bootstrap 95% CI |
+|----------|-----|-------------|------------------|
+| Fixed-Price | <0.001 | 2.50 | [+421.5, +437.4] |
+| Rule-Based | <0.001 | 4.63 | [+725.6, +751.7] |
+| GLM-Only | **0.50** | 0.00 | [+0.00, +0.00] |
+
+**Omitted:** Pure DQN row (stale tied series in export). **Lead with GLM NS** in prose.
+
+### Step 8f locked (rolling elasticity — `figures/21.png`)
+
+- Protocol: 12-month rolling GLM, 30-day step, Item 1 own-price ε.
+- **Say:** estimates drift; elastic range; truth sometimes inside/outside CI; simulation diagnostic only.
+- **Do not say:** deployment-ready, 94% coverage, CV 2.9%, “confirming reliability,” outperform.

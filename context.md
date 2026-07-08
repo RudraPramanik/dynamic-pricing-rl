@@ -134,7 +134,7 @@ Historical demand + prices
 
 ### Manuscript rewrite status (`index.tex`)
 
-Steps 0–8d (through **Results — ablation**) are in `index.tex`. Next: **Step 8e** — statistical significance (3 rows: FP, RB, GLM NS; no Pure DQN *p*).
+Steps 0–8f (full **§Results**) are in `index.tex`. Next: **Step 9** — Discussion (9a methodological, 9b limitations, 9c future work).
 
 ---
 
@@ -242,15 +242,15 @@ Mark: ⬜ not started · 🔄 in progress · ✅ done · 👁 user review
 | 8b | Results — revenue (`17.png`) | ✅ |
 | 8c | Results — training (`15.png`) | ✅ |
 | 8d | Results — ablation (`20.png`) | ✅ |
-| 8e | Results — significance | ⬜ **← next** |
-| 8f | Results — rolling elasticity (`21.png`) | ⬜ |
-| 9a–9c | §Discussion | ⬜ |
+| 8e | Results — significance | ✅ |
+| 8f | Results — rolling elasticity (`21.png`) | ✅ |
+| 9a–9c | §Discussion | ⬜ **← next** |
 | 10 | §Conclusion | ⬜ |
 | 11 | References | ⬜ |
 | 14 | Abstract ↔ Results sync pass | ⬜ |
 | 15 | Pre-submission checklist | ⬜ |
 
-**Progress:** 17 / ~27 units complete in `index.tex` (~63%). Next: **8e** (significance table; **alone**).
+**Progress:** 19 / ~27 units complete in `index.tex` (~70%). **Results block complete.** Next: Discussion + Conclusion, then Step 14 abstract sync.
 
 ---
 
@@ -311,8 +311,8 @@ Full list: `citations.md`.
 
 ## 16. Current focus
 
-1. **Next session:** Step **8e only** — Mann–Whitney table (FP, RB, GLM NS at *p*=0.50). Omit Pure DQN row until re-run. Note large *d* vs constant-price baselines as caveat for Discussion.
-2. **After Results complete:** Step 14 sync pass on Abstract + Conclusion.
+1. **Next session:** Step **9** — Discussion (methodological implications, limitations incl. corner \$6 + GLM tie, path to deployment as future work only).
+2. **After Discussion + Conclusion:** Step 14 sync pass on Abstract + Conclusion.
 3. **User before submission:** Author names and institution.
 4. **Optional (non-blocking):** Re-run Mann–Whitney EG-DQN vs Pure DQN; fix `data.md` Pure DQN row.
 5. **Optional citation candidates:** See `proposal.md` (“Citation Parking Lot”).
