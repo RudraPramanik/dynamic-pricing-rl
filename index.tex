@@ -506,26 +506,26 @@ fixed GLM fit from Section~\ref{sec:glm} enters learning.
 Pure DQN omits all three; the ablation in the results section toggles
 reward shaping while holding the remaining protocol fixed.
 
-\begin{description}
-  \item[State augmentation.]
+\begin{itemize}
+  \item \textbf{State augmentation.}
     The state vector includes $p^*_{\text{GLM},t}$ at every step
     (component~(v) in Section~\ref{sec:problem}), giving the agent an
     explicit econometric price benchmark alongside lagged market
     variables.
-  \item[Reward shaping.]
+  \item \textbf{Reward shaping.}
     Training rewards follow~\eqref{eq:reward_egdqn} with
     $\lambda=30.0$ and $\sigma_p$ set to the standard deviation of the
     discrete price grid.
     The exponential bonus is largest when the selected price coincides
     with $p^*_{\text{GLM},t}$ and decays smoothly with price distance.
-  \item[Early action masking.]
+  \item \textbf{Early action masking.}
     For episodes $e \le 30$, feasible actions are restricted to grid
     points within $\pm\sigma_p$ of $p^*_{\text{GLM},t}$, limiting
     exploratory prices while the replay buffer is still sparse.
     The full grid is available from episode~31 onward.
     Restricting early exploration in nonstationary settings can reduce
     the cost of uninformed trial prices~\cite{cheung2023}.
-\end{description}
+\end{itemize}
 
 Algorithm~\ref{alg:egdqn} summarises one training episode; the outer
 loop runs $E=300$ episodes per product with the hyperparameters in
