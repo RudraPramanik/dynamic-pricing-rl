@@ -96,7 +96,7 @@ If a step introduces an orphan cite, wrong author, or accidental Results edit �
 | **R2** | §II.A demand-model breadth | §II.A only | `orspectrum2024`, `chenfair2023` | ✅ |
 | **R3** | §II.D DQN literature | §II.D only | `yuan2024`, `loukili2025`, `liang2023` | ✅ |
 | **R4** | §Limitations GLM rigidity | Limitations ¶ DGP only | `orspectrum2024` (reuse) | ✅ |
-| **R5** | §Conclusion MARL future work | Conclusion future-work sentence | `hadi2025` | ⬜ |
+| **R5** | §Conclusion MARL future work | Conclusion future-work sentence | `hadi2025` | ✅ |
 | **R6** | Bibliography append + ordering | `\bibitem{}` block | all 6 new items | ⬜ |
 | **R7** | Final audit + compile | whole file read-only checks | — | ⬜ |
 
