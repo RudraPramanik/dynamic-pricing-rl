@@ -247,10 +247,10 @@ Mark: ⬜ not started · 🔄 in progress · ✅ done · 👁 user review
 | 9a–9c | §Discussion | ✅ |
 | 10 | §Conclusion | ✅ |
 | 11 | References | ⬜ |
-| 14 | Abstract ↔ Results sync pass | ⬜ **← next** |
-| 15 | Pre-submission checklist | ⬜ |
+| 14 | Abstract ↔ Results sync pass | ✅ |
+| 15 | Pre-submission checklist | ⬜ **← next** |
 
-**Progress:** 21 / ~27 units complete in `index.tex` (~78%). Body draft **complete**; sync pass + author block remain.
+**Progress:** 22 / ~27 units complete in `index.tex` (~81%). Body draft + sync pass **complete**; references audit, author block, pre-submission remain.
 
 ---
 
@@ -311,8 +311,8 @@ Full list: `citations.md`.
 
 ## 16. Current focus
 
-1. **Next session:** Step **14** — short sync pass (Abstract, Conclusion, Intro contributions consistent with Results).
-2. **Optional:** Step 11 — bibliography audit (`xiaocheng2023` author text, orphan keys).
+1. **Next session:** Step **15** — pre-submission checklist; Step **11** — bibliography audit (`xiaocheng2023`, arXiv rebalance).
+2. **User before submission:** Author names and institution.
 3. **User before submission:** Author names and institution.
 4. **Optional:** `data.md` Pure DQN row fix; Mann–Whitney re-run vs Pure DQN.
 

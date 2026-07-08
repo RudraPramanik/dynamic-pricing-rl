@@ -801,8 +801,8 @@ Mark: `⬜` not started · `🔄` in progress · `✅` done · `👁` your revie
 
 | Step | Unit | Action | Status |
 |------|------|--------|--------|
-| 14 | **Cross-section sync** | Abstract ⊆ Results; Conclusion ⊆ Results; Intro contributions ⊆ Abstract; figure paths compile | ⬜ |
-| 15 | **Pre-submission** | Priority 5 checklist | ⬜ |
+| 14 | **Cross-section sync** | Abstract ⊆ Results; Conclusion ⊆ Results; Intro contributions ⊆ Abstract; figure paths compile | ✅ |
+| 15 | **Pre-submission** | Priority 5 checklist | ⬜ **← next** |
 
 ---
 

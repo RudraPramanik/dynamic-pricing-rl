@@ -1140,20 +1140,24 @@ signals into a DQN through state augmentation, econometric reward shaping,
 and early action masking, and we evaluated the design in a synthetic
 three-product simulation with a 120-day holdout on Item~1.
 On that window, GLM-optimal pricing and EG-DQN attained the same
-cumulative revenue and the same grid price; daily revenue did not differ
-significantly from the GLM benchmark.
+cumulative revenue and the same price on the discrete grid; a one-sided
+Mann--Whitney test did not indicate higher daily revenue for EG-DQN
+relative to the GLM benchmark ($p=0.50$).
 Relative to fixed-price and rule-based policies, EG-DQN earned more
-holdout revenue in this run, while pure DQN earned less than the
-GLM-guided policies.
+holdout revenue in this run (Mann--Whitney $p<0.001$ in both
+comparisons), while pure DQN earned less than the GLM-guided policies.
 The ablation indicated that reward shaping carried the holdout improvement
 over pure DQN and that the full hybrid did not beat a reward-only variant
 on test revenue.
+Training-episode rewards were modestly higher for EG-DQN than for pure DQN.
 
 Taken together, the study documents a reproducible benchmark and an
 honest comparison: econometric-guided reward shaping can align RL with
 GLM-optimal prices under our protocol, but we do not show holdout gains
 beyond GLM-only pricing.
-Operational deployment is not claimed.
+These findings are confined to a synthetic, per-item, discrete-action
+environment with partial alignment between the data-generating process
+and the GLM specification; operational deployment is not claimed.
 
 Future work should test the design on store data, extend estimation to
 joint multi-product pricing~\cite{hadi2025, kumar2026}, incorporate
