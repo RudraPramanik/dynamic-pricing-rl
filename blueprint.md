@@ -730,9 +730,9 @@ Mark: `⬜` not started · `🔄` in progress · `✅` done · `👁` your revie
 
 | Step | Unit | `main.tex` | Figures | Tables | Citations | Status |
 |------|------|------------|---------|--------|-----------|--------|
-| 7a | Design & calibration | `\subsection{Design and Calibration}` | — | cross-price ε table | xia2023, xia2024 | ⬜ |
-| 7b | Hyperparameters | `\subsection{Hyperparameters}` | — | Table hyperparams | — | ⬜ |
-| 7c | Baselines | `\subsection{Baseline Strategies}` | — | — | — | ⬜ |
+| 7a | Design & calibration | `\subsection{Design and Calibration}` | — | cross-price ε table | xia2023, xia2024 | ✅ |
+| 7b | Hyperparameters | `\subsection{Hyperparameters}` | — | Table hyperparams | — | ✅ |
+| 7c | Baselines | `\subsection{Baseline Strategies}` | — | — | — | ✅ |
 
 **Done when:** One sentence defending simulation (Nambiar, Xia, Chen); SEED=42, holdout=120, Item 1 stated; five baselines defined.
 

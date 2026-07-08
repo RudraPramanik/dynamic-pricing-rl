@@ -22,6 +22,7 @@ Keep them here for later review in case we want extra methodological support.
 ## Where we likely do NOT need them
 
 - `Abstract` / `Introduction`: already citation-dense and reviewer-safe.
+- `§VII Simulation Environment`: already supported by `nambiar2022`, `xia2023`, `xia2024`, `chen2023`.
 - `§VIII Results`: results should stay tied to our own simulation evidence (`data.md`, `figures/`), not extra literature.
 
 ## Decision rule before adding
@@ -30,14 +31,16 @@ Only add one of these if a reviewer-facing sentence needs explicit support that 
 
 ---
 
-## Manuscript staging (Step 6 split)
+## Manuscript staging
 
 | Unit | Status | Notes |
 |------|--------|-------|
-| **6a** Network Architecture | ✅ in `index.tex` | 2×128 ReLU, $K=20$, Huber Bellman loss, NumPy DQN |
-| **6b** Training Procedure | ✅ in `index.tex` | 300 ep, buffer 10k, batch 64, target sync 15, $\varepsilon$ 1.0→0.05 |
-| **6c** EG-DQN mechanisms | ✅ in `index.tex` | $\lambda=30$, $\sigma_p$=grid std, mask ep 1–30; `cheung2023` |
-| **6d** Algorithm block | ✅ in `index.tex` | `Algorithm~\ref{alg:egdqn}` |
-| **7a–7c** Simulation | ⬜ next | elasticity table, hyperparams, baselines |
+| **6a–6d** RL Framework | ✅ in `index.tex` | Network, training, mechanisms, Algorithm |
+| **7a** Design & calibration | ✅ in `index.tex` | $T=1460$, seed 42, ε matrix, sim defense cites |
+| **7b** Hyperparameters | ✅ in `index.tex` | Table `tab:hyperparams`; $K=20$, $\$6$–$\$16$, $\lambda=30$ |
+| **7c** Baselines | ✅ in `index.tex` | FP, RB, GLM, Pure DQN, EG-DQN |
+| **8a** Demand estimation | ⬜ **next** | `eda.png`, `8.png`, `10.png`; elasticity + forecast tables |
 
-**Optional cite for 6c (not 6a/6b):** `cheung2023` — guided exploration / nonstationary RL (already in bib).
+**Step 7 figure note:** No plot required in §Simulation (protocol only). `figures/eda.png` attaches in **Step 8a**.
+
+**Added in Step 7:** `\bibitem{xia2024}` (simulation benchmarking of retail RL agents).

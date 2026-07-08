@@ -134,7 +134,7 @@ Historical demand + prices
 
 ### Manuscript rewrite status (`index.tex`)
 
-Steps 0–6 (through **§RL Framework**, incl.\ EG-DQN mechanisms + algorithm) are in `index.tex`. **`main.tex`** from §Simulation Environment onward remains stale reference. Next: **Step 7** — §Simulation Environment.
+Steps 0–7 (through **§Simulation Environment**) are in `index.tex`. **`main.tex`** from §Results onward remains a stale reference. Next: **Step 8a** — Results demand estimation (`eda.png`, `8.png`, `10.png`).
 
 ---
 
@@ -237,8 +237,8 @@ Mark: ⬜ not started · 🔄 in progress · ✅ done · 👁 user review
 | 6b | §RL — Training Procedure | ✅ |
 | 6c | §RL — EG-DQN mechanisms | ✅ |
 | 6d | §RL — Algorithm | ✅ |
-| 7a–7c | §Simulation Environment | ⬜ **← next** |
-| 8a | Results — demand estimation | ⬜ |
+| 7a–7c | §Simulation Environment | ✅ |
+| 8a | Results — demand estimation | ⬜ **← next** |
 | 8b | Results — revenue (`17.png`) | ⬜ |
 | 8c | Results — training (`15.png`) | ⬜ |
 | 8d | Results — ablation (`20.png`) | ⬜ |
@@ -250,7 +250,7 @@ Mark: ⬜ not started · 🔄 in progress · ✅ done · 👁 user review
 | 14 | Abstract ↔ Results sync pass | ⬜ |
 | 15 | Pre-submission checklist | ⬜ |
 
-**Progress:** 10 / ~27 units complete in `index.tex` (~37%). Highest-risk block: **8a–8f** (Results).
+**Progress:** 13 / ~27 units complete in `index.tex` (~48%). Highest-risk block next: **8a–8f** (Results).
 
 ---
 
@@ -311,11 +311,11 @@ Full list: `citations.md`.
 
 ## 16. Current focus
 
-1. **Next session:** Step **7a–7c** — §Simulation Environment (DGP calibration, hyperparam table, five baselines).
+1. **Next session:** Step **8a** — Results demand estimation (elasticity + forecast tables; `figures/eda.png`, `8.png`, `10.png`). Prefer one Results sub-unit per review pass.
 2. **After Results complete:** Step 14 sync pass on Abstract + Conclusion.
 3. **User before submission:** Author names and institution.
 4. **Optional (non-blocking):** Re-run Mann–Whitney EG-DQN vs Pure DQN; fix `data.md` Pure DQN row.
-5. **Optional citation candidates:** See `proposal.md` (“Citation Parking Lot”) for two deferred sources and suggested insertion points (`§II`, `§V`, `§IX`).
+5. **Optional citation candidates:** See `proposal.md` (“Citation Parking Lot”) — keep parked unless a reviewer gap appears.
 
 ---
 
