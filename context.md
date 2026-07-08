@@ -219,8 +219,9 @@ Mark: ⬜ not started · 🔄 in progress · ✅ done · 👁 user review
 |------|--------|
 | Evidence package (`data.md`, `figures/`) | ✅ |
 | Claims Ledger + Branch C framing | ✅ |
-| Citations in `index.tex` | ✅ **26** refs (Wave 1: +6 keys; `lange2025` author fix) |
-| Wave 1 expansion (`proposal.md` R0–R7) | 🔄 R0–R6 done |
+| Citations in `index.tex` | ✅ **27** refs · 0 orphans · arXiv **34.6%** |
+| Wave 1 expansion (`proposal.md` R0–R7) | ✅ complete (2026-07-09) |
+| Wave 2 expansion (`proposal.md` R8–R10) | 🔄 R8 done |
 | Author block | ⬜ placeholder |
 
 ### Section-by-section rewrite (`index.tex`)
@@ -247,11 +248,32 @@ Mark: ⬜ not started · 🔄 in progress · ✅ done · 👁 user review
 | 8f | Results — rolling elasticity (`21.png`) | ✅ |
 | 9a–9c | §Discussion | ✅ |
 | 10 | §Conclusion | ✅ |
-| 11 | References | 🔄 Wave 1 R6 hygiene done; **R7** final audit pending |
+| 11 | References | ✅ Wave 1 + R8 (27 keys) |
 | 14 | Abstract ↔ Results sync pass | ✅ |
 | 15 | Pre-submission checklist | ✅ |
 
-**Progress:** 24 / ~27 units complete in `index.tex` (~89%). Manuscript **submission-ready** pending author block.
+**Progress:** Manuscript body + **Wave 1 references** complete in `index.tex`. Submission-ready pending author block (and optional Pure DQN significance re-run).
+
+### Wave 1 citation expansion (2026-07-09)
+
+| Step | Task | Status |
+|------|------|--------|
+| R0 | Pre-flight audit + backup | ✅ |
+| R1 | `lange2025` author fix | ✅ |
+| R2 | §II.A: `orspectrum2024`, `chenfair2023` | ✅ |
+| R3 | §II.D: `yuan2024`, `loukili2025`, `liang2023` | ✅ |
+| R4 | §Limitations: `orspectrum2024` reuse | ✅ |
+| R5 | §Conclusion: `hadi2025` | ✅ |
+| R6 | Bibliography hygiene | ✅ |
+| R7 | Final audit + compile | ✅ |
+
+### Wave 2 citation expansion (optional)
+
+| Step | Task | Status |
+|------|------|--------|
+| R8 | `denboer2024` — §Limitations + §Path to Deployment | ✅ |
+| R9 | `wang2025loyalty` — §Limitations | ⬜ |
+| R10 | `mohamadi2024` or `meilan2026` — §Conclusion | ⬜ |
 
 ---
 
@@ -299,6 +321,7 @@ Mark: ⬜ not started · 🔄 in progress · ✅ done · 👁 user review
 | `safonov2024` | ML vs econometric demand — motivates hybrid |
 | `liu2024` | Retail omni-channel DRL + inventory |
 | `xia2023`, `xia2024` | Synthetic retail data / simulation benchmarking |
+| `denboer2024` | Q-learning collusion / regulatory caution — Limitations + Path to Deployment |
 | `kumar2026`, `hadi2025` | MARL joint / supply-chain pricing — cited in Conclusion future work |
 | `cheung2023` | Nonstationary RL / guided exploration |
 
@@ -319,7 +342,7 @@ Full list: `citations.md`.
 
 ## 16. Current focus
 
-1. **Wave 1 citation expansion** — next: **R7** (final audit + blueprint sign-off); see `proposal.md`.
+1. **Optional Wave 2** — next: **R9** (`wang2025loyalty` in §Limitations); see `proposal.md`.
 2. **User before submission:** Replace `[Author Name(s)]`, department, university, email in `index.tex`.
 3. **Optional:** Mann–Whitney re-run vs Pure DQN; fix `data.md` cell-16 Pure DQN row.
 

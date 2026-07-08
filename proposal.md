@@ -98,7 +98,7 @@ If a step introduces an orphan cite, wrong author, or accidental Results edit �
 | **R4** | §Limitations GLM rigidity | Limitations ¶ DGP only | `orspectrum2024` (reuse) | ✅ |
 | **R5** | §Conclusion MARL future work | Conclusion future-work sentence | `hadi2025` | ✅ |
 | **R6** | Bibliography hygiene | `\bibitem{}` block | metadata + orphan audit | ✅ |
-| **R7** | Final audit + compile | whole file read-only checks | — | ⬜ |
+| **R7** | Final audit + compile | whole file read-only checks | — | ✅ |
 
 **Note:** R6 can be merged into R2–R5 (add each `\bibitem` when its `\cite{}` is inserted). Splitting by section is safer for review.
 
@@ -276,18 +276,18 @@ chains,''
 
 ---
 
-### Step R7 — Final audit (blueprint Priority 5 + Step 14)
+### Step R7 — Final audit (blueprint Priority 5 + Step 14) — ✅ 2026-07-09
 
 **Checklist:**
 
-- [ ] Abstract: **no** new `\cite{}`; Tier-A text unchanged
-- [ ] Results: revenue \$175,651–\$226,764 unchanged; GLM *p*=0.50; ablation 3-row story intact
-- [ ] 27 cite keys ↔ 27 bibitems; arXiv ≤ 35%
-- [ ] `lange2025` authors correct; 0× `groeneveld`
-- [ ] Banned-word scan on new sentences only
-- [ ] `index.pdf` regenerates; figure paths unchanged
+- [x] Abstract: **no** `\cite{}`; Tier-A text unchanged
+- [x] Results: revenue \$175,651–\$226,764 unchanged; GLM *p*=0.50; ablation 3-row story intact
+- [x] **26** cite keys ↔ **26** bibitems; arXiv **34.6%** (≤ 35%)
+- [x] `lange2025` authors correct; 0× `groeneveld`
+- [x] Banned-word scan: only negated ``deployment-ready'' / ``structural identification'' (blueprint-allowed)
+- [x] `index.pdf` regenerates; 7/7 `figures/` paths compile
 
-**Mark Step 11 ✅ in blueprint tracker** only after R7 passes and user approves.
+**Wave 1 status:** **COMPLETE** — optional Wave 2 (Phase 9) deferred.
 
 ---
 
@@ -295,13 +295,13 @@ chains,''
 
 Only start if R7 is complete and user wants 27 → 30 refs.
 
-| Step | Key | Section | Draft role |
-|------|-----|---------|------------|
-| R8 | `denboer2024` | §Limitations + §Path to Deployment (1 clause each) | Q-learning collusion caution; no multi-firm simulation |
-| R9 | `wang2025loyalty` | §Limitations | Fairness / loyalty not evaluated |
-| R10 | `mohamadi2024` **or** `meilan2026` | §Conclusion future work | Pick **one** perishable/finite-horizon angle (avoid overlap with `yavuz2024`, `nomura2025`) |
+| Step | Key | Section | Draft role | Status |
+|------|-----|---------|------------|--------|
+| R8 | `denboer2024` | §Limitations + §Path to Deployment (1 clause each) | Q-learning collusion caution; no multi-firm simulation | ✅ |
+| R9 | `wang2025loyalty` | §Limitations | Fairness / loyalty not evaluated | ⬜ |
+| R10 | `mohamadi2024` **or** `meilan2026` | §Conclusion future work | Pick **one** perishable/finite-horizon angle (avoid overlap with `yavuz2024`, `nomura2025`) | ⬜ |
 
-**Wave 2 arXiv impact:** `denboer2024` may be journal — verify venue before counting arXiv budget.
+**Wave 2 arXiv impact:** `denboer2024` is *Manag. Sci.* (journal DOI) — arXiv share unchanged at **9/27 = 33.3%**.
 
 ---
 
@@ -409,16 +409,11 @@ Only add if:
 
 ## 8. Next action in chat
 
-**Start here:**
+**Wave 1:** ✅ complete (R0–R7, 2026-07-09).
 
-> **“Implement Wave 1 — Step R0”** (pre-flight)  
-> then **“Implement Wave 1 — Step R1”** … through **R7**.
+**Wave 2 (optional):** R8 ✅ · next **R9** (`wang2025loyalty`).
 
-One step per session; user 👁 between steps.
-
-After R7:
-
-> **“Implement Wave 2 — Step R8”** (optional)
+> **“Implement Wave 2 — Step R9”** — fairness / loyalty limitation cite.
 
 ---
 
@@ -429,7 +424,7 @@ After R7:
 | **7a–7c** Simulation | ✅ | Defense cites; ε matrix; hyperparams; 5 baselines |
 | **8a–8f** Results | ✅ | All figures + tables aligned to `data.md` / `figures/` |
 | **9–10** Discussion / Conclusion | ✅ | Tier-safe framing |
-| **11** References | 🔄 | 26 keys — **R6 hygiene done; R7 audit pending** |
+| **11** References | 🔄 | 27 keys — Wave 1 + **R8** (`denboer2024`) |
 | **14–15** Sync + pre-submission | ✅ | Re-run R7 after expansion; author block still placeholder |
 
 ### Locked results numbers (do not change when adding cites)

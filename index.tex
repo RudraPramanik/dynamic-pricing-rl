@@ -1092,6 +1092,12 @@ elasticities, following the offline evaluation logic used when field
 tests are costly~\cite{nambiar2022, xia2024}.
 We do not claim transfer to a live retailer.
 
+\smallskip\noindent\textbf{Competitive setting.}
+Legal and economic work examines when Q-learning pricing rules may raise
+collusion concerns under specific multi-firm market
+structures~\cite{denboer2024}; our simulation models a single retailer and
+does not capture strategic interaction among competing firms.
+
 \smallskip\noindent\textbf{Holdout tie and corner pricing.}
 GLM-optimal and EG-DQN policies coincide at the grid minimum
 (\$6) on every holdout day, so the experiment does not explore interior
@@ -1138,7 +1144,8 @@ work~\cite{chen2023}: calibrate a simulator or historical replay
 environment from store data, re-estimate demand models on a rolling basis
 (given time-varying elasticity in retail~\cite{zhang2025}), run fuller
 ablations of each EG-DQN channel, and only then consider controlled
-store experiments.
+store experiments, with attention to competitive and regulatory review of
+learned pricing rules in multi-firm settings~\cite{denboer2024}.
 Until those steps are completed, EG-DQN should be read as a documented
 hybrid \emph{design} and evaluation protocol, not as a deployment
 recommendation.
@@ -1321,6 +1328,13 @@ evidence from field experiments,''
 \textit{Journal of Operations Management}, vol.~69, no.~7,
 pp.~1176--1201, 2023.
 \url{https://doi.org/10.1002/joom.1276}
+
+\bibitem{denboer2024}
+A.~V.~den~Boer, J.~M.~Meylahn, and M.~P.~Schinkel,
+``Artificial collusion: Examining supracompetitive pricing by Q-learning
+algorithms,''
+\textit{Manag. Sci.}, 2024.
+\url{https://doi.org/10.1287/mnsc.2024.08557}
 
 \bibitem{rios2023}
 J.~H.~Rios and J.~R.~Vera,

@@ -74,6 +74,7 @@ Sorted by year (newest first), then tier.
 | `in_paper` | `xiaocheng2023` | A | X. Li, Z. Zheng | Dynamic pricing with external info + inventory | *Manag. Sci.* | [10.1287/mnsc.2023.4963](https://doi.org/10.1287/mnsc.2023.4963) | Online learning + inventory |
 | `in_paper` | `cheung2023` | A | W. C. Cheung, D. Simchi-Levi | Nonstationary RL: blessing of optimism | *Manag. Sci.* | [10.1287/mnsc.2023.4704](https://doi.org/10.1287/mnsc.2023.4704) | Nonstationary RL; guided exploration |
 | `in_paper` | `bu2023` | A | J. Bu, D. Simchi-Levi, L. Wang | Offline pricing + demand learning (censored) | *Manag. Sci.* | [10.1287/mnsc.2022.4498](https://doi.org/10.1287/mnsc.2022.4498) | Offline demand learning |
+| `in_paper` | `denboer2024` | A | A. V. den Boer, J. M. Meylahn, M. P. Schinkel | Q-learning and algorithmic collusion | *Manag. Sci.* | [10.1287/mnsc.2024.08557](https://doi.org/10.1287/mnsc.2024.08557) | Limitations / deployment regulatory caution |
 | `in_paper` | `chen2023` | A | J. Chen, Y. Xu, P. Yu | RL hotel revenue management (field experiments) | *J. Oper. Manag.* | [10.1002/joom.1276](https://doi.org/10.1002/joom.1276) | Deployment / field evidence |
 | `in_paper` | `xia2023` | B | Y. Xia et al. | RetailSynth synthetic retail data | arXiv | [2312.14095](https://arxiv.org/abs/2312.14095) | Simulation calibration |
 | `in_paper` | `liang2023` | C | X. Liang et al. | Dueling DQN presale pricing | *Sustainability* | [10.3390/su151310480](https://doi.org/10.3390/su151310480) | DQN variant |
@@ -240,4 +241,4 @@ grep -E 'charafeddine|elkhatib|Kumar~et' main.tex   # should be empty
 
 ---
 
-*Updated: 2026-07-09 · `index.tex`: 26 cited references, 0 orphans, 9 arXiv (34.6%). Wave 1 adds: `lange2025` (fix), `orspectrum2024`, `chenfair2023`, `yuan2024`, `loukili2025`, `liang2023`, `hadi2025`.*
+*Updated: 2026-07-09 · `index.tex`: 27 cited references, 0 orphans, 9 arXiv (33.3%). Wave 2 R8: `denboer2024`.*
