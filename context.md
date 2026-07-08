@@ -134,7 +134,7 @@ Historical demand + prices
 
 ### Manuscript rewrite status (`index.tex`)
 
-Steps 0–8b (through **Results — revenue comparison**) are in `index.tex`. Next: **Step 8c** — training convergence (`figures/15.png`; rewards only, no TD-loss claims).
+Steps 0–8c (through **Results — training convergence**) are in `index.tex`. Next: **Step 8d** — ablation (`figures/20.png`, 3-config table only).
 
 ---
 
@@ -240,8 +240,8 @@ Mark: ⬜ not started · 🔄 in progress · ✅ done · 👁 user review
 | 7a–7c | §Simulation Environment | ✅ |
 | 8a | Results — demand estimation | ✅ |
 | 8b | Results — revenue (`17.png`) | ✅ |
-| 8c | Results — training (`15.png`) | ⬜ **← next** |
-| 8d | Results — ablation (`20.png`) | ⬜ |
+| 8c | Results — training (`15.png`) | ✅ |
+| 8d | Results — ablation (`20.png`) | ⬜ **← next** |
 | 8e | Results — significance | ⬜ |
 | 8f | Results — rolling elasticity (`21.png`) | ⬜ |
 | 9a–9c | §Discussion | ⬜ |
@@ -250,7 +250,7 @@ Mark: ⬜ not started · 🔄 in progress · ✅ done · 👁 user review
 | 14 | Abstract ↔ Results sync pass | ⬜ |
 | 15 | Pre-submission checklist | ⬜ |
 
-**Progress:** 15 / ~27 units complete in `index.tex` (~56%). Next light unit: **8c** (training); then **8d** ablation.
+**Progress:** 16 / ~27 units complete in `index.tex` (~59%). Next: **8d** (ablation).
 
 ---
 
@@ -311,7 +311,7 @@ Full list: `citations.md`.
 
 ## 16. Current focus
 
-1. **Next session:** Step **8c** — training convergence (`figures/15.png`). Report episode-reward improvement only; **omit** TD-loss claims and ep 35/68 / 61% variance.
+1. **Next session:** Step **8d** — ablation (`figures/20.png`). **3-config table only**; reward shaping drives holdout lift; EG-DQN = DQN+Reward on test; no state/mask variants.
 2. **After Results complete:** Step 14 sync pass on Abstract + Conclusion.
 3. **User before submission:** Author names and institution.
 4. **Optional (non-blocking):** Re-run Mann–Whitney EG-DQN vs Pure DQN; fix `data.md` Pure DQN row (stale \$226k; figure says \$183,549).

@@ -868,7 +868,45 @@ Panel~D: total revenue with printed dollar values.}
 \label{fig:revenue}
 \end{figure*}
 
-% ── Steps 8c–10: Training / Discussion / Conclusion (pending) ─
+% ── Step 8c: Results — Training Convergence ───────────────────
+\subsection{Training Convergence}
+
+Figure~\ref{fig:convergence} compares episode revenue over $300$ training
+episodes for Pure DQN and EG-DQN on Item~1.
+Both agents increase cumulative episode reward under the shared
+$\varepsilon$-greedy schedule (right panel): first-$20$-episode averages
+are $\$1{,}564{,}257$ (Pure DQN) and $\$1{,}579{,}526$ (EG-DQN); last-$20$
+averages rise to $\$1{,}963{,}282$ and $\$2{,}003{,}676$, improvements of
+$+25.5\%$ and $+26.9\%$ respectively.
+Best-episode rewards are likewise modestly higher for EG-DQN
+(\$2{,}017{,}148 vs.\ \$1{,}976{,}095).
+The moving-average trajectories in the left panel track each other closely,
+with EG-DQN slightly above Pure DQN for much of training.
+We treat this as a training-phase pattern in this run, not as evidence of
+faster asymptotic convergence or of holdout superiority over GLM-optimal
+pricing.
+
+Logged TD losses were recorded as \texttt{nan} during training, so we do
+not interpret the centre panel of Figure~\ref{fig:convergence} as a
+reliable diagnostic of learning dynamics.
+Guided early exploration can reduce costly exploration in nonstationary
+settings~\cite{cheung2023}; here that design choice sits alongside the
+reward-shaping and state-augmentation mechanisms rather than as a claimed
+variance or loss-decay result.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\columnwidth]{figures/15.png}
+\caption{Training trajectories for Pure DQN and EG-DQN (Item~1, $300$
+episodes).
+Left: episode revenue with a $20$-episode moving average.
+Right: shared $\varepsilon$-greedy decay.
+Centre: TD-error panel is shown as exported from the notebook but is not
+interpreted (training logs report \texttt{Loss=nan}).}
+\label{fig:convergence}
+\end{figure}
+
+% ── Steps 8d–10: Ablation / Discussion / Conclusion (pending) ─
 % ── Step 11: Remaining bibliography entries (pending) ──────────
 
 \begin{thebibliography}{99}

@@ -38,8 +38,8 @@ Only add one of these if a reviewer-facing sentence needs explicit support that 
 | **7a–7c** Simulation | ✅ in `index.tex` | Defense cites; ε matrix; hyperparams; 5 baselines |
 | **8a** Demand estimation | ✅ in `index.tex` | Tables + `figures/eda.png`, `8.png`, `10.png` |
 | **8b** Revenue | ✅ in `index.tex` | `17.png`; GLM=EG-DQN tie @ \$226,764 / \$6; Pure DQN \$183,549 |
-| **8c** Training | ⬜ **next** | `15.png`; no TD-loss claims |
-| **8d** Ablation | ⬜ | `20.png`; 3-config only |
+| **8c** Training | ✅ in `index.tex` | `15.png`; +25.5%/+26.9%; **no** loss / ep 35/68 |
+| **8d** Ablation | ⬜ **next** | `20.png`; 3-config only |
 | **8e** Significance | ⬜ | 3 rows; GLM NS |
 | **8f** Rolling elasticity | ⬜ | `21.png`; no deployment language |
 
@@ -67,3 +67,14 @@ Only add one of these if a reviewer-facing sentence needs explicit support that 
 
 **Framing locked:** lead with **tie** + overlap in Panel A; corner at \$6 noted; no “diverges/dominates”; Pure DQN descriptive only (no *p*).  
 **Do not trust** `data.md` Pure DQN row (\$226k) — figure overrides.
+
+### Step 8c locked (training)
+
+| Metric | Pure DQN | EG-DQN |
+|--------|----------|--------|
+| First-20 avg | \$1,564,257 | \$1,579,526 |
+| Last-20 avg | \$1,963,282 | \$2,003,676 |
+| Improvement | +25.5% | +26.9% |
+| Best episode | \$1,976,095 | \$2,017,148 |
+
+**Banned in 8c:** ep 35/68, 61% variance, “stable/faster loss decay,” interpreting centre panel. Cite `cheung2023` only for guided-exploration design context.
