@@ -219,8 +219,8 @@ Mark: ⬜ not started · 🔄 in progress · ✅ done · 👁 user review
 |------|--------|
 | Evidence package (`data.md`, `figures/`) | ✅ |
 | Claims Ledger + Branch C framing | ✅ |
-| Citations baseline (20 refs) | ✅ |
-| Wave 1 expansion (`proposal.md` R0–R7) | 🔄 R0–R5 done |
+| Citations in `index.tex` | ✅ **26** refs (Wave 1: +6 keys; `lange2025` author fix) |
+| Wave 1 expansion (`proposal.md` R0–R7) | 🔄 R0–R6 done |
 | Author block | ⬜ placeholder |
 
 ### Section-by-section rewrite (`index.tex`)
@@ -247,7 +247,7 @@ Mark: ⬜ not started · 🔄 in progress · ✅ done · 👁 user review
 | 8f | Results — rolling elasticity (`21.png`) | ✅ |
 | 9a–9c | §Discussion | ✅ |
 | 10 | §Conclusion | ✅ |
-| 11 | References | ✅ |
+| 11 | References | 🔄 Wave 1 R6 hygiene done; **R7** final audit pending |
 | 14 | Abstract ↔ Results sync pass | ✅ |
 | 15 | Pre-submission checklist | ✅ |
 
@@ -319,7 +319,7 @@ Full list: `citations.md`.
 
 ## 16. Current focus
 
-1. **Wave 1 citation expansion** — next: **R6–R7** (bibliography hygiene + final audit); see `proposal.md`.
+1. **Wave 1 citation expansion** — next: **R7** (final audit + blueprint sign-off); see `proposal.md`.
 2. **User before submission:** Replace `[Author Name(s)]`, department, university, email in `index.tex`.
 3. **Optional:** Mann–Whitney re-run vs Pure DQN; fix `data.md` cell-16 Pure DQN row.
 

@@ -35,12 +35,13 @@ Sorted by year (newest first), then tier.
 
 | Status | Key | Tier | Authors | Title (short) | Venue | ID | Cite for |
 |--------|-----|------|---------|---------------|-------|-----|----------|
-| `in_paper` | `groeneveld2025` | A | J. Groeneveld et al. | RL vs data-driven DP in finite-horizon pricing | *J. Revenue Pricing Manag.* | [10.1057/s41272-025-00519-8](https://doi.org/10.1057/s41272-025-00519-8) | DP vs RL; data-efficiency trade-off |
+| `in_paper` | `lange2025` | A | F. Lange, L. Dreessen, R. Schlosser | RL vs data-driven DP in finite-horizon pricing | *J. Revenue Pricing Manag.* | [10.1057/s41272-025-00519-8](https://doi.org/10.1057/s41272-025-00519-8) | DP vs RL; data-efficiency trade-off |
 | `in_paper` | `razumovskiy2025` | B | L. Razumovskiy, N. Karenin | DP vs RL in finite-horizon dynamic pricing | arXiv | [2604.14059](https://arxiv.org/abs/2604.14059) | Systematic DP/RL comparison; simulation framing |
 | PDF | `references/Lev Razumovskiy_2026.pdf` | | | | | | |
 | `in_paper` | `chenavaz2025` | A | R. Y. Chenavaz, S. Dimitrov | AI and dynamic pricing: systematic literature review | *J. Appl. Econ.* | [10.1080/15140326.2025.2466140](https://doi.org/10.1080/15140326.2025.2466140) | **Open Related Work** — AI + pricing landscape |
 | PDF | `references/regis_Y_Chenavaz_25.pdf` | | | | | | |
 | `in_paper` | `hadi2025` | B | M. Hadi et al. | MARL for dynamic pricing in supply chains | arXiv | [2507.02698](https://arxiv.org/abs/2507.02698) | MARL supply chain; future work |
+| `in_paper` | `loukili2025` | B | M. Loukili et al. | DQN adaptive pricing in digital marketing | *Stat., Optim. Inf. Comput.* | [10.19139/soic-2310-5070-2200](https://doi.org/10.19139/soic-2310-5070-2200) | DQN e-commerce pricing |
 | `in_paper` | `zhang2025` | A | W. Zhang, Y. Meng | Time-varying price elasticity forecasting | *SAGE Open Econ.* | [10.1177/14727978251338001](https://doi.org/10.1177/14727978251338001) | Non-stationary elasticity; GLM limitation |
 | `in_paper` | `nomura2025` | A | Y. Nomura, Z. Liu, T. Nishi | DRL for pricing + ordering in perishable inventory | *Appl. Sci.* | [10.3390/app15052421](https://doi.org/10.3390/app15052421) | Perishable inventory + PPO; future work |
 | PDF | `references/youseke_Nomura_25.pdf` | | | | | | |
@@ -51,6 +52,8 @@ Sorted by year (newest first), then tier.
 
 | Status | Key | Tier | Authors | Title (short) | Venue | ID | Cite for |
 |--------|-----|------|---------|---------------|-------|-----|----------|
+| `in_paper` | `orspectrum2024` | A | P. Aschersleben, W. J. Steiner | Flexible heterogeneous sales-response dynamic pricing | *OR Spectrum* | [10.1007/s00291-024-00756-0](https://doi.org/10.1007/s00291-024-00756-0) | Nonlinear demand beyond log-link GLM |
+| `in_paper` | `yuan2024` | A | D. Yuan, Y. Wang | DQN supply-chain inventory (ISCO-DQ) | *Sustainable Comput.* | [10.1016/j.suscom.2024.101063](https://doi.org/10.1016/j.suscom.2024.101063) | Adjacent DQN-in-operations cite |
 | `in_paper` | `liu2024` | A | S. Liu et al. | Omni-channel retail DRL: pricing + inventory | *Expert Syst. Appl.* | [10.1016/j.eswa.2023.122948](https://doi.org/10.1016/j.eswa.2023.122948) | **Retail DRL + inventory** — RL for Pricing § |
 | PDF | `references/Liu_24.pdf` | | | | | | |
 | `in_paper` | `apte2024` | B | M. Apte et al. | Retail dynamic pricing via Q-Learning | arXiv | [2411.18261](https://arxiv.org/abs/2411.18261) | **Direct baseline** for EG-DQN |
@@ -66,6 +69,7 @@ Sorted by year (newest first), then tier.
 
 | Status | Key | Tier | Authors | Title (short) | Venue | ID | Cite for |
 |--------|-----|------|---------|---------------|-------|-----|----------|
+| `in_paper` | `chenfair2023` | A | X. Chen, D. Simchi-Levi, Y. Wang | Contextual pricing + fairness + demand learning | arXiv | [2311.16528](https://arxiv.org/abs/2311.16528) | OR neighbour; contrast with fixed GLM block |
 | `in_paper` | `kopalle2023` | A | P. K. Kopalle et al. | Dynamic pricing: definition and future directions | *J. Retailing* | [10.1016/j.jretai.2023.11.003](https://doi.org/10.1016/j.jretai.2023.11.003) | Survey / problem framing |
 | `in_paper` | `xiaocheng2023` | A | X. Li, Z. Zheng | Dynamic pricing with external info + inventory | *Manag. Sci.* | [10.1287/mnsc.2023.4963](https://doi.org/10.1287/mnsc.2023.4963) | Online learning + inventory |
 | `in_paper` | `cheung2023` | A | W. C. Cheung, D. Simchi-Levi | Nonstationary RL: blessing of optimism | *Manag. Sci.* | [10.1287/mnsc.2023.4704](https://doi.org/10.1287/mnsc.2023.4704) | Nonstationary RL; guided exploration |
@@ -92,7 +96,7 @@ These were removed during citation cleanup (2025-06-24). Do not re-add.
 
 | Old key | Year | Replaced by |
 |---------|------|-------------|
-| `kastius2021` | 2021 | `groeneveld2025`, `razumovskiy2025`, `chenavaz2025` |
+| `kastius2021` | 2021 | `lange2025`, `chenavaz2025` |
 | `fokianos2012` | 2012 | `zhang2025` |
 | `antipov2021` | 2021 | `safonov2024` |
 | `padakandla2021` | 2021 | `cheung2023` |
@@ -114,14 +118,14 @@ These were removed during citation cleanup (2025-06-24). Do not re-add.
 
 ### Introduction
 - Econometric vs RL split: `kopalle2023`, `chenavaz2025`
-- RL sequential pricing: `groeneveld2025`, `kastius2021` → prefer `razumovskiy2025`
+- RL sequential pricing: `lange2025`
 - Retail Q-learning baseline: `apte2024`
-- DP robustness / hybrid motivation: `groeneveld2025`, `zheng2024`
+- DP robustness / hybrid motivation: `lange2025`, `zheng2024`
 - Offline simulation: `nambiar2022`, `xia2024`
 
 ### Related Work — Dynamic Pricing & RL
 - **Lead sentence:** `chenavaz2025` (SLR)
-- Competitive / finite-horizon: `groeneveld2025`, `razumovskiy2025`
+- Competitive / finite-horizon: `lange2025`
 - Inventory + learning: `xiaocheng2023`, `liu2024`
 - MARL retail: `kumar2026`, `hadi2025`
 
@@ -236,4 +240,4 @@ grep -E 'charafeddine|elkhatib|Kumar~et' main.tex   # should be empty
 
 ---
 
-*Updated: 2026-07-08 · `index.tex`: 20 cited references, 0 orphans, 7 arXiv (35%). Removed from active ms: `razumovskiy2025`, `ramos2023`, `hadi2025` (redundant; still in master list for optional use).*
+*Updated: 2026-07-09 · `index.tex`: 26 cited references, 0 orphans, 9 arXiv (34.6%). Wave 1 adds: `lange2025` (fix), `orspectrum2024`, `chenfair2023`, `yuan2024`, `loukili2025`, `liang2023`, `hadi2025`.*

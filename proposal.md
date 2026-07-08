@@ -97,7 +97,7 @@ If a step introduces an orphan cite, wrong author, or accidental Results edit �
 | **R3** | §II.D DQN literature | §II.D only | `yuan2024`, `loukili2025`, `liang2023` | ✅ |
 | **R4** | §Limitations GLM rigidity | Limitations ¶ DGP only | `orspectrum2024` (reuse) | ✅ |
 | **R5** | §Conclusion MARL future work | Conclusion future-work sentence | `hadi2025` | ✅ |
-| **R6** | Bibliography append + ordering | `\bibitem{}` block | all 6 new items | ⬜ |
+| **R6** | Bibliography hygiene | `\bibitem{}` block | metadata + orphan audit | ✅ |
 | **R7** | Final audit + compile | whole file read-only checks | — | ⬜ |
 
 **Note:** R6 can be merged into R2–R5 (add each `\bibitem` when its `\cite{}` is inserted). Splitting by section is safer for review.
@@ -265,11 +265,8 @@ chains,''
 ### Step R6 — Bibliography hygiene
 
 **Do:**
-- Confirm **27** `\bibitem{}` entries, **27** unique cited keys (or count all keys in compound cites).
-- arXiv count: **9** (`apte2024`, `cheung2023`? wait - need current arxiv list in index.tex)
-
-Let me list current arxiv in index.tex from memory:
-- apte2024, xia2023, xia2024, safonov2024, zheng2024, nambiar2022, kumar2026, chenfair2023 (new), hadi2025 (new) = 9/27 = 33%
+- Confirm **26** `\bibitem{}` entries and **26** unique cited keys (20 baseline + 6 Wave 1 adds; `lange2025` is a rename, not +1).
+- arXiv count: **9/26 = 34.6%** (`apte2024`, `nambiar2022`, `xia2023`, `xia2024`, `safonov2024`, `zheng2024`, `kumar2026`, `chenfair2023`, `hadi2025`).
 
 - No orphan `\bibitem{}`; no undefined `\cite{}`.
 - DOI or arXiv ID on every new entry.
@@ -432,7 +429,7 @@ After R7:
 | **7a–7c** Simulation | ✅ | Defense cites; ε matrix; hyperparams; 5 baselines |
 | **8a–8f** Results | ✅ | All figures + tables aligned to `data.md` / `figures/` |
 | **9–10** Discussion / Conclusion | ✅ | Tier-safe framing |
-| **11** References | 🔄 | 20 keys synced — **Wave 1 expansion via Steps R0–R7** |
+| **11** References | 🔄 | 26 keys — **R6 hygiene done; R7 audit pending** |
 | **14–15** Sync + pre-submission | ✅ | Re-run R7 after expansion; author block still placeholder |
 
 ### Locked results numbers (do not change when adding cites)
