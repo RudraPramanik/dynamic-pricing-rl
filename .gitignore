@@ -19,7 +19,9 @@
 
 # Built PDFs (keep figures/ and references/ PDFs)
 /index.pdf
+/index_check.pdf
 /main.pdf
+index_check.*
 
 # ── Jupyter ──────────────────────────────────────────────────
 .ipynb_checkpoints/
