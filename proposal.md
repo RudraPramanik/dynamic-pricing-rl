@@ -36,7 +36,8 @@ Only add one of these if a reviewer-facing sentence needs explicit support that 
 |------|--------|-------|
 | **6a** Network Architecture | ✅ in `index.tex` | 2×128 ReLU, $K=20$, Huber Bellman loss, NumPy DQN |
 | **6b** Training Procedure | ✅ in `index.tex` | 300 ep, buffer 10k, batch 64, target sync 15, $\varepsilon$ 1.0→0.05 |
-| **6c** EG-DQN mechanisms | ⬜ next | state / reward shaping / masking; $\lambda=30$ |
-| **6d** Algorithm block | ⬜ pending | `Algorithm~\ref{alg:egdqn}` |
+| **6c** EG-DQN mechanisms | ✅ in `index.tex` | $\lambda=30$, $\sigma_p$=grid std, mask ep 1–30; `cheung2023` |
+| **6d** Algorithm block | ✅ in `index.tex` | `Algorithm~\ref{alg:egdqn}` |
+| **7a–7c** Simulation | ⬜ next | elasticity table, hyperparams, baselines |
 
 **Optional cite for 6c (not 6a/6b):** `cheung2023` — guided exploration / nonstationary RL (already in bib).

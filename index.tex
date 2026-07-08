@@ -499,7 +499,71 @@ Pure DQN uses the reward in~\eqref{eq:reward_dqn}; EG-DQN variants
 and econometric hyperparameters ($\lambda$, masking horizon) are
 specified in the next subsection.
 
-% ── Steps 6c–6d, 7–10: Body sections (pending) ───────────────
+\subsection{EG-DQN Integration Mechanisms}
+
+EG-DQN extends the base DQN with three channels through which the
+fixed GLM fit from Section~\ref{sec:glm} enters learning.
+Pure DQN omits all three; the ablation in the results section toggles
+reward shaping while holding the remaining protocol fixed.
+
+\begin{description}
+  \item[State augmentation.]
+    The state vector includes $p^*_{\text{GLM},t}$ at every step
+    (component~(v) in Section~\ref{sec:problem}), giving the agent an
+    explicit econometric price benchmark alongside lagged market
+    variables.
+  \item[Reward shaping.]
+    Training rewards follow~\eqref{eq:reward_egdqn} with
+    $\lambda=30.0$ and $\sigma_p$ set to the standard deviation of the
+    discrete price grid.
+    The exponential bonus is largest when the selected price coincides
+    with $p^*_{\text{GLM},t}$ and decays smoothly with price distance.
+  \item[Early action masking.]
+    For episodes $e \le 30$, feasible actions are restricted to grid
+    points within $\pm\sigma_p$ of $p^*_{\text{GLM},t}$, limiting
+    exploratory prices while the replay buffer is still sparse.
+    The full grid is available from episode~31 onward.
+    Restricting early exploration in nonstationary settings can reduce
+    the cost of uninformed trial prices~\cite{cheung2023}.
+\end{description}
+
+Algorithm~\ref{alg:egdqn} summarises one training episode; the outer
+loop runs $E=300$ episodes per product with the hyperparameters in
+Section~\ref{sec:rl}.
+
+\begin{algorithm}[H]
+\caption{EG-DQN Training (single episode)}
+\label{alg:egdqn}
+\begin{algorithmic}[1]
+\Require Fitted GLM $\mathcal{G}$, environment $\mathcal{M}$,
+         replay buffer $\mathcal{B}$, weights $\theta$, target
+         $\theta^-$, exploration rate $\varepsilon$
+\State $s_0 \gets \textsc{Reset}()$;
+       compute $p^*_{\text{GLM},0}$ from $\mathcal{G}$
+\For{step $t = 0, 1, \ldots$ until episode end}
+  \If{current episode $e \le 30$}
+    $\mathcal{A}_t \gets \{p \in \text{grid} :
+      |p - p^*_{\text{GLM},t}| \le \sigma_p\}$
+  \Else
+    $\mathcal{A}_t \gets$ full price grid
+  \EndIf
+  \State $a_t \gets \varepsilon\text{-greedy}\bigl(
+    Q(s_t,\cdot;\theta), \mathcal{A}_t\bigr)$
+  \State Execute $a_t$; observe $r_t^{\text{EG}}$
+    from~\eqref{eq:reward_egdqn}
+  \State $s_{t+1} \gets$ next state; store
+    $(s_t,a_t,r_t^{\text{EG}},s_{t+1})$ in $\mathcal{B}$
+  \If{$|\mathcal{B}| \ge 64$}
+    \State Sample minibatch from $\mathcal{B}$;
+      update $\theta$ via~\eqref{eq:bellman} with gradient clip
+  \EndIf
+  \State $s_t \gets s_{t+1}$
+\EndFor
+\State Decay $\varepsilon$; if $e \bmod 15 = 0$ then $\theta^- \gets \theta$
+\end{algorithmic}
+\end{algorithm}
+
+% ── Steps 7–10: Body sections (pending) ────────────────────────
 % ── Step 11: Remaining bibliography entries (pending) ──────────
 
 \begin{thebibliography}{99}

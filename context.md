@@ -134,7 +134,7 @@ Historical demand + prices
 
 ### Manuscript rewrite status (`index.tex`)
 
-Steps 0–5 and **6a–6b** (through §RL network + training) are in `index.tex`. **`main.tex`** from §EG-DQN mechanisms / simulation onward remains stale reference. Next: **6c–6d** — EG-DQN integration + algorithm.
+Steps 0–6 (through **§RL Framework**, incl.\ EG-DQN mechanisms + algorithm) are in `index.tex`. **`main.tex`** from §Simulation Environment onward remains stale reference. Next: **Step 7** — §Simulation Environment.
 
 ---
 
@@ -235,8 +235,9 @@ Mark: ⬜ not started · 🔄 in progress · ✅ done · 👁 user review
 | 5a–5b | §Econometric Demand Model | ✅ |
 | 6a | §RL — Network Architecture | ✅ |
 | 6b | §RL — Training Procedure | ✅ |
-| 6c–6d | §RL — EG-DQN mechanisms + algorithm | ⬜ **← next** |
-| 7a–7c | §Simulation Environment | ⬜ |
+| 6c | §RL — EG-DQN mechanisms | ✅ |
+| 6d | §RL — Algorithm | ✅ |
+| 7a–7c | §Simulation Environment | ⬜ **← next** |
 | 8a | Results — demand estimation | ⬜ |
 | 8b | Results — revenue (`17.png`) | ⬜ |
 | 8c | Results — training (`15.png`) | ⬜ |
@@ -249,7 +250,7 @@ Mark: ⬜ not started · 🔄 in progress · ✅ done · 👁 user review
 | 14 | Abstract ↔ Results sync pass | ⬜ |
 | 15 | Pre-submission checklist | ⬜ |
 
-**Progress:** 8 / ~27 units complete in `index.tex` (~30%). Highest-risk block: **8a–8f** (Results).
+**Progress:** 10 / ~27 units complete in `index.tex` (~37%). Highest-risk block: **8a–8f** (Results).
 
 ---
 
@@ -310,7 +311,7 @@ Full list: `citations.md`.
 
 ## 16. Current focus
 
-1. **Next session:** Step **6c–6d** — EG-DQN integration mechanisms + `Algorithm~\ref{alg:egdqn}` ($\lambda=30$, mask ep 1–30).
+1. **Next session:** Step **7a–7c** — §Simulation Environment (DGP calibration, hyperparam table, five baselines).
 2. **After Results complete:** Step 14 sync pass on Abstract + Conclusion.
 3. **User before submission:** Author names and institution.
 4. **Optional (non-blocking):** Re-run Mann–Whitney EG-DQN vs Pure DQN; fix `data.md` Pure DQN row.
