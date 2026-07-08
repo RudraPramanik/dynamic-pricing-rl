@@ -1131,7 +1131,38 @@ Until those steps are completed, EG-DQN should be read as a documented
 hybrid \emph{design} and evaluation protocol, not as a deployment
 recommendation.
 
-% ── Step 10: Conclusion (pending) ─────────────────────────────
+% ── Step 10: Conclusion ───────────────────────────────────────
+\section{Conclusion}
+\label{sec:conclusion}
+
+We described EG-DQN, a hybrid retail pricing agent that feeds GLM demand
+signals into a DQN through state augmentation, econometric reward shaping,
+and early action masking, and we evaluated the design in a synthetic
+three-product simulation with a 120-day holdout on Item~1.
+On that window, GLM-optimal pricing and EG-DQN attained the same
+cumulative revenue and the same grid price; daily revenue did not differ
+significantly from the GLM benchmark.
+Relative to fixed-price and rule-based policies, EG-DQN earned more
+holdout revenue in this run, while pure DQN earned less than the
+GLM-guided policies.
+The ablation indicated that reward shaping carried the holdout improvement
+over pure DQN and that the full hybrid did not beat a reward-only variant
+on test revenue.
+
+Taken together, the study documents a reproducible benchmark and an
+honest comparison: econometric-guided reward shaping can align RL with
+GLM-optimal prices under our protocol, but we do not show holdout gains
+beyond GLM-only pricing.
+Operational deployment is not claimed.
+
+Future work should test the design on store data, extend estimation to
+joint multi-product pricing~\cite{hadi2025, kumar2026}, incorporate
+inventory constraints for perishable categories~\cite{yavuz2024,
+nomura2025}, and complete ablations that isolate state augmentation and
+action masking.
+Richer price grids and field experiments will be needed before any
+operational recommendation can be made.
+
 % ── Step 11: Remaining bibliography entries (pending) ──────────
 
 \begin{thebibliography}{99}
@@ -1255,6 +1286,30 @@ J.~H.~Rios and J.~R.~Vera,
 ``Dynamic pricing and inventory control for multiple products in a
 retail chain,''
 \textit{Computers \& Industrial Engineering}, vol.~177, p.~109065, 2023.
+
+\bibitem{kumar2026}
+K.~K.~N.~Pillai and S.~K.~Amma,
+``Multi-agent reinforcement learning for dynamic pricing: Balancing
+profitability, stability and fairness,''
+\textit{arXiv:2603.16888}, 2026.
+
+\bibitem{hadi2025}
+M.~Hadi \textit{et~al.},
+``Multi-agent reinforcement learning for dynamic pricing in supply
+chains,''
+\textit{arXiv:2507.02698}, 2025.
+
+\bibitem{yavuz2024}
+T.~Yavuz and O.~Kaya,
+``Deep reinforcement learning for dynamic pricing and inventory
+management of perishable products,''
+\textit{Applied Soft Computing}, vol.~163, p.~111864, 2024.
+
+\bibitem{nomura2025}
+Y.~Nomura, Z.~Liu, and T.~Nishi,
+``Deep reinforcement learning for dynamic pricing and ordering policies
+in perishable inventory management,''
+\textit{Appl. Sci.}, vol.~15, no.~5, p.~2421, 2025.
 
 \end{thebibliography}
 

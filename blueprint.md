@@ -781,7 +781,7 @@ Mark: `⬜` not started · `🔄` in progress · `✅` done · `👁` your revie
 
 | Step | Unit | `main.tex` | Figures | Tables | Citations | Status |
 |------|------|------------|---------|--------|-----------|--------|
-| 10 | **§Conclusion** | `\section{Conclusion}` | — | — | future: hadi, nomura | ⬜ |
+| 10 | **§Conclusion** | `\section{Conclusion}` | — | — | future: hadi, nomura | ✅ |
 
 **Done when:** One honest Tier-A summary; no 18.3%, no ep 35/68, no “significant vs all”; future work 2–3 bullets; matches abstract.
 

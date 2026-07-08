@@ -43,7 +43,8 @@ Only add one of these if a reviewer-facing sentence needs explicit support that 
 | **8e** Significance | ✅ in `index.tex` | 3 rows; GLM *p*=0.50; large *d* caveat |
 | **8f** Rolling elasticity | ✅ in `index.tex` | `21.png`; descriptive; no deployment / 94% claims |
 | **9** Discussion | ✅ in `index.tex` | 9a–9c; limitations Tier C; deployment = future only |
-| **10** Conclusion | ⬜ **next** | Tier-A mirror abstract |
+| **10** Conclusion | ✅ in `index.tex` | Tier-A; GLM tie; future work cites added |
+| **14** Sync pass | ⬜ **next** | Abstract ⊆ Results |
 
 ### Step 8a locked numbers (authoritative)
 
@@ -112,3 +113,9 @@ Only add one of these if a reviewer-facing sentence needs explicit support that 
 - **9a:** Reward shaping aligns RL with GLM; no hybrid > GLM; ablation = reward channel; `cheung2023`, `apte2024`; Cohen's *d* caveat.
 - **9b:** Synthetic; \$6 corner; GLM=EG-DQN tie; DGP alignment; level misfit; per-item/discrete/single seed; Loss=nan; rule-based flaw; λ scale; incomplete ablation; `nambiar2022`, `xia2024`.
 - **9c:** Field path as future work only; `chen2023`, `xia2024`, `zhang2025`; not a deployment recommendation.
+
+### Step 10 locked (Conclusion)
+
+- Recap EG-DQN + simulation protocol; **GLM tie**; reward shaping ablation; no deployment.
+- Future work: real data, MARL (`hadi2025`, `kumar2026`), perishables (`yavuz2024`, `nomura2025`), fuller ablations.
+- **Banned:** 18.3%, ep 35/68, “significant vs all,” outperform GLM, % lifts as headlines.

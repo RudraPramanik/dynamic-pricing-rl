@@ -134,7 +134,7 @@ Historical demand + prices
 
 ### Manuscript rewrite status (`index.tex`)
 
-Steps 0–9 (through **§Discussion**) are in `index.tex`. Next: **Step 10** — Conclusion (Tier-A summary; mirror abstract).
+Steps 0–10 (full manuscript body through **§Conclusion**) are in `index.tex`. Next: **Step 14** — Abstract ↔ Results ↔ Conclusion sync pass; optional Step 11 references tidy.
 
 ---
 
@@ -245,12 +245,12 @@ Mark: ⬜ not started · 🔄 in progress · ✅ done · 👁 user review
 | 8e | Results — significance | ✅ |
 | 8f | Results — rolling elasticity (`21.png`) | ✅ |
 | 9a–9c | §Discussion | ✅ |
-| 10 | §Conclusion | ⬜ **← next** |
+| 10 | §Conclusion | ✅ |
 | 11 | References | ⬜ |
-| 14 | Abstract ↔ Results sync pass | ⬜ |
+| 14 | Abstract ↔ Results sync pass | ⬜ **← next** |
 | 15 | Pre-submission checklist | ⬜ |
 
-**Progress:** 20 / ~27 units complete in `index.tex` (~74%). Next: **Conclusion**, then Step 14 abstract sync.
+**Progress:** 21 / ~27 units complete in `index.tex` (~78%). Body draft **complete**; sync pass + author block remain.
 
 ---
 
@@ -311,10 +311,10 @@ Full list: `citations.md`.
 
 ## 16. Current focus
 
-1. **Next session:** Step **10** — Conclusion (honest Tier-A; GLM tie; no ep 35/68 / “significant vs all”).
-2. **Then:** Step 14 sync pass — Abstract ↔ Results ↔ Conclusion.
+1. **Next session:** Step **14** — short sync pass (Abstract, Conclusion, Intro contributions consistent with Results).
+2. **Optional:** Step 11 — bibliography audit (`xiaocheng2023` author text, orphan keys).
 3. **User before submission:** Author names and institution.
-4. **Optional:** References tidy (Step 11); `data.md` Pure DQN row fix.
+4. **Optional:** `data.md` Pure DQN row fix; Mann–Whitney re-run vs Pure DQN.
 
 ---
 
