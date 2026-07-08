@@ -399,7 +399,63 @@ the selected price.
 $\gamma = 0.99$, consistent with daily pricing over finite training
 episodes.
 
-% ── Steps 5–10: Body sections (pending) ────────────────────────
+% ── Step 5: Econometric Demand Model ─────────────────────────
+\section{Econometric Demand Model}
+\label{sec:glm}
+
+\subsection{Specification}
+
+We estimate a separate Poisson GLM with log-link for each product
+$i$. Count demand is natural for daily units sold; the log-link yields
+interpretable own- and cross-price elasticities of the form common in
+retail pricing research~\cite{kopalle2023, zhang2025}.
+For product~$i$,
+\begin{align}
+  \log\bigl(\mathbb{E}[D_{it}]\bigr) =\;
+  &\alpha_0
+  + \underbrace{\alpha_1 \log p_{it}}_{\text{own elasticity}}
+  + \sum_{j\neq i}\beta_j \log p_{jt} \nonumber\\
+  &+ \gamma_1\,\text{trend}_t
+  + \gamma_2\sin\!\!\left(\tfrac{2\pi\,\text{day}_t}{365}\right)
+  + \gamma_3\,\text{weekend}_t,
+  \label{eq:glm}
+\end{align}
+where $\alpha_1$ is the own-price elasticity, $\beta_j$ are cross-price
+elasticities, and $\gamma_k$ capture trend, annual seasonality, and
+weekend effects.
+Coefficients are estimated by maximum likelihood on the training
+window only; HC3-robust standard errors are reported.
+Holdout forecasts and GLM-optimal prices use this fixed fit---we do not
+refit online on the 120-day test window.
+As noted in Section~\ref{sec:problem}, the log-linear DGP is only
+approximately aligned with~\eqref{eq:glm}; time-varying elasticity is
+outside the present specification~\cite{zhang2025}.
+
+\subsection{Derived Econometric Signals}
+
+Three GLM outputs feed the hybrid agent~\cite{safonov2024}:
+\begin{enumerate}
+  \item \textbf{Estimated elasticity}
+    $\hat{\varepsilon}_i = \hat{\alpha}_1$.
+    In simulation we compare $\hat{\varepsilon}_i$ to the known DGP
+    own-price elasticity as an \emph{elasticity recovery} check, not as
+    a claim of structural identification.
+  \item \textbf{GLM-optimal price} $p^*_{\text{GLM},t}$.
+    For each day~$t$ and covariate vector $\mathbf{x}_t$, we evaluate
+    expected revenue $R(p)=p\cdot\hat{D}_i(p,\mathbf{x}_t)$ on the
+    discrete price grid and set $p^*_{\text{GLM},t}=\arg\max_p R(p)$.
+    This quantity enters the EG-DQN state, the early action mask, and
+    the econometric reward bonus.
+  \item \textbf{Forecast demand} $\hat{D}_{it}$.
+    The fitted mean demand at the chosen price serves as a revenue
+    proxy in~\eqref{eq:reward_dqn}, limiting the effect of day-to-day
+    demand noise on the learning signal~\cite{bu2023}.
+\end{enumerate}
+Estimation accuracy and holdout forecast metrics are deferred to the
+experimental results; this section defines only the signals passed to
+the DQN.
+
+% ── Steps 6–10: Body sections (pending) ────────────────────────
 % ── Step 11: Remaining bibliography entries (pending) ──────────
 
 \begin{thebibliography}{99}

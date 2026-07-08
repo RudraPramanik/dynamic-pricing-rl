@@ -134,7 +134,7 @@ Historical demand + prices
 
 ### Manuscript rewrite status (`index.tex`)
 
-Steps 0–4 (through **§Problem Formulation**) match evidence and Branch~C framing in `index.tex`. **`main.tex`** from §Econometric Demand Model onward remains stale reference material. Next: Step~5 — §Econometric Demand Model.
+Steps 0–5 (through **§Econometric Demand Model**) match evidence and Branch~C framing in `index.tex`. **`main.tex`** from §RL Framework onward remains stale reference material. Next: Step~6 — §Reinforcement Learning Framework.
 
 ---
 
@@ -232,8 +232,8 @@ Mark: ⬜ not started · 🔄 in progress · ✅ done · 👁 user review
 | 2 | §Introduction | ✅ |
 | 3a–3d | §Related Work (4 subsections) | ✅ |
 | 4a–4c | §Problem Formulation | ✅ |
-| 5a–5b | §Econometric Demand Model | ⬜ **← next** |
-| 6a–6d | §RL Framework | ⬜ |
+| 5a–5b | §Econometric Demand Model | ✅ |
+| 6a–6d | §RL Framework | ⬜ **← next** |
 | 7a–7c | §Simulation Environment | ⬜ |
 | 8a | Results — demand estimation | ⬜ |
 | 8b | Results — revenue (`17.png`) | ⬜ |
@@ -247,7 +247,7 @@ Mark: ⬜ not started · 🔄 in progress · ✅ done · 👁 user review
 | 14 | Abstract ↔ Results sync pass | ⬜ |
 | 15 | Pre-submission checklist | ⬜ |
 
-**Progress:** 6 / ~25 units complete in `index.tex` (~24%). Highest-risk block: **8a–8f** (Results).
+**Progress:** 7 / ~25 units complete in `index.tex` (~28%). Highest-risk block: **8a–8f** (Results).
 
 ---
 
@@ -308,7 +308,7 @@ Full list: `citations.md`.
 
 ## 16. Current focus
 
-1. **Next session:** Step 5 — §Econometric Demand Model in `index.tex` (GLM spec; elasticity recovery not “structural identification”).
+1. **Next session:** Step 6 — §RL Framework in `index.tex` (prefer split 6a–6d or group network+training then mechanisms+algorithm).
 2. **After Results complete:** Step 14 sync pass on Abstract + Conclusion.
 3. **User before submission:** Author names and institution.
 4. **Optional (non-blocking):** Re-run Mann–Whitney EG-DQN vs Pure DQN; fix `data.md` Pure DQN row.
