@@ -91,9 +91,9 @@ If a step introduces an orphan cite, wrong author, or accidental Results edit �
 
 | Step | Task | Touches | New keys | Status |
 |------|------|---------|----------|--------|
-| **R0** | Pre-flight audit + backup | — | — | ⬜ |
-| **R1** | Lange author fix | Intro + §II.A + bib | `lange2025` (rename from `groeneveld2025`) | ⬜ |
-| **R2** | §II.A demand-model breadth | §II.A only | `orspectrum2024`, `chenfair2023` | ⬜ |
+| **R0** | Pre-flight audit + backup | — | — | ✅ |
+| **R1** | Lange author fix | Intro + §II.A + bib | `lange2025` (rename from `groeneveld2025`) | ✅ |
+| **R2** | §II.A demand-model breadth | §II.A only | `orspectrum2024`, `chenfair2023` | ✅ |
 | **R3** | §II.D DQN literature | §II.D only | `yuan2024`, `loukili2025`, `liang2023` | ⬜ |
 | **R4** | §Limitations GLM rigidity | Limitations ¶ DGP only | `orspectrum2024` (reuse) | ⬜ |
 | **R5** | §Conclusion MARL future work | Conclusion future-work sentence | `hadi2025` | ⬜ |

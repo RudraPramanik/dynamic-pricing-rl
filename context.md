@@ -2,7 +2,7 @@
 
 **Purpose:** Onboarding document for AI agents. Read this **first** before editing `main.tex`, running experiments, or changing citations.
 
-**Last updated:** 2026-07-06
+**Last updated:** 2026-07-09
 
 **Document roles (do not duplicate):**
 
@@ -219,7 +219,8 @@ Mark: ⬜ not started · 🔄 in progress · ✅ done · 👁 user review
 |------|--------|
 | Evidence package (`data.md`, `figures/`) | ✅ |
 | Claims Ledger + Branch C framing | ✅ |
-| Citations cleaned (27 refs) | ✅ |
+| Citations baseline (20 refs) | ✅ |
+| Wave 1 expansion (`proposal.md` R0–R7) | 🔄 R0–R2 done |
 | Author block | ⬜ placeholder |
 
 ### Section-by-section rewrite (`index.tex`)
@@ -286,7 +287,9 @@ Mark: ⬜ not started · 🔄 in progress · ✅ done · 👁 user review
 | Paper | Role for us |
 |-------|-------------|
 | `apte2024` | Closest retail Q-learning baseline |
-| `groeneveld2025`, `razumovskiy2025` | DP vs RL comparisons |
+| `lange2025` | DP vs RL comparison (finite-horizon pricing markets) |
+| `orspectrum2024` | Flexible heterogeneous sales-response models beyond log-link GLM |
+| `chenfair2023` | Contextual pricing with demand learning and fairness constraints |
 | `chenavaz2025` | AI + dynamic pricing SLR |
 | `zheng2024` | Hybrid ML demand + dual-agent DRL (architectural neighbour) |
 | `safonov2024` | ML vs econometric demand — motivates hybrid |
@@ -311,10 +314,9 @@ Full list: `citations.md`.
 
 ## 16. Current focus
 
-1. **User before submission:** Replace `[Author Name(s)]`, department, university, email in `index.tex`.
-2. **Optional:** Mann–Whitney re-run vs Pure DQN; fix `data.md` cell-16 Pure DQN row.
-3. **User before submission:** Author names and institution.
-4. **Optional:** `data.md` Pure DQN row fix; Mann–Whitney re-run vs Pure DQN.
+1. **Wave 1 citation expansion** — next: **R3** (`yuan2024`, `loukili2025`, `liang2023` in §II.D); see `proposal.md`.
+2. **User before submission:** Replace `[Author Name(s)]`, department, university, email in `index.tex`.
+3. **Optional:** Mann–Whitney re-run vs Pure DQN; fix `data.md` cell-16 Pure DQN row.
 
 ---
 

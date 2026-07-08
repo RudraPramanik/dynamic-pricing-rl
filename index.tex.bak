@@ -182,7 +182,7 @@ such as relatively stable demand relationships over the estimation
 window.
 Reinforcement learning~(RL), by contrast, treats pricing as a
 sequential decision problem in which an agent learns a policy from
-repeated market interaction~\cite{lange2025}.
+repeated market interaction~\cite{groeneveld2025}.
 RL adapts to feedback without committing to a fixed parametric form,
 yet retail applications must contend with sample-efficient learning,
 noisy rewards, and exploration over large price sets~\cite{apte2024,
@@ -190,7 +190,7 @@ cheung2023}.
 
 Apte~et~al.~\cite{apte2024} show that tabular Q-learning can improve
 on static pricing in simulated retail settings.
-Lange~et~al.~\cite{lange2025} report that RL remains
+Groeneveld~et~al.~\cite{groeneveld2025} report that RL remains
 competitive under demand-model misspecification but can learn more
 slowly when demand structure is known---the regime in which
 econometric guidance may be most informative.
@@ -242,7 +242,7 @@ operations and applied economics.
 Kopalle~et~al.~\cite{kopalle2023} summarise managerial uses of dynamic
 pricing and the econometric questions that remain open in retail
 practice.
-On the algorithmic side, Lange~et~al.~\cite{lange2025}
+On the algorithmic side, Groeneveld~et~al.~\cite{groeneveld2025}
 compare reinforcement learning with data-driven dynamic programming
 in finite-horizon pricing markets.
 Liu~et~al.~\cite{liu2024} extend deep RL to joint omni-channel pricing
@@ -251,13 +251,6 @@ Li and Zheng~\cite{xiaocheng2023} study pricing under inventory
 constraints and external information within an online learning
 framework---a reminder that demand estimation and sequential price
 setting are seldom separable in applied settings.
-Aschersleben and Steiner~\cite{orspectrum2024} optimise store-level
-prices with flexible heterogeneous sales-response models that allow
-nonlinear and lagged price effects beyond a log-link GLM.
-Chen, Simchi-Levi, and Wang~\cite{chenfair2023} study contextual
-dynamic pricing with joint demand learning and utility-fairness
-constraints; we instead inject a fixed GLM block into DQN state and
-reward.
 
 \subsection{Demand Forecasting for Pricing}
 
@@ -1188,8 +1181,8 @@ review,''
 \textit{J. Appl. Econ.}, vol.~28, no.~1, p.~2466140, 2025.
 \url{https://doi.org/10.1080/15140326.2025.2466140}
 
-\bibitem{lange2025}
-F.~Lange, L.~Dreessen, and R.~Schlosser,
+\bibitem{groeneveld2025}
+J.~Groeneveld \textit{et~al.},
 ``Reinforcement learning versus data-driven dynamic programming for
 finite horizon dynamic pricing markets,''
 \textit{Journal of Revenue and Pricing Management}, 2025.
@@ -1207,17 +1200,6 @@ X.~Li and Z.~Zheng,
 ``Dynamic pricing with external information and inventory constraint,''
 \textit{Manag. Sci.}, 2023.
 \url{https://doi.org/10.1287/mnsc.2023.4963}
-
-\bibitem{orspectrum2024}
-P.~Aschersleben and W.~J.~Steiner,
-``Dynamic pricing using flexible heterogeneous sales response models,''
-\textit{OR Spectrum}, vol.~46, no.~1, pp.~29--72, 2024.
-\url{https://doi.org/10.1007/s00291-024-00756-0}
-
-\bibitem{chenfair2023}
-X.~Chen, D.~Simchi-Levi, and Y.~Wang,
-``Utility fairness in contextual dynamic pricing with demand learning,''
-\textit{arXiv:2311.16528}, 2023.
 
 \bibitem{zhang2025}
 W.~Zhang and Y.~Meng,
