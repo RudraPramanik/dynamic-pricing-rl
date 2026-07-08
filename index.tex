@@ -455,7 +455,51 @@ Estimation accuracy and holdout forecast metrics are deferred to the
 experimental results; this section defines only the signals passed to
 the DQN.
 
-% ── Steps 6–10: Body sections (pending) ────────────────────────
+% ── Step 6a–6b: RL Framework (network + training) ─────────────
+\section{Reinforcement Learning Framework}
+\label{sec:rl}
+
+\subsection{Network Architecture}
+
+Each product is assigned its own Deep Q-Network agent.
+The policy network $Q(s,a;\theta)$ maps the five-dimensional state
+vector defined in Section~\ref{sec:problem} to a Q-value for each of
+$K=20$ discrete candidate prices.
+The network has two hidden layers of 128 units with ReLU activations
+and Glorot initialisation; parameters are updated in NumPy without a
+deep-learning framework dependency, which keeps the simulation
+reproducible on standard hardware.
+Retail Q-learning studies motivate discrete-action pricing agents of
+this form~\cite{apte2024, alamdar2024}.
+Temporal-difference targets follow the standard DQN backup with a
+separate target network $\theta^-$; the regression loss is Huber with
+$\delta=1$ rather than squared error, which limits the influence of
+occasional high-revenue transitions:
+\begin{equation}
+  \mathcal{L}(\theta) = \mathbb{E}_{\mathcal{B}}
+  \!\left[\ell_\delta\!\!\left(r + \gamma\max_{a'}
+  Q(s',a';\theta^{-}) - Q(s,a;\theta)\right)\right].
+  \label{eq:bellman}
+\end{equation}
+
+\subsection{Training Procedure}
+
+Training proceeds for 300 episodes per product.
+At each environment step the agent stores transitions
+$(s_t,a_t,r_t,s_{t+1})$ in a replay buffer of capacity 10{,}000; a
+minibatch of 64 transitions is drawn uniformly for each gradient
+update.
+The target network weights are copied from the online network every
+15~episodes.
+Action selection is $\varepsilon$-greedy with $\varepsilon$ decaying
+from 1.0 to 0.05 over training; gradient norms are clipped at
+$\ell_2=1.0$.
+The learning rate is $10^{-3}$.
+Pure DQN uses the reward in~\eqref{eq:reward_dqn}; EG-DQN variants
+and econometric hyperparameters ($\lambda$, masking horizon) are
+specified in the next subsection.
+
+% ── Steps 6c–6d, 7–10: Body sections (pending) ───────────────
 % ── Step 11: Remaining bibliography entries (pending) ──────────
 
 \begin{thebibliography}{99}

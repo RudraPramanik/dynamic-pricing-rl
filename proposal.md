@@ -27,3 +27,16 @@ Keep them here for later review in case we want extra methodological support.
 ## Decision rule before adding
 
 Only add one of these if a reviewer-facing sentence needs explicit support that is **not already covered** by current references (`kopalle2023`, `zhang2025`, `bu2023`, `safonov2024`, `groeneveld2025`, `liu2024`, etc.).
+
+---
+
+## Manuscript staging (Step 6 split)
+
+| Unit | Status | Notes |
+|------|--------|-------|
+| **6a** Network Architecture | ✅ in `index.tex` | 2×128 ReLU, $K=20$, Huber Bellman loss, NumPy DQN |
+| **6b** Training Procedure | ✅ in `index.tex` | 300 ep, buffer 10k, batch 64, target sync 15, $\varepsilon$ 1.0→0.05 |
+| **6c** EG-DQN mechanisms | ⬜ next | state / reward shaping / masking; $\lambda=30$ |
+| **6d** Algorithm block | ⬜ pending | `Algorithm~\ref{alg:egdqn}` |
+
+**Optional cite for 6c (not 6a/6b):** `cheung2023` — guided exploration / nonstationary RL (already in bib).

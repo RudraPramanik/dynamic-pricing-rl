@@ -134,7 +134,7 @@ Historical demand + prices
 
 ### Manuscript rewrite status (`index.tex`)
 
-Steps 0–5 (through **§Econometric Demand Model**) match evidence and Branch~C framing in `index.tex`. **`main.tex`** from §RL Framework onward remains stale reference material. Next: Step~6 — §Reinforcement Learning Framework.
+Steps 0–5 and **6a–6b** (through §RL network + training) are in `index.tex`. **`main.tex`** from §EG-DQN mechanisms / simulation onward remains stale reference. Next: **6c–6d** — EG-DQN integration + algorithm.
 
 ---
 
@@ -233,7 +233,9 @@ Mark: ⬜ not started · 🔄 in progress · ✅ done · 👁 user review
 | 3a–3d | §Related Work (4 subsections) | ✅ |
 | 4a–4c | §Problem Formulation | ✅ |
 | 5a–5b | §Econometric Demand Model | ✅ |
-| 6a–6d | §RL Framework | ⬜ **← next** |
+| 6a | §RL — Network Architecture | ✅ |
+| 6b | §RL — Training Procedure | ✅ |
+| 6c–6d | §RL — EG-DQN mechanisms + algorithm | ⬜ **← next** |
 | 7a–7c | §Simulation Environment | ⬜ |
 | 8a | Results — demand estimation | ⬜ |
 | 8b | Results — revenue (`17.png`) | ⬜ |
@@ -247,7 +249,7 @@ Mark: ⬜ not started · 🔄 in progress · ✅ done · 👁 user review
 | 14 | Abstract ↔ Results sync pass | ⬜ |
 | 15 | Pre-submission checklist | ⬜ |
 
-**Progress:** 7 / ~25 units complete in `index.tex` (~28%). Highest-risk block: **8a–8f** (Results).
+**Progress:** 8 / ~27 units complete in `index.tex` (~30%). Highest-risk block: **8a–8f** (Results).
 
 ---
 
@@ -308,7 +310,7 @@ Full list: `citations.md`.
 
 ## 16. Current focus
 
-1. **Next session:** Step 6 — §RL Framework in `index.tex` (prefer split 6a–6d or group network+training then mechanisms+algorithm).
+1. **Next session:** Step **6c–6d** — EG-DQN integration mechanisms + `Algorithm~\ref{alg:egdqn}` ($\lambda=30$, mask ep 1–30).
 2. **After Results complete:** Step 14 sync pass on Abstract + Conclusion.
 3. **User before submission:** Author names and institution.
 4. **Optional (non-blocking):** Re-run Mann–Whitney EG-DQN vs Pure DQN; fix `data.md` Pure DQN row.
