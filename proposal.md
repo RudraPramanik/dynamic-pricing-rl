@@ -37,8 +37,8 @@ Only add one of these if a reviewer-facing sentence needs explicit support that 
 |------|--------|-------|
 | **7a–7c** Simulation | ✅ in `index.tex` | Defense cites; ε matrix; hyperparams; 5 baselines |
 | **8a** Demand estimation | ✅ in `index.tex` | Tables + `figures/eda.png`, `8.png`, `10.png` |
-| **8b** Revenue | ⬜ **next** | `17.png`; GLM=EG-DQN tie; **alone** (do not merge with 8e) |
-| **8c** Training | ⬜ | `15.png`; no TD-loss claims |
+| **8b** Revenue | ✅ in `index.tex` | `17.png`; GLM=EG-DQN tie @ \$226,764 / \$6; Pure DQN \$183,549 |
+| **8c** Training | ⬜ **next** | `15.png`; no TD-loss claims |
 | **8d** Ablation | ⬜ | `20.png`; 3-config only |
 | **8e** Significance | ⬜ | 3 rows; GLM NS |
 | **8f** Rolling elasticity | ⬜ | `21.png`; no deployment language |
@@ -54,3 +54,16 @@ Only add one of these if a reviewer-facing sentence needs explicit support that 
 | Caption bans | No “structural identification”; no “unbiased / mean near zero” | blueprint |
 
 **Figures in 8a:** `figures/eda.png`, `figures/8.png`, `figures/10.png`.
+
+### Step 8b locked numbers (authoritative — `figures/17.png` Panel D)
+
+| Strategy | Total | vs FP | Avg price |
+|----------|-------|-------|-----------|
+| Fixed-Price | \$175,651 | — | \$10.00 |
+| Rule-Based | \$138,864 | −20.9% | \$16.00 |
+| Pure DQN | \$183,549 | +4.5% | \$9.10 |
+| GLM-Only | \$226,764 | +29.1% | \$6.00 |
+| EG-DQN | \$226,764 | +29.1% | \$6.00 |
+
+**Framing locked:** lead with **tie** + overlap in Panel A; corner at \$6 noted; no “diverges/dominates”; Pure DQN descriptive only (no *p*).  
+**Do not trust** `data.md` Pure DQN row (\$226k) — figure overrides.

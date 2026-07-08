@@ -134,7 +134,7 @@ Historical demand + prices
 
 ### Manuscript rewrite status (`index.tex`)
 
-Steps 0–8a (through **Results — demand estimation**) are in `index.tex`. Next: **Step 8b** — revenue comparison (`figures/17.png` + 5-strategy table; GLM–EG-DQN tie).
+Steps 0–8b (through **Results — revenue comparison**) are in `index.tex`. Next: **Step 8c** — training convergence (`figures/15.png`; rewards only, no TD-loss claims).
 
 ---
 
@@ -239,8 +239,8 @@ Mark: ⬜ not started · 🔄 in progress · ✅ done · 👁 user review
 | 6d | §RL — Algorithm | ✅ |
 | 7a–7c | §Simulation Environment | ✅ |
 | 8a | Results — demand estimation | ✅ |
-| 8b | Results — revenue (`17.png`) | ⬜ **← next** |
-| 8c | Results — training (`15.png`) | ⬜ |
+| 8b | Results — revenue (`17.png`) | ✅ |
+| 8c | Results — training (`15.png`) | ⬜ **← next** |
 | 8d | Results — ablation (`20.png`) | ⬜ |
 | 8e | Results — significance | ⬜ |
 | 8f | Results — rolling elasticity (`21.png`) | ⬜ |
@@ -250,7 +250,7 @@ Mark: ⬜ not started · 🔄 in progress · ✅ done · 👁 user review
 | 14 | Abstract ↔ Results sync pass | ⬜ |
 | 15 | Pre-submission checklist | ⬜ |
 
-**Progress:** 14 / ~27 units complete in `index.tex` (~52%). Highest-risk next: **8b** (revenue / tie).
+**Progress:** 15 / ~27 units complete in `index.tex` (~56%). Next light unit: **8c** (training); then **8d** ablation.
 
 ---
 
@@ -311,10 +311,10 @@ Full list: `citations.md`.
 
 ## 16. Current focus
 
-1. **Next session:** Step **8b only** — holdout revenue (`figures/17.png`, 5-strategy table). Lead with GLM–EG-DQN **tie**; no “dominates/diverges.” Do not combine with 8e.
+1. **Next session:** Step **8c** — training convergence (`figures/15.png`). Report episode-reward improvement only; **omit** TD-loss claims and ep 35/68 / 61% variance.
 2. **After Results complete:** Step 14 sync pass on Abstract + Conclusion.
 3. **User before submission:** Author names and institution.
-4. **Optional (non-blocking):** Re-run Mann–Whitney EG-DQN vs Pure DQN; fix `data.md` Pure DQN row.
+4. **Optional (non-blocking):** Re-run Mann–Whitney EG-DQN vs Pure DQN; fix `data.md` Pure DQN row (stale \$226k; figure says \$183,549).
 5. **Optional citation candidates:** See `proposal.md` (“Citation Parking Lot”) — keep parked unless a reviewer gap appears.
 
 ---

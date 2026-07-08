@@ -802,7 +802,73 @@ $\approx -4.57$ units/day.}
 \label{fig:forecast}
 \end{figure}
 
-% ── Steps 8b–10: Revenue / Discussion / Conclusion (pending) ───
+% ── Step 8b: Results — Revenue Comparison ────────────────────
+\subsection{Revenue Comparison}
+
+Table~\ref{tab:revenue} and Figure~\ref{fig:revenue} report holdout
+revenue for Item~1 over the final 120~days under the five strategies
+defined in Section~\ref{sec:simulation}.
+Totals are taken from Panel~D of Figure~\ref{fig:revenue}; daily
+averages equal total revenue divided by~120.
+
+On this window, \textbf{GLM-optimal and EG-DQN attain identical cumulative
+revenue} (\$226{,}764) and select the same constant price of \$6 on the
+discrete grid---the lower bound of the action set.
+The two cumulative-revenue paths in Panel~A therefore overlap for the
+entire holdout.
+Relative to the fixed-price floor (\$175{,}651), that common outcome is
+$+29.1\%$ in this simulation; relative to the rule-based heuristic
+(\$138{,}864), the gap is larger still.
+Pure DQN earns \$183{,}549 ($+4.5\%$ vs.\ fixed-price) at an average
+holdout price of \$9.10---higher than the naive floor, but below the
+GLM/EG-DQN total.
+We report the Pure DQN gap descriptively here; a Mann--Whitney
+comparison is deferred until daily series can be re-tested cleanly.
+
+All five learned or scripted policies are effectively constant-price on
+the holdout in this run (Panel~C): rule-based at \$16, fixed-price at
+\$10, Pure DQN near \$9.10, and GLM/EG-DQN at \$6.
+The \$6 outcome is a \emph{corner solution} on the discrete grid rather
+than rich day-to-day price variation; we return to that limitation in the
+Discussion.
+Percentage lifts versus fixed-price should therefore be read with that
+price path in mind.
+Panel~B shows that daily revenue distributions for GLM-optimal and
+EG-DQN likewise coincide, consistent with the identical price policy.
+
+\begin{table}[H]
+\centering
+\caption{Holdout revenue --- Item~1, 120~days (source:
+Figure~\ref{fig:revenue}, Panel~D).
+Daily average $=$ total$/120$.
+``vs.\ FP'' is relative to Fixed-Price in this simulation.}
+\label{tab:revenue}
+\begin{tabular}{lrrrr}
+\toprule
+\textbf{Strategy} & \textbf{Total (\$)} & \textbf{Daily (\$)} &
+  \textbf{vs.\ FP} & \textbf{Avg price (\$)} \\
+\midrule
+Fixed-Price       & 175{,}651 & 1{,}464 & ---      & 10.00 \\
+Rule-Based        & 138{,}864 & 1{,}157 & $-20.9\%$ & 16.00 \\
+Pure DQN          & 183{,}549 & 1{,}530 & $+4.5\%$  & 9.10 \\
+GLM-Only          & 226{,}764 & 1{,}890 & $+29.1\%$ & 6.00 \\
+EG-DQN            & 226{,}764 & 1{,}890 & $+29.1\%$ & 6.00 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/17.png}
+\caption{Strategy comparison on the Item~1 holdout (120~days).
+Panel~A: cumulative revenue (GLM-Only and EG-DQN overlap).
+Panel~B: daily revenue distributions.
+Panel~C: holdout price paths (constant for each strategy in this run).
+Panel~D: total revenue with printed dollar values.}
+\label{fig:revenue}
+\end{figure*}
+
+% ── Steps 8c–10: Training / Discussion / Conclusion (pending) ─
 % ── Step 11: Remaining bibliography entries (pending) ──────────
 
 \begin{thebibliography}{99}

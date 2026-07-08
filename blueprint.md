@@ -743,7 +743,7 @@ Mark: `⬜` not started · `🔄` in progress · `✅` done · `👁` your revie
 | Step | Unit | `main.tex` | Figures | Tables | Citations | Status |
 |------|------|------------|---------|--------|-----------|--------|
 | 8a | Demand estimation accuracy | `\subsection{Demand Estimation...}` | `eda.png`, `8.png`, `10.png` | elasticity, forecast | — | ✅ |
-| 8b | **Revenue comparison** | `\subsection{Revenue Comparison}` | `17.png` | revenue (5 strategies) | kumar2026 optional | ⬜ |
+| 8b | **Revenue comparison** | `\subsection{Revenue Comparison}` | `17.png` | revenue (5 strategies) | kumar2026 optional | ✅ |
 | 8c | Training convergence | `\subsection{Convergence Analysis}` | `15.png` | — | cheung2023 | ⬜ |
 | 8d | Ablation | `\subsection{Ablation Study}` | `20.png` | 3-config ablation | safonov2024 | ⬜ |
 | 8e | Significance | `\subsection{Statistical Significance}` | — | 3 rows (FP, RB, GLM) | — | ⬜ |
