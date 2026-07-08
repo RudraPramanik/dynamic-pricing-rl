@@ -23,7 +23,7 @@ Keep them here for later review in case we want extra methodological support.
 
 - `Abstract` / `Introduction`: already citation-dense and reviewer-safe.
 - `§VII Simulation Environment`: already supported by `nambiar2022`, `xia2023`, `xia2024`, `chen2023`.
-- `§VIII Results`: results should stay tied to our own simulation evidence (`data.md`, `figures/`), not extra literature.
+- `§VIII Results`: results stay tied to our own simulation evidence (`data.md`, `figures/`), not extra literature.
 
 ## Decision rule before adding
 
@@ -35,12 +35,22 @@ Only add one of these if a reviewer-facing sentence needs explicit support that 
 
 | Unit | Status | Notes |
 |------|--------|-------|
-| **6a–6d** RL Framework | ✅ in `index.tex` | Network, training, mechanisms, Algorithm |
-| **7a** Design & calibration | ✅ in `index.tex` | $T=1460$, seed 42, ε matrix, sim defense cites |
-| **7b** Hyperparameters | ✅ in `index.tex` | Table `tab:hyperparams`; $K=20$, $\$6$–$\$16$, $\lambda=30$ |
-| **7c** Baselines | ✅ in `index.tex` | FP, RB, GLM, Pure DQN, EG-DQN |
-| **8a** Demand estimation | ⬜ **next** | `eda.png`, `8.png`, `10.png`; elasticity + forecast tables |
+| **7a–7c** Simulation | ✅ in `index.tex` | Defense cites; ε matrix; hyperparams; 5 baselines |
+| **8a** Demand estimation | ✅ in `index.tex` | Tables + `figures/eda.png`, `8.png`, `10.png` |
+| **8b** Revenue | ⬜ **next** | `17.png`; GLM=EG-DQN tie; **alone** (do not merge with 8e) |
+| **8c** Training | ⬜ | `15.png`; no TD-loss claims |
+| **8d** Ablation | ⬜ | `20.png`; 3-config only |
+| **8e** Significance | ⬜ | 3 rows; GLM NS |
+| **8f** Rolling elasticity | ⬜ | `21.png`; no deployment language |
 
-**Step 7 figure note:** No plot required in §Simulation (protocol only). `figures/eda.png` attaches in **Step 8a**.
+### Step 8a locked numbers (authoritative)
 
-**Added in Step 7:** `\bibitem{xia2024}` (simulation benchmarking of retail RL agents).
+| Item | Value | Source |
+|------|-------|--------|
+| Own-price ê Item 1/2/3 | −1.519 / −1.770 / −1.245 | `data.md` cell 7 |
+| Rel. bias | 1.2% / 1.7% / **3.7%** | same |
+| Holdout MAPE / R² (Item 1) | **5.20%** / **0.965** | `data.md` cell 9 |
+| Mean test residual | ≈ −4.57 | `figures/10.png` Panel B |
+| Caption bans | No “structural identification”; no “unbiased / mean near zero” | blueprint |
+
+**Figures in 8a:** `figures/eda.png`, `figures/8.png`, `figures/10.png`.

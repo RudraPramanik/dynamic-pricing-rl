@@ -134,7 +134,7 @@ Historical demand + prices
 
 ### Manuscript rewrite status (`index.tex`)
 
-Steps 0–7 (through **§Simulation Environment**) are in `index.tex`. **`main.tex`** from §Results onward remains a stale reference. Next: **Step 8a** — Results demand estimation (`eda.png`, `8.png`, `10.png`).
+Steps 0–8a (through **Results — demand estimation**) are in `index.tex`. Next: **Step 8b** — revenue comparison (`figures/17.png` + 5-strategy table; GLM–EG-DQN tie).
 
 ---
 
@@ -238,8 +238,8 @@ Mark: ⬜ not started · 🔄 in progress · ✅ done · 👁 user review
 | 6c | §RL — EG-DQN mechanisms | ✅ |
 | 6d | §RL — Algorithm | ✅ |
 | 7a–7c | §Simulation Environment | ✅ |
-| 8a | Results — demand estimation | ⬜ **← next** |
-| 8b | Results — revenue (`17.png`) | ⬜ |
+| 8a | Results — demand estimation | ✅ |
+| 8b | Results — revenue (`17.png`) | ⬜ **← next** |
 | 8c | Results — training (`15.png`) | ⬜ |
 | 8d | Results — ablation (`20.png`) | ⬜ |
 | 8e | Results — significance | ⬜ |
@@ -250,7 +250,7 @@ Mark: ⬜ not started · 🔄 in progress · ✅ done · 👁 user review
 | 14 | Abstract ↔ Results sync pass | ⬜ |
 | 15 | Pre-submission checklist | ⬜ |
 
-**Progress:** 13 / ~27 units complete in `index.tex` (~48%). Highest-risk block next: **8a–8f** (Results).
+**Progress:** 14 / ~27 units complete in `index.tex` (~52%). Highest-risk next: **8b** (revenue / tie).
 
 ---
 
@@ -311,7 +311,7 @@ Full list: `citations.md`.
 
 ## 16. Current focus
 
-1. **Next session:** Step **8a** — Results demand estimation (elasticity + forecast tables; `figures/eda.png`, `8.png`, `10.png`). Prefer one Results sub-unit per review pass.
+1. **Next session:** Step **8b only** — holdout revenue (`figures/17.png`, 5-strategy table). Lead with GLM–EG-DQN **tie**; no “dominates/diverges.” Do not combine with 8e.
 2. **After Results complete:** Step 14 sync pass on Abstract + Conclusion.
 3. **User before submission:** Author names and institution.
 4. **Optional (non-blocking):** Re-run Mann–Whitney EG-DQN vs Pure DQN; fix `data.md` Pure DQN row.

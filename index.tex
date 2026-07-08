@@ -701,7 +701,108 @@ chosen prices.
 Statistical comparisons of daily revenue series follow in the results
 section; the present section only fixes the protocol.
 
-% ── Steps 8–10: Results / Discussion / Conclusion (pending) ───
+% ── Step 8a: Results — Demand Estimation ───────────────────────
+\section{Experiments and Results}
+\label{sec:results}
+
+\subsection{Demand Estimation Accuracy}
+
+We first check that the fitted Poisson GLM recovers usable demand
+structure in the calibrated simulator before pricing policies are
+compared.
+Figure~\ref{fig:eda} summarises the three-product series: step-function
+prices, seasonal demand, log--log price--demand scatters, and marginal
+demand distributions over the full horizon.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/eda.png}
+\caption{Exploratory view of the synthetic retail series (Items~1--3).
+Left: daily demand (solid) and list price (dashed).
+Centre: log--log price--demand scatter with OLS slope.
+Right: demand histogram with a normal overlay.
+The horizon spans 2021--2024 under the M5/Favorita-calibrated DGP.}
+\label{fig:eda}
+\end{figure*}
+
+Table~\ref{tab:elasticity_results} compares estimated own-price
+elasticities with the ground-truth parameters of~\eqref{eq:dgp}.
+Relative absolute biases are $1.2\%$, $1.7\%$, and $3.7\%$ for
+Items~1--3 respectively (largest on Item~3).
+We therefore report elasticity recovery \emph{within about $3.7\%$} in
+this run, rather than a tighter uniform bound.
+Cross-price signs match the substitution structure in
+Table~\ref{tab:elasticity_matrix}.
+Figure~\ref{fig:elasticity_validation} overlays GLM and true demand
+curves against price: slopes agree closely with the simulator, while
+fitted \emph{levels} sit above observed demand---a level misfit we treat
+as a modelling caveat rather than as formal structural identification.
+
+\begin{table}[H]
+\centering
+\caption{GLM own-price elasticity estimates versus simulator truth
+(HC3-robust standard errors). Relative bias is
+$|\hat\varepsilon-\varepsilon|/|\varepsilon|$.}
+\label{tab:elasticity_results}
+\begin{tabular}{lrrrr}
+\toprule
+\textbf{Product} & \textbf{True $\varepsilon$} &
+  \textbf{Est.\ $\hat\varepsilon$} & \textbf{Bias} &
+  \textbf{Rel.\ bias} \\
+\midrule
+Item 1 & $-1.500$ & $-1.519$ & $-0.019$ & $1.2\%$ \\
+Item 2 & $-1.800$ & $-1.770$ & $+0.030$ & $1.7\%$ \\
+Item 3 & $-1.200$ & $-1.245$ & $-0.045$ & $3.7\%$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\columnwidth]{figures/8.png}
+\caption{GLM demand curves versus ground-truth DGP curves for Items~1--3.
+Annotated relative biases refer to own-price elasticity recovery
+($1.2\%$, $1.7\%$, $3.7\%$); curve \emph{levels} are not claimed to match.}
+\label{fig:elasticity_validation}
+\end{figure}
+
+Table~\ref{tab:forecast} reports in-sample fit and 120-day holdout
+forecast accuracy for Item~1, the product used in the revenue comparison.
+Holdout MAPE is $5.20\%$ and $R^2$ is $0.965$.
+Figure~\ref{fig:forecast} shows fitted and forecast paths against
+realised demand; Panel~B residuals on the holdout window have mean
+approximately $-4.57$ units/day, indicating a slight systematic
+over-forecast even though percentage error remains modest.
+
+\begin{table}[H]
+\centering
+\caption{GLM forecast performance for Item~1 (Poisson log-link).
+Train covers the pre-holdout window; test is the final 120~days.}
+\label{tab:forecast}
+\begin{tabular}{lrr}
+\toprule
+\textbf{Metric} & \textbf{Train} & \textbf{Test (120-day)} \\
+\midrule
+MAE (units/day) & $4.80$ & $5.81$ \\
+RMSE            & $6.17$ & $7.07$ \\
+MAPE (\%)       & $5.22$ & $5.20$ \\
+$R^2$           & $0.983$ & $0.965$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\columnwidth]{figures/10.png}
+\caption{GLM demand fit and 120-day holdout forecast for Item~1
+(Poisson log-link).
+Panel~A: training actual/fitted and test actual/forecast.
+Panel~B: test residuals (actual $-$ forecast); mean residual
+$\approx -4.57$ units/day.}
+\label{fig:forecast}
+\end{figure}
+
+% ── Steps 8b–10: Revenue / Discussion / Conclusion (pending) ───
 % ── Step 11: Remaining bibliography entries (pending) ──────────
 
 \begin{thebibliography}{99}
