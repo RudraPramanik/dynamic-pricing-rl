@@ -219,9 +219,9 @@ Mark: ⬜ not started · 🔄 in progress · ✅ done · 👁 user review
 |------|--------|
 | Evidence package (`data.md`, `figures/`) | ✅ |
 | Claims Ledger + Branch C framing | ✅ |
-| Citations in `index.tex` | ✅ **27** refs · 0 orphans · arXiv **34.6%** |
+| Citations in `index.tex` | ✅ **29** refs · 0 orphans · arXiv **31.0%** |
 | Wave 1 expansion (`proposal.md` R0–R7) | ✅ complete (2026-07-09) |
-| Wave 2 expansion (`proposal.md` R8–R10) | 🔄 R8 done |
+| Wave 2 expansion (`proposal.md` R8–R10) | ✅ complete (2026-07-09) |
 | Author block | ⬜ placeholder |
 
 ### Section-by-section rewrite (`index.tex`)
@@ -248,7 +248,7 @@ Mark: ⬜ not started · 🔄 in progress · ✅ done · 👁 user review
 | 8f | Results — rolling elasticity (`21.png`) | ✅ |
 | 9a–9c | §Discussion | ✅ |
 | 10 | §Conclusion | ✅ |
-| 11 | References | ✅ Wave 1 + R8 (27 keys) |
+| 11 | References | ✅ Wave 1 + Wave 2 (29 keys) |
 | 14 | Abstract ↔ Results sync pass | ✅ |
 | 15 | Pre-submission checklist | ✅ |
 
@@ -272,8 +272,10 @@ Mark: ⬜ not started · 🔄 in progress · ✅ done · 👁 user review
 | Step | Task | Status |
 |------|------|--------|
 | R8 | `denboer2024` — §Limitations + §Path to Deployment | ✅ |
-| R9 | `wang2025loyalty` — §Limitations | ⬜ |
-| R10 | `mohamadi2024` or `meilan2026` — §Conclusion | ⬜ |
+| R9 | `wang2025loyalty` — §Limitations | ✅ |
+| R10 | `meilan2026` — §Conclusion (finite-horizon; not `mohamadi2024`) | ✅ |
+
+**Wave 2 adds (+3):** `denboer2024`, `wang2025loyalty`, `meilan2026`. **Skipped:** `mohamadi2024` (overlaps `yavuz2024`, `nomura2025`).
 
 ---
 
@@ -322,6 +324,8 @@ Mark: ⬜ not started · 🔄 in progress · ✅ done · 👁 user review
 | `liu2024` | Retail omni-channel DRL + inventory |
 | `xia2023`, `xia2024` | Synthetic retail data / simulation benchmarking |
 | `denboer2024` | Q-learning collusion / regulatory caution — Limitations + Path to Deployment |
+| `wang2025loyalty` | DRL pricing vs perceived fairness and loyalty — Limitations caveat |
+| `meilan2026` | Finite-horizon industrial pricing — Conclusion future work |
 | `kumar2026`, `hadi2025` | MARL joint / supply-chain pricing — cited in Conclusion future work |
 | `cheung2023` | Nonstationary RL / guided exploration |
 
@@ -342,9 +346,8 @@ Full list: `citations.md`.
 
 ## 16. Current focus
 
-1. **Optional Wave 2** — next: **R9** (`wang2025loyalty` in §Limitations); see `proposal.md`.
-2. **User before submission:** Replace `[Author Name(s)]`, department, university, email in `index.tex`.
-3. **Optional:** Mann–Whitney re-run vs Pure DQN; fix `data.md` cell-16 Pure DQN row.
+1. **User before submission:** Replace `[Author Name(s)]`, department, university, email in `index.tex`.
+2. **Optional:** Mann–Whitney re-run vs Pure DQN; fix `data.md` cell-16 Pure DQN row.
 
 ---
 

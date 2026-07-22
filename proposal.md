@@ -298,8 +298,10 @@ Only start if R7 is complete and user wants 27 → 30 refs.
 | Step | Key | Section | Draft role | Status |
 |------|-----|---------|------------|--------|
 | R8 | `denboer2024` | §Limitations + §Path to Deployment (1 clause each) | Q-learning collusion caution; no multi-firm simulation | ✅ |
-| R9 | `wang2025loyalty` | §Limitations | Fairness / loyalty not evaluated | ⬜ |
-| R10 | `mohamadi2024` **or** `meilan2026` | §Conclusion future work | Pick **one** perishable/finite-horizon angle (avoid overlap with `yavuz2024`, `nomura2025`) | ⬜ |
+| R9 | `wang2025loyalty` | §Limitations | Fairness / loyalty not evaluated | ✅ |
+| R10 | `meilan2026` | §Conclusion future work | Finite-horizon angle (skipped `mohamadi2024` — overlaps perishable cites) | ✅ |
+
+**Wave 2 status:** **COMPLETE** (R8–R10).
 
 **Wave 2 arXiv impact:** `denboer2024` is *Manag. Sci.* (journal DOI) — arXiv share unchanged at **9/27 = 33.3%**.
 
@@ -411,9 +413,9 @@ Only add if:
 
 **Wave 1:** ✅ complete (R0–R7, 2026-07-09).
 
-**Wave 2 (optional):** R8 ✅ · next **R9** (`wang2025loyalty`).
+**Wave 2:** ✅ complete (R8–R10, 2026-07-09). **29** total references in `index.tex`.
 
-> **“Implement Wave 2 — Step R9”** — fairness / loyalty limitation cite.
+**Next:** author block + optional Mann–Whitney re-run before submission.
 
 ---
 
@@ -424,7 +426,7 @@ Only add if:
 | **7a–7c** Simulation | ✅ | Defense cites; ε matrix; hyperparams; 5 baselines |
 | **8a–8f** Results | ✅ | All figures + tables aligned to `data.md` / `figures/` |
 | **9–10** Discussion / Conclusion | ✅ | Tier-safe framing |
-| **11** References | 🔄 | 27 keys — Wave 1 + **R8** (`denboer2024`) |
+| **11** References | ✅ | 29 keys — Wave 1 + Wave 2 complete |
 | **14–15** Sync + pre-submission | ✅ | Re-run R7 after expansion; author block still placeholder |
 
 ### Locked results numbers (do not change when adding cites)
