@@ -10,7 +10,7 @@
 |------|---------|
 | **`context.md`** (this) | What the project is, how agents should behave, **progress snapshot** |
 | **`blueprint.md`** | Claim tiers, authoritative tables, step done-criteria, section-by-section edit plan |
-| **`data.md` + `figures/`** | Source of truth for all numbers (`figures/17.png` overrides `data.md` on Pure DQN revenue) |
+| **`data.md` + `figures/`** | Source of truth for all numbers (`figures/fig-revenue.png` overrides `data.md` on Pure DQN revenue) |
 
 ---
 
@@ -114,7 +114,7 @@ Historical demand + prices
 
 **Rule:** Every number in `main.tex` must trace to `data.md` or `figures/`. Full tables, claim tiers, and delete-list → **`blueprint.md`**.
 
-### Holdout revenue — Item 1, 120 days (`figures/17.png`)
+### Holdout revenue — Item 1, 120 days (`figures/fig-revenue.png`)
 
 | Strategy | Total (\$) | vs FP | Avg price (\$) |
 |----------|------------|-------|----------------|

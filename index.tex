@@ -727,7 +727,7 @@ demand distributions over the full horizon.
 
 \begin{figure*}[t]
 \centering
-\includegraphics[width=\textwidth]{figures/eda.png}
+\includegraphics[width=\textwidth]{figures/fig-eda.png}
 \caption{Exploratory view of the synthetic retail series (Items~1--3).
 Left: daily demand (solid) and list price (dashed).
 Centre: log--log price--demand scatter with OLS slope.
@@ -770,7 +770,7 @@ Item 3 & $-1.200$ & $-1.245$ & $-0.045$ & $3.7\%$ \\
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=\columnwidth]{figures/8.png}
+\includegraphics[width=\columnwidth]{figures/fig-elasticity_validation.png}
 \caption{GLM demand curves versus ground-truth DGP curves for Items~1--3.
 Annotated relative biases refer to own-price elasticity recovery
 ($1.2\%$, $1.7\%$, $3.7\%$); curve \emph{levels} are not claimed to match.}
@@ -804,7 +804,7 @@ $R^2$           & $0.983$ & $0.965$ \\
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=\columnwidth]{figures/10.png}
+\includegraphics[width=\columnwidth]{figures/fig-forecast.png}
 \caption{GLM demand fit and 120-day holdout forecast for Item~1
 (Poisson log-link).
 Panel~A: training actual/fitted and test actual/forecast.
@@ -870,7 +870,7 @@ EG-DQN            & 226{,}764 & 1{,}890 & $+29.1\%$ & 6.00 \\
 
 \begin{figure*}[t]
 \centering
-\includegraphics[width=\textwidth]{figures/17.png}
+\includegraphics[width=\textwidth]{figures/fig-revenue.png}
 \caption{Strategy comparison on the Item~1 holdout (120~days).
 Panel~A: cumulative revenue (GLM-Only and EG-DQN overlap).
 Panel~B: daily revenue distributions.
@@ -907,7 +907,7 @@ variance or loss-decay result.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=\columnwidth]{figures/15.png}
+\includegraphics[width=\columnwidth]{figures/fig-convergence.png}
 \caption{Training trajectories for Pure DQN and EG-DQN (Item~1, $300$
 episodes).
 Left: episode revenue with a $20$-episode moving average.
@@ -961,7 +961,7 @@ Full EG-DQN        & 226{,}764 & $+30.5\%$ \\
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=\columnwidth]{figures/20.png}
+\includegraphics[width=\columnwidth]{figures/fig-ablation.png}
 \caption{Ablation study (Item~1).
 Panel~A: episode revenue during training ($200$ episodes per
 configuration).
@@ -1040,7 +1040,7 @@ GLM prior would remain dependable in a live store without revalidation.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=\columnwidth]{figures/21.png}
+\includegraphics[width=\columnwidth]{figures/fig-rolling_elasticity.png}
 \caption{Rolling twelve-month GLM own-price elasticity for Item~1
 ($30$-day step).
 Blue line: point estimate; shaded band: approximate $95\%$ interval;

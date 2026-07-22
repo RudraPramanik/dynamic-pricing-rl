@@ -7,7 +7,7 @@
 **Authoritative evidence (locked 2026-07-02):**
 - `data.md` — notebook stdout exports
 - `figures/` — all 7 figures from the same research run
-- **`figures/17.png` overrides `data.md` on Pure DQN revenue** (table row is wrong)
+- **`figures/fig-revenue.png` overrides `data.md` on Pure DQN revenue** (table row is wrong)
 
 **Files in scope:**
 - `main.tex` — manuscript (**must be rewritten to match evidence**)
@@ -308,13 +308,13 @@ For each Step (0–12):
 
 | File | Role | Use in `main.tex` |
 |------|------|-------------------|
-| `figures/eda.png` | EDA 3×3 panel | `\includegraphics{figures/eda.png}` |
-| `figures/8.png` | Elasticity validation | `\includegraphics{figures/8.png}` |
-| `figures/10.png` | GLM forecast Item 1 | `\includegraphics{figures/10.png}` |
-| `figures/15.png` | Training convergence | `\includegraphics{figures/15.png}` |
-| `figures/17.png` | Revenue 2×2 panel | `\includegraphics{figures/17.png}` |
-| `figures/20.png` | Ablation (3 configs) | `\includegraphics{figures/20.png}` |
-| `figures/21.png` | Rolling elasticity | `\includegraphics{figures/21.png}` |
+| `figures/fig-eda.png` | EDA 3×3 panel | `\includegraphics{figures/fig-eda.png}` |
+| `figures/fig-elasticity_validation.png` | Elasticity validation | `\includegraphics{figures/fig-elasticity_validation.png}` |
+| `figures/fig-forecast.png` | GLM forecast Item 1 | `\includegraphics{figures/fig-forecast.png}` |
+| `figures/fig-convergence.png` | Training convergence | `\includegraphics{figures/fig-convergence.png}` |
+| `figures/fig-revenue.png` | Revenue 2×2 panel | `\includegraphics{figures/fig-revenue.png}` |
+| `figures/fig-ablation.png` | Ablation (3 configs) | `\includegraphics{figures/fig-ablation.png}` |
+| `figures/fig-rolling_elasticity.png` | Rolling elasticity | `\includegraphics{figures/fig-rolling_elasticity.png}` |
 
 **Action:** Update all `\includegraphics` paths in `main.tex` to `figures/` prefix (or copy files to project root — pick one convention).
 
@@ -353,7 +353,7 @@ For each Step (0–12):
 
 ### Table: Revenue — 120-day holdout, Item 1
 
-*Source: `figures/17.png` Panel D (authoritative). Daily avg = Total / 120.*
+*Source: `figures/fig-revenue.png` Panel D (authoritative). Daily avg = Total / 120.*
 
 | Strategy | Total (\$) | Daily (\$) | vs Fixed-Price | Avg Price (\$) |
 |----------|------------|------------|----------------|----------------|
@@ -378,7 +378,7 @@ For each Step (0–12):
 
 ### Table: Ablation — 3 configurations (this run)
 
-*Source: `figures/20.png` Panel B. 200 training episodes per config.*
+*Source: `figures/fig-ablation.png` Panel B. 200 training episodes per config.*
 
 | Variant | Test revenue (\$) | vs Pure DQN |
 |---------|---------------------|-------------|
@@ -390,7 +390,7 @@ For each Step (0–12):
 
 ### Table: GLM elasticity estimation
 
-*Source: `data.md` cell 7 + `figures/8.png`.*
+*Source: `data.md` cell 7 + `figures/fig-elasticity_validation.png`.*
 
 | Product | True ε | Est. ε̂ | Rel. bias |
 |---------|--------|--------|-----------|
@@ -402,7 +402,7 @@ For each Step (0–12):
 
 ### Table: GLM forecast — Item 1 holdout
 
-*Source: `data.md` cell 9 + `figures/10.png`.*
+*Source: `data.md` cell 9 + `figures/fig-forecast.png`.*
 
 | Metric | Train | Test (120-day) |
 |--------|-------|----------------|
@@ -415,7 +415,7 @@ For each Step (0–12):
 
 ### Training statistics (prose only — no ep 35/68)
 
-*Source: `data.md` cells 15–15b + `figures/15.png`.*
+*Source: `data.md` cells 15–15b + `figures/fig-convergence.png`.*
 
 | Metric | Pure DQN | EG-DQN |
 |--------|----------|--------|
