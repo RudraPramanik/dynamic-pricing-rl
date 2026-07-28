@@ -683,6 +683,20 @@ Random seed               & 42             & Full pipeline \\
 \end{tabular}
 \end{table}
 
+% IEEEtran defers figure* to the next page after the call site. Emit it
+% here (still in Simulation) so Fig.~1 tops the Results page rather than
+% appearing after the single-column demand figures.
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=\textwidth]{figures/fig-eda.png}
+\caption{Exploratory view of the synthetic retail series (Items~1--3).
+Left: daily demand (solid) and list price (dashed).
+Centre: log--log price--demand scatter with OLS slope.
+Right: demand histogram with a normal overlay.
+The horizon spans 2021--2024 under the M5/Favorita-calibrated DGP.}
+\label{fig:eda}
+\end{figure*}
+
 \subsection{Baseline Strategies}
 
 Five pricing strategies are compared on the same simulated trajectories
@@ -725,17 +739,6 @@ Figure~\ref{fig:eda} summarises the three-product series: step-function
 prices, seasonal demand, log--log price--demand scatters, and marginal
 demand distributions over the full horizon.
 
-\begin{figure*}[t]
-\centering
-\includegraphics[width=\textwidth]{figures/fig-eda.png}
-\caption{Exploratory view of the synthetic retail series (Items~1--3).
-Left: daily demand (solid) and list price (dashed).
-Centre: log--log price--demand scatter with OLS slope.
-Right: demand histogram with a normal overlay.
-The horizon spans 2021--2024 under the M5/Favorita-calibrated DGP.}
-\label{fig:eda}
-\end{figure*}
-
 Table~\ref{tab:elasticity_results} compares estimated own-price
 elasticities with the ground-truth parameters of~\eqref{eq:dgp}.
 Relative absolute biases are $1.2\%$, $1.7\%$, and $3.7\%$ for
@@ -768,7 +771,7 @@ Item 3 & $-1.200$ & $-1.245$ & $-0.045$ & $3.7\%$ \\
 \end{tabular}
 \end{table}
 
-\begin{figure}[H]
+\begin{figure}[!t]
 \centering
 \includegraphics[width=\columnwidth]{figures/fig-elasticity_validation.png}
 \caption{GLM demand curves versus ground-truth DGP curves for Items~1--3.
@@ -802,7 +805,7 @@ $R^2$           & $0.983$ & $0.965$ \\
 \end{tabular}
 \end{table}
 
-\begin{figure}[H]
+\begin{figure}[!t]
 \centering
 \includegraphics[width=\columnwidth]{figures/fig-forecast.png}
 \caption{GLM demand fit and 120-day holdout forecast for Item~1
@@ -815,6 +818,19 @@ $\approx -4.57$ units/day.}
 
 % ── Step 8b: Results — Revenue Comparison ────────────────────
 \subsection{Revenue Comparison}
+
+% Emit the wide revenue float before the long prose / later [t] figures
+% so IEEEtran can place Fig.~4 ahead of Fig.~5 (convergence).
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=\textwidth]{figures/fig-revenue.png}
+\caption{Strategy comparison on the Item~1 holdout (120~days).
+Panel~A: cumulative revenue (GLM-Only and EG-DQN overlap).
+Panel~B: daily revenue distributions.
+Panel~C: holdout price paths (constant for each strategy in this run).
+Panel~D: total revenue with printed dollar values.}
+\label{fig:revenue}
+\end{figure*}
 
 Table~\ref{tab:revenue} and Figure~\ref{fig:revenue} report holdout
 revenue for Item~1 over the final 120~days under the five strategies
@@ -868,17 +884,6 @@ EG-DQN            & 226{,}764 & 1{,}890 & $+29.1\%$ & 6.00 \\
 \end{tabular}
 \end{table}
 
-\begin{figure*}[t]
-\centering
-\includegraphics[width=\textwidth]{figures/fig-revenue.png}
-\caption{Strategy comparison on the Item~1 holdout (120~days).
-Panel~A: cumulative revenue (GLM-Only and EG-DQN overlap).
-Panel~B: daily revenue distributions.
-Panel~C: holdout price paths (constant for each strategy in this run).
-Panel~D: total revenue with printed dollar values.}
-\label{fig:revenue}
-\end{figure*}
-
 % ── Step 8c: Results — Training Convergence ───────────────────
 \subsection{Training Convergence}
 
@@ -905,7 +910,7 @@ settings~\cite{cheung2023}; here that design choice sits alongside the
 reward-shaping and state-augmentation mechanisms rather than as a claimed
 variance or loss-decay result.
 
-\begin{figure}[H]
+\begin{figure}[!t]
 \centering
 \includegraphics[width=\columnwidth]{figures/fig-convergence.png}
 \caption{Training trajectories for Pure DQN and EG-DQN (Item~1, $300$
@@ -959,7 +964,7 @@ Full EG-DQN        & 226{,}764 & $+30.5\%$ \\
 \end{tabular}
 \end{table}
 
-\begin{figure}[H]
+\begin{figure}[!t]
 \centering
 \includegraphics[width=\columnwidth]{figures/fig-ablation.png}
 \caption{Ablation study (Item~1).

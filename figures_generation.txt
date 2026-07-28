@@ -1,0 +1,196 @@
+Figure Generation Procedure
+===========================
+Project: Econometric-Guided Deep Q-Network (EG-DQN) dynamic pricing paper
+Source notebook: Dynamic_pricing_hybrid_EG_DQN.ipynb
+Manuscript figures: figures/fig-<label>.png (matched to LaTeX \label{fig:...})
+
+This document describes how every figure used in the paper was produced.
+All seven figures come from a single sequential run of the experimental
+notebook. They were originally written to temporary paths under /tmp/ and
+later copied into figures/ with publication names.
+
+
+1. Software stack
+-----------------
+- Python (NumPy, pandas)
+- statsmodels (Poisson GLM via formula API)
+- matplotlib + seaborn (plotting)
+- scipy (distributions / significance tests elsewhere in the notebook)
+- NumPy-based Deep Q-Network (no PyTorch / TensorFlow dependency)
+
+Plot theme:
+  sns.set_theme(style="whitegrid", palette="husl", font_scale=1.1)
+
+Export settings (all figures):
+  plt.savefig(..., dpi=120, bbox_inches='tight')
+
+
+2. Reproducibility settings
+---------------------------
+SEED = 42
+  np.random.seed(SEED)
+  random.seed(SEED)
+
+Simulation horizon:
+  N_DAYS       = 365 * 4   # 1,460 daily observations
+  START_DATE   = 2021-01-01
+  HOLDOUT_DAYS = 120       # final 120 days = test / holdout
+  TRAIN_DAYS   = N_DAYS - HOLDOUT_DAYS
+
+Products: item_1, item_2, item_3 (substitutes)
+Focus of RL / revenue / forecast figures: Item 1
+Item 1 discrete action grid: 20 prices on [$6.0, $16.0]
+
+
+3. End-to-end pipeline (run order)
+----------------------------------
+Figures are not standalone scripts. Each plot depends on objects created
+earlier in the notebook. The required order is:
+
+  (1) Imports, seed, plot style
+  (2) Ground-truth DGP parameters
+  (3) Synthetic price + demand generation
+  (4) Exploratory Data Analysis          --> fig-eda
+  (5) Feature engineering
+  (6) Own/cross-price GLM elasticity fit --> fig-elasticity_validation
+  (7) Full multivariate GLM forecast     --> fig-forecast
+  (8) GLM-optimal price signal (EG-DQN anchor)
+  (9) PricingEnv + NumpyDQN definitions
+ (10) Train Pure DQN and EG-DQN (300 episodes)
+ (11) Convergence plots                  --> fig-convergence
+ (12) Evaluate five pricing strategies on holdout
+ (13) Revenue comparison panels          --> fig-revenue
+ (14) Ablation study (200 episodes)      --> fig-ablation
+ (15) Rolling 12-month GLM elasticity    --> fig-rolling_elasticity
+
+To regenerate all figures: run the notebook top-to-bottom with SEED=42,
+then rename the /tmp exports to the manuscript filenames below.
+
+
+4. Filename mapping (notebook export --> manuscript)
+----------------------------------------------------
+  /tmp/eda_panel.png              --> figures/fig-eda.png
+  /tmp/elasticity_validation.png  --> figures/fig-elasticity_validation.png
+  /tmp/forecast_plot.png          --> figures/fig-forecast.png
+  /tmp/convergence_plot.png       --> figures/fig-convergence.png
+  /tmp/revenue_comparison.png     --> figures/fig-revenue.png
+  /tmp/ablation_study.png         --> figures/fig-ablation.png
+  /tmp/rolling_elasticity.png     --> figures/fig-rolling_elasticity.png
+
+
+5. Per-figure generation details
+--------------------------------
+
+5.1 fig-eda.png  (label: fig:eda)
+  Notebook section: Exploratory Data Analysis
+  Layout: figure 20 x 14 in; 3 products x 3 panels
+  Panels per product:
+    - Left: daily demand (solid) and list price (dashed, twin axis)
+    - Centre: log(price) vs log(demand) scatter with OLS slope;
+              true own-price elasticity annotated
+    - Right: demand histogram with normal density overlay (mu, sigma)
+  Data: full synthetic series (2021--2024), M5/Favorita-calibrated DGP
+  Title in notebook: "Exploratory Data Analysis — Retail Demand Simulation"
+
+5.2 fig-elasticity_validation.png  (label: fig:elasticity_validation)
+  Notebook section: GLM elasticity validation plot
+  Layout: 1 x 3 subplots, figsize (18, 5)
+  Per product (train window only):
+    - Scatter of price vs demand
+    - GLM fitted demand curve using estimated own-price elasticity
+    - Ground-truth demand curve using simulator elasticity
+    - Relative bias annotation
+  Model: Poisson log-link GLM fit on training days only
+  Title: "GLM Elasticity Estimation vs Ground Truth"
+
+5.3 fig-forecast.png  (label: fig:forecast)
+  Notebook section: GLM demand forecast visualization (Item 1)
+  Layout: 2 x 1, figsize (16, 10)
+  Panel A: training actual vs fitted; holdout actual vs forecast;
+           vertical train/test split line
+  Panel B: test residuals (actual − forecast) with mean and ±1 std band
+  Model: full multivariate Poisson GLM (own/cross prices, calendar,
+         lags / rolling features as engineered in the notebook)
+  Title: "GLM Demand Forecast — item_1 (Poisson log-link)"
+
+5.4 fig-convergence.png  (label: fig:convergence)
+  Notebook section: DQN training convergence
+  Layout: 1 x 3, figsize (18, 5)
+  Upstream: Pure DQN and EG-DQN each trained for EPISODES = 300
+            (hidden_dim=128, NumPy DQN + replay buffer)
+  Panel A: episode revenue (raw translucent + 20-episode moving average);
+           heuristic "convergence" marker when MA exceeds 80% of final MA
+  Panel B: mean squared TD-error (log scale), 20-episode MA
+  Panel C: epsilon exploration decay (epsilon_min reference at 0.05)
+  Title: "DQN Training Convergence — Pure DQN vs EG-DQN"
+  Note: the manuscript treats the centre (TD-error) panel as exported
+        from the notebook and does not over-interpret it as a formal
+        convergence proof.
+
+5.5 fig-revenue.png  (label: fig:revenue)
+  Notebook section: strategy comparison on the Item 1 holdout
+  Layout: 2 x 2, figsize (18, 12)
+  Upstream: five policies evaluated on the last HOLDOUT_DAYS = 120 days:
+            Fixed-Price, Rule-Based, GLM-Only, Pure DQN, EG-DQN
+  Panel A: cumulative revenue over test days
+  Panel B: daily revenue boxplots (notched)
+  Panel C: price trajectories vs reference price
+  Panel D: total holdout revenue bars (authoritative totals for Table)
+  Title: "Strategy Comparison — Revenue & Pricing Analysis (Test Set)"
+
+5.6 fig-ablation.png  (label: fig:ablation)
+  Notebook section: ablation study visualization
+  Layout: 1 x 2, figsize (16, 6)
+  Upstream: ABLATION_EPISODES = 200 per configuration, SEED reset each time
+  Configurations:
+    - Pure DQN   (no GLM reward shaping)
+    - DQN+Reward (GLM reward shaping, lambda_glm = 30)
+    - EG-DQN     (full hybrid as configured in that ablation cell)
+  Panel A: training reward curves (15-episode moving average)
+  Panel B: holdout/test total revenue bars with %-gain vs Pure DQN
+  Title: "Ablation Study — GLM Component Contributions"
+
+5.7 fig-rolling_elasticity.png  (label: fig:rolling_elasticity)
+  Notebook section: rolling GLM elasticity stability (Item 1)
+  Layout: single axes, figsize (14, 5)
+  Estimation:
+    - Rolling window = 365 days (12 months)
+    - Step = 30 days
+    - Windows stop before the holdout (no test leakage)
+    - Poisson GLM; own-price coefficient ± 1.96 * SE band
+  Overlay: horizontal line at true own-price elasticity
+  Title: "Rolling 12-Month GLM Own-Price Elasticity Estimate — item_1"
+
+
+6. Synthetic data used by the plots
+-----------------------------------
+Prices: discrete step-function paths (n_changes=60), product-specific
+        reference prices and ranges from GROUND_TRUTH.
+Demand: multiplicative log-linear DGP with base level, trend, annual and
+        weekend seasonality, own- and cross-price elasticities, Gaussian
+        noise; clipped to a minimum of 1 unit.
+Calibration intent: statistical properties inspired by M5 / Favorita-style
+retail series (explicit parameters logged in the notebook for validation).
+
+
+7. How to regenerate for journal submission
+-------------------------------------------
+1. Open Dynamic_pricing_hybrid_EG_DQN.ipynb.
+2. Ensure dependencies are installed:
+     numpy pandas statsmodels matplotlib seaborn scipy
+3. Run all cells in order (do not skip training cells).
+4. Confirm SEED remains 42 and episode counts remain 300 / 200.
+5. Collect the seven PNGs from /tmp/ (or change savefig paths to figures/).
+6. Rename to fig-<label>.png as in Section 4.
+7. Recompile the LaTeX manuscript (index.tex) so includegraphics paths resolve.
+
+Optional for camera-ready: re-export at higher dpi (e.g. 300) by changing
+dpi=120 in each plt.savefig call; layout code is otherwise unchanged.
+
+
+8. Authority note
+-----------------
+The figures/ copies used in the paper are the authoritative visual record
+of the reported research run. Numeric claims in the manuscript that cite
+a figure (especially fig-revenue Panel D) take those plotted results as
+source of truth for that run.
