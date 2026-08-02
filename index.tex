@@ -12,6 +12,9 @@
 % ── Packages ────────────────────────────────────────────────
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
+% Times New Roman–compatible body/math fonts (IEEEtran default is
+% already Times; mathptmx makes text+math consistently Times-like)
+\usepackage{mathptmx}
 \usepackage{amsmath, amssymb, amsthm}
 \usepackage{graphicx}
 \usepackage{booktabs}
@@ -46,6 +49,9 @@
 % ── Theorem environments ─────────────────────────────────────
 \newtheorem{proposition}{Proposition}
 \newtheorem{remark}{Remark}
+
+% Arabic table numbers (IEEE journal default is Roman I, II, III, …)
+\renewcommand{\thetable}{\arabic{table}}
 
 % ── Image placeholder macro ──────────────────────────────────
 % Usage: \imgplaceholder{width}{height}{caption text}{label}
